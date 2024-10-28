@@ -1,0 +1,6520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.22">
+<title>Snowflake Labs</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment the following line when using as a custom stylesheet */
+/* @import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700"; */
+html{font-family:sans-serif;-webkit-text-size-adjust:100%}
+a{background:none}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+b,strong{font-weight:bold}
+abbr{font-size:.9em}
+abbr[title]{cursor:help;border-bottom:1px dotted #dddddf;text-decoration:none}
+dfn{font-style:italic}
+hr{height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+audio,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type=checkbox],input[type=radio]{padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,::before,::after{box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;line-height:1;position:relative;cursor:auto;-moz-tab-size:4;-o-tab-size:4;tab-size:4;word-wrap:anywhere;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:0}
+p{line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ul.square{list-style-type:square}
+ul.circle ul:not([class]),ul.disc ul:not([class]),ul.square ul:not([class]){list-style:inherit}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:1px solid #dedede;word-wrap:normal}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt{background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+:not(pre).nobreak{word-wrap:normal}
+:not(pre).nowrap{white-space:nowrap}
+:not(pre).pre-wrap{white-space:pre-wrap}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
+pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre>code{display:block}
+pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;border-radius:3px;box-shadow:0 1px 0 rgba(0,0,0,.2),inset 0 0 0 .1em #fff;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin:0 auto;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child{border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border:1px solid #e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:none;background:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:hsla(0,0%,100%,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details{margin-left:1.25rem}
+details>summary{cursor:pointer;display:block;position:relative;line-height:1.6;margin-bottom:.625rem;outline:none;-webkit-tap-highlight-color:transparent}
+details>summary::-webkit-details-marker{display:none}
+details>summary::before{content:"";border:solid transparent;border-left:solid;border-width:.3em 0 .3em .5em;position:absolute;top:.5em;left:-1.25rem;transform:translateX(15%)}
+details[open]>summary::before{border:solid transparent;border-top:solid;border-width:.5em .3em 0;transform:translateY(15%)}
+details>summary::after{content:"";width:1.25rem;height:1em;position:absolute;top:.3em;left:-1.25rem}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class=paragraph]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border:1px solid #e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;border-radius:4px}
+.sidebarblock{border:1px solid #dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;border-radius:4px}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:first-child,.sidebarblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child,.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock>.content>pre{border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.prettyprint{background:#f7f7f8}
+pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
+pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
+pre.prettyprint li code[data-lang]::before{opacity:1}
+pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
+table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
+table.linenotable td.code{padding-left:.75em}
+table.linenotable td.linenos,pre.pygments .linenos{border-right:1px solid;opacity:.35;padding-right:.5em;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+pre.pygments span.linenos{display:inline-block;margin-right:.75em}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans-serif;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;font-size:.85rem;text-align:left;margin-right:0}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:1.25em;word-wrap:anywhere}
+td.tableblock>.content>:last-child{margin-bottom:-1.25em}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>*>tr>*{border-width:1px}
+table.grid-cols>*>tr>*{border-width:0 1px}
+table.grid-rows>*>tr>*{border-width:1px 0}
+table.frame-all{border-width:1px}
+table.frame-ends{border-width:1px 0}
+table.frame-sides{border-width:0 1px}
+table.frame-none>colgroup+*>:first-child>*,table.frame-sides>colgroup+*>:first-child>*{border-top-width:0}
+table.frame-none>:last-child>:last-child>*,table.frame-sides>:last-child>:last-child>*{border-bottom-width:0}
+table.frame-none>*>tr>:first-child,table.frame-ends>*>tr>:first-child{border-left-width:0}
+table.frame-none>*>tr>:last-child,table.frame-ends>*>tr>:last-child{border-right-width:0}
+table.stripes-all>*>tr,table.stripes-odd>*>tr:nth-of-type(odd),table.stripes-even>*>tr:nth-of-type(even),table.stripes-hover>*>tr:hover{background:#f8f8f7}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+li>p:empty:only-child::before{content:"";display:inline-block}
+ul.checklist>li>p:first-child{margin-left:-1em}
+ul.checklist>li>p:first-child>.fa-square-o:first-child,ul.checklist>li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist>li>p:first-child>input[type=checkbox]:first-child{margin-right:.25em}
+ul.inline{display:flex;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+td.hdlist2{word-wrap:anywhere}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:4px solid #fff;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active,#footnotes .footnote a:first-of-type:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background:#00fafa}
+.black{color:#000}
+.black-background{background:#000}
+.blue{color:#0000bf}
+.blue-background{background:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background:#fa00fa}
+.gray{color:#606060}
+.gray-background{background:#7d7d7d}
+.green{color:#006000}
+.green-background{background:#007d00}
+.lime{color:#00bf00}
+.lime-background{background:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background:#7d0000}
+.navy{color:#000060}
+.navy-background{background:#00007d}
+.olive{color:#606000}
+.olive-background{background:#7d7d00}
+.purple{color:#600060}
+.purple-background{background:#7d007d}
+.red{color:#bf0000}
+.red-background{background:#fa0000}
+.silver{color:#909090}
+.silver-background{background:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);border-radius:50%;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt,summary{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,td.hdlist1,span.alt,summary{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]{border-bottom:1px dotted}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#header,#content,#footnotes,#footer{max-width:none}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media amzn-kf8,print{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="book toc2 toc-left">
+<div id="header">
+<h1>Snowflake Labs</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel0">
+<li><a href="#_lab_1_introduction_to_snowflake_and_basic_configuration">Lab 1: Introduction to Snowflake and Basic Configuration</a>
+<ul class="sectlevel1">
+<li><a href="#_objective">Objective</a></li>
+<li><a href="#_prerequisites">Prerequisites</a></li>
+<li><a href="#_steps">Steps</a></li>
+<li><a href="#_conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#_lab_2_loading_data_into_snowflake_manual_and_automated_methods">Lab 2: Loading Data into Snowflake (Manual and Automated Methods)</a>
+<ul class="sectlevel1">
+<li><a href="#_objective_2">Objective</a></li>
+<li><a href="#_prerequisites_2">Prerequisites</a></li>
+<li><a href="#_steps_2">Steps</a></li>
+<li><a href="#_conclusion_2">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#_lab_3_querying_data_in_snowflake">Lab 3: Querying Data in Snowflake</a>
+<ul class="sectlevel1">
+<li><a href="#_objective_3">Objective</a></li>
+<li><a href="#_prerequisites_3">Prerequisites</a></li>
+<li><a href="#_steps_3">Steps</a></li>
+<li><a href="#_conclusion_3">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#_lab_5_secure_data_sharing_in_snowflake">Lab 5: Secure Data Sharing in Snowflake</a>
+<ul class="sectlevel1">
+<li><a href="#_objective_4">Objective</a></li>
+<li><a href="#_prerequisites_4">Prerequisites</a></li>
+<li><a href="#_steps_4">Steps</a></li>
+<li><a href="#_conclusion_4">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#_lab_6_organizing_data_in_snowflake_with_cloning">Lab 6: Organizing Data in Snowflake with Cloning</a>
+<ul class="sectlevel1">
+<li><a href="#_objective_5">Objective</a></li>
+<li><a href="#_prerequisites_5">Prerequisites</a></li>
+<li><a href="#_steps_5">Steps</a></li>
+<li><a href="#_conclusion_5">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#_lab_9_snowflake_data_sharing_and_collaboration">Lab 9: Snowflake Data Sharing and Collaboration</a>
+<ul class="sectlevel1">
+<li><a href="#_objective_6">Objective</a></li>
+<li><a href="#_prerequisites_6">Prerequisites</a></li>
+<li><a href="#_steps_6">Steps</a></li>
+<li><a href="#_conclusion_6">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#_lab_10_managing_resource_consumption_in_snowflake">Lab 10: Managing Resource Consumption in Snowflake</a>
+<ul class="sectlevel1">
+<li><a href="#_objective_7">Objective</a></li>
+<li><a href="#_prerequisites_7">Prerequisites</a></li>
+<li><a href="#_steps_7">Steps</a></li>
+<li><a href="#_conclusion_7">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#_lab_12_managing_semi_structured_data_in_snowflake">Lab 12: Managing Semi-Structured Data in Snowflake</a>
+<ul class="sectlevel1">
+<li><a href="#_objective_8">Objective</a></li>
+<li><a href="#_prerequisites_8">Prerequisites</a></li>
+<li><a href="#_steps_8">Steps</a></li>
+<li><a href="#_conclusion_8">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#_lab_14_database_replication_and_failover_in_snowflake">Lab 14: Database Replication and Failover in Snowflake</a>
+<ul class="sectlevel1">
+<li><a href="#_objective_9">Objective</a></li>
+<li><a href="#_prerequisites_9">Prerequisites</a></li>
+<li><a href="#_steps_9">Steps</a></li>
+<li><a href="#_conclusion_9">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#_lab_15_managing_snowflake_materialized_views">Lab 15: Managing Snowflake Materialized Views</a>
+<ul class="sectlevel1">
+<li><a href="#_objective_10">Objective</a></li>
+<li><a href="#_prerequisites_10">Prerequisites</a></li>
+<li><a href="#_steps_10">Steps</a></li>
+<li><a href="#_conclusion_10">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#_lab_16_data_masking_for_security_in_snowflake">Lab 16: Data Masking for Security in Snowflake</a>
+<ul class="sectlevel1">
+<li><a href="#_objective_11">Objective</a></li>
+<li><a href="#_prerequisites_11">Prerequisites</a></li>
+<li><a href="#_steps_11">Steps</a></li>
+<li><a href="#_conclusion_11">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#_lab_17_performance_tuning_best_practices_in_snowflake">Lab 17: Performance Tuning Best Practices in Snowflake</a>
+<ul class="sectlevel1">
+<li><a href="#_objective_12">Objective</a></li>
+<li><a href="#_prerequisites_12">Prerequisites</a></li>
+<li><a href="#_steps_12">Steps</a></li>
+<li><a href="#_conclusion_12">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#_lab_18_handling_time_series_data_in_snowflake">Lab 18: Handling Time-Series Data in Snowflake</a>
+<ul class="sectlevel1">
+<li><a href="#_objective_13">Objective</a></li>
+<li><a href="#_prerequisites_13">Prerequisites</a></li>
+<li><a href="#_steps_13">Steps</a></li>
+<li><a href="#_conclusion_13">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#_lab_19_using_snowflake_streams_for_change_data_capture_cdc">Lab 19: Using Snowflake Streams for Change Data Capture (CDC)</a>
+<ul class="sectlevel1">
+<li><a href="#_objective_14">Objective</a></li>
+<li><a href="#_prerequisites_14">Prerequisites</a></li>
+<li><a href="#_steps_14">Steps</a></li>
+<li><a href="#_conclusion_14">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#_lab_20_using_snowflake_data_marketplace">Lab 20: Using Snowflake Data Marketplace</a>
+<ul class="sectlevel1">
+<li><a href="#_objective_15">Objective</a></li>
+<li><a href="#_prerequisites_15">Prerequisites</a></li>
+<li><a href="#_steps_15">Steps</a></li>
+<li><a href="#_conclusion_15">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#_lab_22_optimizing_snowflake_with_materialized_views_and_clustering">Lab 22: Optimizing Snowflake with Materialized Views and Clustering</a>
+<ul class="sectlevel1">
+<li><a href="#_objective_16">Objective</a></li>
+<li><a href="#_prerequisites_16">Prerequisites</a></li>
+<li><a href="#_steps_16">Steps</a></li>
+<li><a href="#_conclusion_16">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#_lab_24_automating_snowflake_with_tasks_and_streams">Lab 24: Automating Snowflake with Tasks and Streams</a>
+<ul class="sectlevel1">
+<li><a href="#_objective_17">Objective</a></li>
+<li><a href="#_prerequisites_17">Prerequisites</a></li>
+<li><a href="#_steps_17">Steps</a></li>
+<li><a href="#_conclusion_17">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#_lab_25_implementing_data_retention_policies_and_purging_in_snowflake">Lab 25: Implementing Data Retention Policies and Purging in Snowflake</a>
+<ul class="sectlevel1">
+<li><a href="#_objective_18">Objective</a></li>
+<li><a href="#_prerequisites_18">Prerequisites</a></li>
+<li><a href="#_steps_18">Steps</a></li>
+<li><a href="#_conclusion_18">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#_lab_27_implementing_zero_copy_cloning_for_devops_workflows">Lab 27: Implementing Zero-Copy Cloning for DevOps Workflows</a>
+<ul class="sectlevel1">
+<li><a href="#_objective_19">Objective</a></li>
+<li><a href="#_prerequisites_19">Prerequisites</a></li>
+<li><a href="#_steps_19">Steps</a></li>
+<li><a href="#_conclusion_19">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#_lab_28_managing_snowflake_network_policies_for_secure_access">Lab 28: Managing Snowflake Network Policies for Secure Access</a>
+<ul class="sectlevel1">
+<li><a href="#_objective_20">Objective</a></li>
+<li><a href="#_prerequisites_20">Prerequisites</a></li>
+<li><a href="#_steps_20">Steps</a></li>
+<li><a href="#_conclusion_20">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#_lab_29_advanced_data_masking_techniques_for_gdpr_and_compliance_in_snowflake">Lab 29: Advanced Data Masking Techniques for GDPR and Compliance in Snowflake</a>
+<ul class="sectlevel1">
+<li><a href="#_objective_21">Objective</a></li>
+<li><a href="#_prerequisites_21">Prerequisites</a></li>
+<li><a href="#_steps_21">Steps</a></li>
+<li><a href="#_conclusion_21">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#_lab_24_automating_snowflake_with_tasks_and_streams_2">Lab 24: Automating Snowflake with Tasks and Streams</a>
+<ul class="sectlevel1">
+<li><a href="#_objective_22">Objective</a></li>
+<li><a href="#_prerequisites_22">Prerequisites</a></li>
+<li><a href="#_steps_22">Steps</a></li>
+<li><a href="#_conclusion_22">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#_lab_31_optimizing_large_scale_data_partitioning_and_clustering_in_snowflake">Lab 31: Optimizing Large-Scale Data Partitioning and Clustering in Snowflake</a>
+<ul class="sectlevel1">
+<li><a href="#_objective_23">Objective</a></li>
+<li><a href="#_prerequisites_23">Prerequisites</a></li>
+<li><a href="#_steps_23">Steps</a></li>
+<li><a href="#_conclusion_23">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#_lab_32_managing_semi_structured_data_with_snowflakes_variant_type_and_json_functions">Lab 32: Managing Semi-Structured Data with Snowflake&#8217;s VARIANT Type and JSON Functions</a>
+<ul class="sectlevel1">
+<li><a href="#_objective_24">Objective</a></li>
+<li><a href="#_prerequisites_24">Prerequisites</a></li>
+<li><a href="#_steps_24">Steps</a></li>
+<li><a href="#_conclusion_24">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#_lab_33_building_a_real_time_analytics_dashboard_with_snowflake_and_tableau">Lab 33: Building a Real-Time Analytics Dashboard with Snowflake and Tableau</a>
+<ul class="sectlevel1">
+<li><a href="#_objective_25">Objective</a></li>
+<li><a href="#_prerequisites_25">Prerequisites</a></li>
+<li><a href="#_steps_25">Steps</a></li>
+<li><a href="#_conclusion_25">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#_lab_34_creating_a_data_pipeline_with_snowflake_apache_kafka_and_snowpipe">Lab 34: Creating a Data Pipeline with Snowflake, Apache Kafka, and Snowpipe</a>
+<ul class="sectlevel1">
+<li><a href="#_objective_26">Objective</a></li>
+<li><a href="#_prerequisites_26">Prerequisites</a></li>
+<li><a href="#_steps_26">Steps</a></li>
+<li><a href="#_conclusion_26">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#_lab_35_implementing_secure_data_sharing_across_snowflake_accounts">Lab 35: Implementing Secure Data Sharing Across Snowflake Accounts</a>
+<ul class="sectlevel1">
+<li><a href="#_objective_27">Objective</a></li>
+<li><a href="#_prerequisites_27">Prerequisites</a></li>
+<li><a href="#_steps_27">Steps</a></li>
+<li><a href="#_conclusion_27">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#_case_study_1_building_a_complete_data_warehouse_solution_in_snowflake">Case Study 1: Building a Complete Data Warehouse Solution in Snowflake</a>
+<ul class="sectlevel1">
+<li><a href="#_objective_28">Objective</a></li>
+<li><a href="#_prerequisites_28">Prerequisites</a></li>
+<li><a href="#_steps_28">Steps</a></li>
+<li><a href="#_conclusion_28">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<h1 id="_lab_1_introduction_to_snowflake_and_basic_configuration" class="sect0">Lab 1: Introduction to Snowflake and Basic Configuration</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>Author: Your Name
+:icons: font
+:source-highlighter: pygments
+:toc: preamble
+:numbered:</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_objective">Objective</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this lab, you will set up a Snowflake account, configure the basic settings, and explore the web interface.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites">Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Access to a Snowflake account.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps">Steps</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Create a Snowflake Account</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Sign up for a Snowflake trial account at <a href="https://signup.snowflake.com" class="bare">https://signup.snowflake.com</a>.</p>
+</li>
+<li>
+<p>Verify your email and login to the Snowflake web interface.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><strong>Exploring the Web Interface</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Familiarize yourself with the Snowflake web interface, including the <strong>Worksheet</strong>, <strong>Databases</strong>, <strong>Warehouses</strong>, and <strong>History</strong> tabs.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><strong>Configuring a Virtual Warehouse</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In the <strong>Warehouses</strong> tab, create a virtual warehouse.</p>
+</li>
+<li>
+<p>Set the <strong>Size</strong> to <code>X-Small</code> for cost efficiency and configure the <strong>Auto Suspend</strong> option to 5 minutes.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><strong>Creating a Database and Schema</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Go to the <strong>Databases</strong> tab and create a new database.</p>
+</li>
+<li>
+<p>Under the newly created database, create a schema for organizing data tables.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><strong>Running Basic SQL Queries</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In the <strong>Worksheet</strong> tab, run basic SQL queries such as:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">CREATE TABLE demo_table (id INT, name STRING);
+INSERT INTO demo_table VALUES (1, 'John Doe'), (2, 'Jane Smith'); SELECT * FROM demo_table;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion">Conclusion</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>You have successfully created a Snowflake account, configured a virtual warehouse, created a database and schema, and executed basic SQL queries.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<h1 id="_lab_2_loading_data_into_snowflake_manual_and_automated_methods" class="sect0">Lab 2: Loading Data into Snowflake (Manual and Automated Methods)</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>Author: Your Name
+:icons: font
+:source-highlighter: pygments
+:toc: preamble
+:numbered:</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_objective_2">Objective</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this lab, you will manually load data into Snowflake and automate data loading using the COPY command.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites_2">Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Access to a Snowflake account.</p>
+</li>
+<li>
+<p>Sample CSV file (e.g., <code>employees.csv</code>).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps_2">Steps</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Manual Data Load Using the Web Interface</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a new table in the <strong>Worksheet</strong>:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">CREATE TABLE employees (id INT, name STRING, age INT, department STRING);</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use the <strong>Data Load Wizard</strong> in the <strong>Databases</strong> tab to manually upload the <code>employees.csv</code> file to the <strong>employees</strong> table.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Verifying Data Load</strong></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Run the following query to verify the data:</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT * FROM employees;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Automated Data Load Using COPY Command</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Stage the CSV file using an internal Snowflake stage:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">CREATE OR REPLACE STAGE my_stage; PUT file://employees.csv @my_stage;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use the COPY INTO command to load the data into the table:</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">COPY INTO employees FROM @my_stage FILE_FORMAT = (TYPE = 'CSV');</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Verify Automated Load</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Check the data in the <strong>employees</strong> table:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT * FROM employees;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion_2">Conclusion</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>You have successfully loaded data into Snowflake using both manual and automated methods, including the COPY command.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<h1 id="_lab_3_querying_data_in_snowflake" class="sect0">Lab 3: Querying Data in Snowflake</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>Author: Your Name
+:icons: font
+:source-highlighter: pygments
+:toc: preamble
+:numbered:</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_objective_3">Objective</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this lab, you will run basic and advanced SQL queries in Snowflake, including filtering, aggregation, and joins.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites_3">Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>A Snowflake database with data loaded (e.g., employees table).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps_3">Steps</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Basic Queries</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Run basic SELECT queries to retrieve data:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT * FROM employees;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Filtering Data</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Apply WHERE conditions to filter records:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT * FROM employees WHERE department = 'HR';</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Aggregating Data</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use aggregate functions to summarize data:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT department, AVG(age) FROM employees GROUP BY department;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Joining Tables</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a second table for departments:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT department, AVG(age) FROM employees GROUP BY department;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Perform a JOIN query:</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT e.name, d.department_name FROM employees e JOIN departments d ON e.department = d.id;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion_3">Conclusion</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>You have successfully run basic and advanced SQL queries in Snowflake, including filtering, aggregation, and joins.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Unresolved directive in &lt;stdin&gt; - include::Using Snowflakes&#8217;s Web Interface.adoc[]</p>
+</div>
+</div>
+</div>
+<h1 id="_lab_5_secure_data_sharing_in_snowflake" class="sect0">Lab 5: Secure Data Sharing in Snowflake</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>Author: Your Name
+:icons: font
+:source-highlighter: pygments
+:toc: preamble
+:numbered:</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_objective_4">Objective</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this lab, you will configure secure data sharing between two Snowflake accounts.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites_4">Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Two Snowflake accounts or access to a shared Snowflake instance.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps_4">Steps</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating a Share</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Log into your primary Snowflake account and create a share:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">CREATE SHARE employee_data_share; GRANT USAGE ON DATABASE demo_db TO SHARE employee_data_share;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Granting Access</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Grant access to the specific table you want to share:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">GRANT SELECT ON employees TO SHARE employee_data_share;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Consuming the Share</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Log into the secondary Snowflake account and consume the share:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">CREATE DATABASE employee_db FROM SHARE primary_account.employee_data_share;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Querying Shared Data</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Query the shared data from the secondary account:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT * FROM employee_db.public.employees;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion_4">Conclusion</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>You have successfully shared data securely between two Snowflake accounts.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<h1 id="_lab_6_organizing_data_in_snowflake_with_cloning" class="sect0">Lab 6: Organizing Data in Snowflake with Cloning</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>Author: Your Name
+:icons: font
+:source-highlighter: pygments
+:toc: preamble
+:numbered:</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_objective_5">Objective</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this lab, you will organize your Snowflake data using cloning features to create quick, efficient copies of databases, schemas, and tables.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites_5">Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Snowflake account access.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps_5">Steps</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Cloning a Table</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Clone the <strong>employees</strong> table into a new table:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>CREATE OR REPLACE TABLE employees_clone CLONE employees;</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Verifying the Clone</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Query both the original and cloned table to verify:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT * FROM employees; SELECT * FROM employees_clone;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Cloning a Schema</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Clone the entire schema containing the <strong>employees</strong> table:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">CREATE SCHEMA demo_schema_clone CLONE demo_schema;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Understanding Zero-Copy Cloning</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Explore Snowflake’s zero-copy cloning feature and observe how cloning does not duplicate the underlying storage, making it efficient.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion_5">Conclusion</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>You have used cloning to quickly create copies of tables and schemas in Snowflake without duplicating the underlying data.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Unresolved directive in &lt;stdin&gt; - include::Managing Users and Roles in Snowflakes.adoc[]</p>
+</div>
+<div class="paragraph">
+<p>Unresolved directive in &lt;stdin&gt; - include::SNowSQL CLI to Interact withSNowflake.adoc[]</p>
+</div>
+</div>
+</div>
+<h1 id="_lab_9_snowflake_data_sharing_and_collaboration" class="sect0">Lab 9: Snowflake Data Sharing and Collaboration</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>Author: Your Name
+:icons: font
+:source-highlighter: pygments
+:toc: preamble
+:numbered:</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_objective_6">Objective</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this lab, you will configure secure data sharing with external Snowflake accounts and collaborate by sharing datasets.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites_6">Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Snowflake account access.</p>
+</li>
+<li>
+<p>External Snowflake account for sharing data.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps_6">Steps</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating a Data Share</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Log into your Snowflake account and create a share for the <strong>employees</strong> table:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">CREATE SHARE employees_share; GRANT USAGE ON DATABASE demo_db TO SHARE employees_share;
+GRANT SELECT ON employees TO SHARE employees_share;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Granting Access to the Share</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Grant access to the external account:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>ALTER SHARE employees_share ADD ACCOUNT = 'EXTERNAL_ACCOUNT_NAME';</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">ALTER SHARE employees_share ADD ACCOUNT = 'EXTERNAL_ACCOUNT_NAME';</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Consuming the Shared Data</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Log into the external Snowflake account and create a database from the share:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">ALTER SHARE employees_share ADD ACCOUNT = 'EXTERNAL_ACCOUNT_NAME';</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Consuming the Shared Data</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Log into the external Snowflake account and create a database from the share:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">CREATE DATABASE shared_db FROM SHARE primary_account.employees_share;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Querying the Shared Data</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Query the shared <strong>employees</strong> data in the external account:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT * FROM shared_db.public.employees;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion_6">Conclusion</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>You have successfully shared data securely between Snowflake accounts and collaborated by sharing datasets with external users.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<h1 id="_lab_10_managing_resource_consumption_in_snowflake" class="sect0">Lab 10: Managing Resource Consumption in Snowflake</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>Author: Your Name
+:icons: font
+:source-highlighter: pygments
+:toc: preamble
+:numbered:</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_objective_7">Objective</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this lab, you will monitor and manage resource consumption in Snowflake, including virtual warehouse usage and query performance.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites_7">Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Snowflake account access.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps_7">Steps</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Monitoring Warehouse Usage</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use the <strong>WAREHOUSE_METERING_HISTORY</strong> view to monitor virtual warehouse usage:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT * FROM WAREHOUSE_METERING_HISTORY WHERE START_TIME &gt; CURRENT_DATE() - INTERVAL '1 DAY';</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Analyzing Query Performance</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use the <strong>QUERY_HISTORY</strong> view to monitor query performance:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT * FROM QUERY_HISTORY WHERE EXECUTION_STATUS = 'SUCCESS';</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Suspending and Resuming Warehouses</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Suspend a running warehouse to reduce resource consumption:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">ALTER WAREHOUSE my_warehouse SUSPEND;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Resume the warehouse when needed:</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">ALTER WAREHOUSE my_warehouse RESUME;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Setting Auto-Suspend and Auto-Resume</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Set up auto-suspend and auto-resume for a warehouse:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">ALTER WAREHOUSE my_warehouse SET AUTO_SUSPEND = 300; ALTER WAREHOUSE my_warehouse SET AUTO_RESUME = TRUE;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion_7">Conclusion</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>You have successfully managed resource consumption in Snowflake by monitoring warehouse usage, analyzing query performance, and optimizing resource allocation.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Unresolved directive in &lt;stdin&gt; - include::Bulk Data Loading into SNowflakes.adoc[]</p>
+</div>
+</div>
+</div>
+<h1 id="_lab_12_managing_semi_structured_data_in_snowflake" class="sect0">Lab 12: Managing Semi-Structured Data in Snowflake</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>Author: Your Name
+:icons: font
+:source-highlighter: pygments
+:toc: preamble
+:numbered:</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_objective_8">Objective</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this lab, you will learn how to load and query semi-structured data formats such as JSON and Parquet in Snowflake.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites_8">Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Snowflake account access.</p>
+</li>
+<li>
+<p>Sample JSON or Parquet file.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps_8">Steps</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating a Table for Semi-Structured Data</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a table to store semi-structured JSON data:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">CREATE TABLE json_data_table (data VARIANT);</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Loading JSON Data</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use the <strong>COPY INTO</strong> command to load JSON data into the table:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">COPY INTO json_data_table FROM @my_stage FILE_FORMAT = (TYPE = 'JSON');</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Querying JSON Data</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Query specific fields within the JSON data using Snowflake&#8217;s <strong>FLATTEN</strong> function:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT data:id::INT, data:name::STRING FROM json_data_table;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Handling Parquet Data</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a table for Parquet data and load it similarly:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">CREATE TABLE parquet_data_table (data VARIANT);
+COPY INTO parquet_data_table FROM @my_stage FILE_FORMAT = (TYPE = 'PARQUET');</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Querying Parquet Data</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Query the semi-structured Parquet data:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT data
+FROM parquet_data_table;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion_8">Conclusion</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>You have successfully managed semi-structured data formats like JSON and Parquet in Snowflake, performing both data loading and querying.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Unresolved directive in &lt;stdin&gt; - include::Time Travel and Fail-safe in Snowflake.adoc[]</p>
+</div>
+</div>
+</div>
+<h1 id="_lab_14_database_replication_and_failover_in_snowflake" class="sect0">Lab 14: Database Replication and Failover in Snowflake</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>Author: Your Name
+:icons: font
+:source-highlighter: pygments
+:toc: preamble
+:numbered:</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_objective_9">Objective</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this lab, you will configure database replication and failover to ensure high availability and disaster recovery in Snowflake.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites_9">Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Snowflake account access with multi-region setup.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps_9">Steps</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Setting Up Replication</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a primary database:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">CREATE OR REPLACE DATABASE primary_db;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Enable replication for the primary database:</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">ALTER DATABASE primary_db ENABLE REPLICATION TO REGION 'US-WEST';</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating a Secondary Database</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Set up a secondary database in a different region:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">CREATE DATABASE secondary_db FROM REPLICATION OF primary_db;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Simulating a Failover</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Simulate a failover scenario by suspending the primary region:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">ALTER DATABASE primary_db FAILOVER TO secondary_db;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Testing Data Access</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Access the <strong>secondary_db</strong> and query the replicated data:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT * FROM secondary_db.public.some_table;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Monitoring Replication</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use the <strong>REPLICATION_DATABASES</strong> view to monitor replication:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT * FROM REPLICATION_DATABASES;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion_9">Conclusion</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>You have successfully set up database replication and failover in Snowflake, ensuring high availability and disaster recovery.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<h1 id="_lab_15_managing_snowflake_materialized_views" class="sect0">Lab 15: Managing Snowflake Materialized Views</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>Author: Your Name
+:icons: font
+:source-highlighter: pygments
+:toc: preamble
+:numbered:</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_objective_10">Objective</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this lab, you will create and manage materialized views in Snowflake to optimize query performance on frequently accessed data.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites_10">Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Snowflake account access.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps_10">Steps</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating a Materialized View</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a table and insert data:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">CREATE TABLE sales_data (id INT, amount DECIMAL(10, 2), category STRING);
+INSERT INTO sales_data VALUES (1, 100.50, 'Electronics'), (2, 300.75, 'Furniture');</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a materialized view on the table:</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">CREATE MATERIALIZED VIEW sales_summary AS SELECT category, SUM(amount) AS total_sales FROM sales_data GROUP BY category;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Querying the Materialized View</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Query the materialized view to observe the aggregated results:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT * FROM sales_summary;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Monitoring Materialized View Performance</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use the <strong>VIEW_USAGE_HISTORY</strong> view to monitor the performance and freshness of the materialized view:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT * FROM VIEW_USAGE_HISTORY WHERE VIEW_NAME = 'sales_summary';</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Refreshing the Materialized View</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Manually refresh the materialized view if needed:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">ALTER MATERIALIZED VIEW sales_summary RECLUSTER;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion_10">Conclusion</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>You have successfully created and managed materialized views in Snowflake to improve query performance.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<h1 id="_lab_16_data_masking_for_security_in_snowflake" class="sect0">Lab 16: Data Masking for Security in Snowflake</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>Author: Your Name
+:icons: font
+:source-highlighter: pygments
+:toc: preamble
+:numbered:</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_objective_11">Objective</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this lab, you will configure data masking policies in Snowflake to protect sensitive information such as personally identifiable information (PII).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites_11">Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Snowflake account access with security permissions.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps_11">Steps</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating a Table with Sensitive Data</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a table containing sensitive information:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>CREATE TABLE customer_data (id INT, name STRING, ssn STRING);
+INSERT INTO customer_data VALUES (1, 'John Doe', '123-45-6789');</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating a Masking Policy</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a masking policy to hide the Social Security Number (SSN):</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">CREATE MASKING POLICY ssn_mask AS (val STRING) RETURNS STRING -&gt; CASE WHEN CURRENT_ROLE() IN ('SECURITY_ADMIN') THEN val ELSE 'XXX-XX-XXXX' END;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Applying the Masking Policy</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Apply the masking policy to the <strong>ssn</strong> column:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">ALTER TABLE customer_data MODIFY COLUMN ssn SET MASKING POLICY ssn_mask;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Testing Data Masking</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Query the table as a non-admin user:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT * FROM customer_data;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Query the table as an admin user:</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT * FROM customer_data;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion_11">Conclusion</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>You have successfully implemented data masking in Snowflake to secure sensitive information based on user roles.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<h1 id="_lab_17_performance_tuning_best_practices_in_snowflake" class="sect0">Lab 17: Performance Tuning Best Practices in Snowflake</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>Author: Your Name
+:icons: font
+:source-highlighter: pygments
+:toc: preamble
+:numbered:</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_objective_12">Objective</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this lab, you will apply best practices for performance tuning in Snowflake, including query optimization, clustering, and using result caching.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites_12">Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Snowflake account access.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps_12">Steps</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Optimizing Query Performance</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use the <strong>QUERY_HISTORY</strong> view to identify slow-running queries:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT * FROM QUERY_HISTORY WHERE EXECUTION_STATUS = 'SUCCESS' ORDER BY TOTAL_ELAPSED_TIME DESC;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Applying Result Caching</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Enable result caching to speed up repeated queries:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">ALTER SESSION SET USE_CACHED_RESULTS = TRUE;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Using Clustering for Large Tables</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add clustering to optimize large tables:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">ALTER TABLE large_sales_table CLUSTER BY (category);</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Monitoring Query Statistics</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use the <strong>QUERY_HISTORY</strong> view to monitor query execution plans and analyze statistics:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT * FROM QUERY_HISTORY WHERE EXECUTION_STATUS = 'SUCCESS';</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion_12">Conclusion</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>You have successfully applied performance tuning techniques in Snowflake to optimize query performance, including result caching and clustering.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<h1 id="_lab_18_handling_time_series_data_in_snowflake" class="sect0">Lab 18: Handling Time-Series Data in Snowflake</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>Author: Your Name
+:icons: font
+:source-highlighter: pygments
+:toc: preamble
+:numbered:</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_objective_13">Objective</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this lab, you will learn how to handle time-series data in Snowflake, including date and time functions, window functions, and analyzing trends over time.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites_13">Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Snowflake account access.</p>
+</li>
+<li>
+<p>Sample dataset with date fields.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps_13">Steps</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating a Table with Time-Series Data</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a table to store sales data over time:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">CREATE TABLE sales_time_series (sale_date DATE, amount DECIMAL(10,2)); INSERT INTO sales_time_series VALUES ('2023-01-01', 100), ('2023-01-02', 150), ('2023-01-03', 200);</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Querying Data by Date Range</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use the <strong>BETWEEN</strong> operator to filter data by date:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT * FROM sales_time_series WHERE sale_date BETWEEN '2023-01-01' AND '2023-01-02';</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Calculating Running Totals</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use a window function to calculate a running total of sales over time:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT sale_date, amount, SUM(amount) OVER (ORDER BY sale_date) AS running_total FROM sales_time_series;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Extracting Date Parts</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use date functions to extract parts of a date (e.g., year, month, day):</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT sale_date, EXTRACT(YEAR FROM sale_date) AS year, EXTRACT(MONTH FROM sale_date) AS month FROM sales_time_series;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Handling Date and Time Intervals</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Perform date arithmetic to calculate intervals between dates:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT sale_date, amount, DATEDIFF('day', '2023-01-01', sale_date) AS days_since_start FROM sales_time_series;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion_13">Conclusion</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>You have successfully handled time-series data in Snowflake, using date functions, window functions, and date arithmetic to analyze trends over time.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<h1 id="_lab_19_using_snowflake_streams_for_change_data_capture_cdc" class="sect0">Lab 19: Using Snowflake Streams for Change Data Capture (CDC)</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>Author: Your Name
+:icons: font
+:source-highlighter: pygments
+:toc: preamble
+:numbered:</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_objective_14">Objective</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this lab, you will configure and use Snowflake streams for change data capture (CDC) to track changes in a table and manage incremental data loads.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites_14">Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Snowflake account access.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps_14">Steps</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating a Table for CDC</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a table to store employee data:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">CREATE TABLE employees_cdc (id INT, name STRING, department STRING); INSERT INTO employees_cdc VALUES (1, 'John Doe', 'HR'), (2, 'Jane Smith', 'IT');</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating a Stream to Track Changes</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a Snowflake stream to capture changes (inserts, updates, deletes) on the <strong>employees_cdc</strong> table:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">CREATE OR REPLACE STREAM employees_stream ON TABLE employees_cdc;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Making Changes to the Table</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Insert, update, and delete records in the <strong>employees_cdc</strong> table:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">NSERT INTO employees_cdc VALUES (3, 'Alice Johnson', 'Finance');
+UPDATE employees_cdc SET department = 'Engineering' WHERE id = 2;
+DELETE FROM employees_cdc WHERE id = 1;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Querying the Stream for Changes</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Query the stream to view the changes made to the table:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT * FROM employees_stream;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Managing the Change Data</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use the stream to manage incremental data loads into another table:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">INSERT INTO employees_incremental SELECT * FROM employees_stream;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion_14">Conclusion</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>You have successfully used Snowflake streams for change data capture, tracking changes in a table and managing incremental data loads.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<h1 id="_lab_20_using_snowflake_data_marketplace" class="sect0">Lab 20: Using Snowflake Data Marketplace</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>Author: Your Name
+:icons: font
+:source-highlighter: pygments
+:toc: preamble
+:numbered:</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_objective_15">Objective</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this lab, you will explore the Snowflake Data Marketplace and learn how to access and query third-party datasets for analytics and reporting.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites_15">Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Snowflake account access.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps_15">Steps</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Accessing the Data Marketplace</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Log in to Snowflake and navigate to the <strong>Data Marketplace</strong> tab.</p>
+</li>
+<li>
+<p>Explore the available datasets provided by third-party data providers.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><strong>Searching for a Dataset</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Search for a dataset related to financial markets, weather data, or retail sales, depending on your analysis needs.</p>
+</li>
+<li>
+<p>Review the description and details of the dataset.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><strong>Requesting Access to a Dataset</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Select a dataset and request access from the data provider. Once access is granted, create a new database from the shared data:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">CREATE DATABASE financial_data FROM SHARE provider_account.financial_market_data;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Querying the Shared Dataset</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Query the data from the newly created database:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT * FROM financial_data.public.market_stats;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Integrating Marketplace Data with Internal Data</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Join the marketplace dataset with your internal sales data to enhance your analytics:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT a.market, b.sales FROM financial_data.public.market_stats a JOIN internal_sales_data b ON a.market = b.market;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion_15">Conclusion</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>You have successfully accessed and queried third-party datasets from the Snowflake Data Marketplace, integrating it with your internal data for enhanced analytics.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Unresolved directive in &lt;stdin&gt; - include::Implementing Data Encryption in SNowflakes.adoc[]</p>
+</div>
+</div>
+</div>
+<h1 id="_lab_22_optimizing_snowflake_with_materialized_views_and_clustering" class="sect0">Lab 22: Optimizing Snowflake with Materialized Views and Clustering</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>Author: Your Name
+:icons: font
+:source-highlighter: pygments
+:toc: preamble
+:numbered:</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_objective_16">Objective</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this lab, you will optimize data access in Snowflake using materialized views and clustering to improve query performance on large datasets.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites_16">Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Snowflake account access.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps_16">Steps</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating a Large Table for Optimization</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a large table with sales data:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">CREATE OR REPLACE TABLE sales_data_large (id INT, amount DECIMAL(10, 2), category STRING);
+INSERT INTO sales_data_large SELECT SEQ8(), RAND() * 1000, RANDOM() FROM TABLE(GENERATOR(ROWCOUNT =&gt; 1000000));</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating a Materialized View</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a materialized view to optimize querying:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">CREATE MATERIALIZED VIEW sales_summary_large AS SELECT category, SUM(amount) AS total_sales FROM sales_data_large GROUP BY category;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Querying the Materialized View</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Query the materialized view to observe the performance improvement:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT * FROM sales_summary_large;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Applying Clustering</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add clustering to the large table to optimize queries based on the <strong>category</strong> column:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">ALTER TABLE sales_data_large CLUSTER BY (category);</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Monitoring the Impact of Clustering</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use the <strong>CLUSTERING_INFORMATION</strong> view to monitor clustering efficiency:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT * FROM CLUSTERING_INFORMATION WHERE TABLE_NAME = 'sales_data_large';</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion_16">Conclusion</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>You have successfully used materialized views and clustering to optimize data access in Snowflake for large datasets, improving query performance.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Unresolved directive in &lt;stdin&gt; - include::Snowflake Continuos Data Integraton with Snowpipe.adoc[]</p>
+</div>
+</div>
+</div>
+<h1 id="_lab_24_automating_snowflake_with_tasks_and_streams" class="sect0">Lab 24: Automating Snowflake with Tasks and Streams</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>Author: Your Name
+:icons: font
+:source-highlighter: pygments
+:toc: preamble</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_objective_17">Objective</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this lab, you will automate data processing in Snowflake using tasks and streams to track changes and run scheduled jobs.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites_17">Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Snowflake account access.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps_17">Steps</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating a Table for Change Tracking</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a table to store product data:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">CREATE TABLE products (id INT, name STRING, price DECIMAL(10, 2)); INSERT INTO products VALUES (1, 'Product A', 100), (2, 'Product B', 150);</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating a Stream to Track Changes</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a stream to track changes (inserts, updates, deletes) on the <strong>products</strong> table:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">CREATE STREAM product_changes ON TABLE products;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating a Task to Process Changes</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a task that runs periodically to process changes from the stream:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">CREATE OR REPLACE TASK process_product_changes WAREHOUSE = 'COMPUTE_WH' SCHEDULE = '5 MINUTE' AS INSERT INTO product_audit SELECT * FROM product_changes WHERE METADATA$ACTION = 'INSERT';</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Running the Task</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Run the task manually or wait for it to execute according to the schedule:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">EXECUTE TASK process_product_changes;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Monitoring Task Execution</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use the <strong>TASK_HISTORY</strong> view to monitor task execution and status:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT * FROM TASK_HISTORY WHERE TASK_NAME = 'PROCESS_PRODUCT_CHANGES';</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion_17">Conclusion</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>You have successfully automated data processing in Snowflake using tasks and streams, enabling continuous tracking and processing of table changes.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<h1 id="_lab_25_implementing_data_retention_policies_and_purging_in_snowflake" class="sect0">Lab 25: Implementing Data Retention Policies and Purging in Snowflake</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>Author: Your Name
+:icons: font
+:source-highlighter: pygments
+:toc: preamble
+:numbered:</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_objective_18">Objective</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this lab, you will configure data retention policies in Snowflake to manage how long data is retained before it is purged from the system.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites_18">Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Snowflake account access.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps_18">Steps</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating a Table with Retention Policies</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a table to store sales data and configure a retention policy for it:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">CREATE TABLE sales_with_retention (id INT, amount DECIMAL(10, 2), sale_date DATE) DATA_RETENTION_TIME_IN_DAYS = 7;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Inserting Data</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Insert some sample data into the table:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">INSERT INTO sales_with_retention VALUES (1, 100, '2023-01-01');</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Verifying Data Retention Settings</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Query the retention settings for the table:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SHOW PARAMETERS LIKE 'DATA_RETENTION_TIME_IN_DAYS' IN TABLE sales_with_retention;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Purging Expired Data</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>After the retention period has passed, verify that the expired data is purged automatically:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT * FROM sales_with_retention WHERE sale_date &lt; CURRENT_DATE() - INTERVAL '7 DAYS';</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Customizing Retention Policies</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Adjust the retention time by modifying the table&#8217;s retention policy:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">ALTER TABLE sales_with_retention SET DATA_RETENTION_TIME_IN_DAYS = 14;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Manually Purging Data</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If necessary, manually purge specific data from the table:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">DELETE FROM sales_with_retention WHERE sale_date &lt; CURRENT_DATE() - INTERVAL '14 DAYS';</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Monitoring Retention and Purging Activity</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use the <strong>ACCOUNT_USAGE</strong> views to monitor retention and purging activities, including when data is scheduled for deletion.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion_18">Conclusion</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>You have successfully configured and managed data retention policies in Snowflake, ensuring data is automatically purged after a set retention period or manually deleted when necessary.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Unresolved directive in &lt;stdin&gt; - include::Using Snowflake&#8217;s External Tables for Data Lakes[]</p>
+</div>
+</div>
+</div>
+<h1 id="_lab_27_implementing_zero_copy_cloning_for_devops_workflows" class="sect0">Lab 27: Implementing Zero-Copy Cloning for DevOps Workflows</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>Author: Your Name
+:icons: font
+:source-highlighter: pygments
+:toc: preamble
+:numbered:</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_objective_19">Objective</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this lab, you will learn how to use Snowflake&#8217;s zero-copy cloning feature to create efficient dev/test environments without duplicating data, allowing teams to work in parallel with minimal overhead.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites_19">Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Snowflake account access.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps_19">Steps</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating a Primary Table</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a table in your production environment:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">CREATE OR REPLACE TABLE production_sales (id INT, amount DECIMAL(10,2), sale_date DATE);
+INSERT INTO production_sales VALUES (1, 100.50, '2023-01-01'), (2, 200.75, '2023-01-02');</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating a Zero-Copy Clone</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Clone the <strong>production_sales</strong> table to create a dev/test version:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">CREATE OR REPLACE TABLE dev_sales CLONE production_sales;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Verifying the Clone</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Query both the original and the cloned table to verify that they share the same data:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT * FROM production_sales; SELECT * FROM dev_sales;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Modifying the Clone</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Make modifications to the cloned table:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">INSERT INTO dev_sales VALUES (3, 300.50, '2023-01-03'); DELETE FROM dev_sales WHERE id = 1;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Ensuring Zero-Copy Efficiency</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Review the storage efficiency of zero-copy cloning using the <strong>TABLE_STORAGE_METRICS</strong> view:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT * FROM TABLE_STORAGE_METRICS WHERE TABLE_NAME = 'DEV_SALES';</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Recloning for Parallel Workflows</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Reclone tables or databases as needed to allow multiple teams to work in parallel with minimal resource duplication.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion_19">Conclusion</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>You have successfully used zero-copy cloning to create dev/test environments in Snowflake, enabling efficient parallel workflows without duplicating data.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<h1 id="_lab_28_managing_snowflake_network_policies_for_secure_access" class="sect0">Lab 28: Managing Snowflake Network Policies for Secure Access</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>Author: Your Name
+:icons: font
+:source-highlighter: pygments
+:toc: preamble
+:numbered:</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_objective_20">Objective</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this lab, you will configure Snowflake network policies to manage and restrict access to your Snowflake instance based on specific IP address ranges for enhanced security.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites_20">Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Snowflake account access with admin privileges.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps_20">Steps</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating a Network Policy</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a network policy to restrict access to a specific IP range:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">CREATE NETWORK POLICY restrict_access ALLOWED_IP_LIST = ('192.168.1.1', '192.168.1.2/24');</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Applying the Network Policy</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Apply the network policy to a specific user:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">ALTER USER john_doe SET NETWORK_POLICY = restrict_access;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Testing Network Restrictions</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Log in as the user from an IP address outside the allowed range to verify access is restricted.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><strong>Monitoring Network Policy Enforcement</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use the <strong>LOGIN_HISTORY</strong> view to monitor logins and check for network policy enforcement:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT * FROM LOGIN_HISTORY WHERE USER_NAME = 'JOHN_DOE';</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Modifying Network Policies</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Modify the network policy to update the allowed IP addresses:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">ALTER NETWORK POLICY restrict_access SET ALLOWED_IP_LIST = ('192.168.2.1', '192.168.2.2/24');</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion_20">Conclusion</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>You have successfully implemented and managed network policies in Snowflake to secure access to your instance based on IP address restrictions.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<h1 id="_lab_29_advanced_data_masking_techniques_for_gdpr_and_compliance_in_snowflake" class="sect0">Lab 29: Advanced Data Masking Techniques for GDPR and Compliance in Snowflake</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>Author: Your Name
+:icons: font
+:source-highlighter: pygments
+:toc: preamble
+:numbered:</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_objective_21">Objective</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this lab, you will implement advanced data masking policies in Snowflake to comply with GDPR and other data protection regulations, ensuring the security of sensitive personal data based on user roles.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites_21">Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Snowflake account access with <code>SECURITYADMIN</code> privileges.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps_21">Steps</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating a Table with Sensitive Data</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a table to store customer information:</p>
+<div class="literalblock">
+<div class="content">
+<pre>[source,sql]
+----
+CREATE TABLE customer_data_gdpr (
+  id INT,
+  name STRING,
+  ssn STRING,
+  email STRING,
+  phone STRING
+);
+INSERT INTO customer_data_gdpr VALUES
+(1, 'John Doe', '123-45-6789', 'john@example.com', '555-1234'),
+(2, 'Jane Smith', '987-65-4321', 'jane@example.com', '555-5678');
+----</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><strong>Creating a Masking Policy for Personal Data</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a masking policy to mask the <code>ssn</code> column based on the user&#8217;s role:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   CREATE MASKING POLICY ssn_mask_policy AS
+   (val STRING) RETURNS STRING -&gt;
+   CASE
+     WHEN CURRENT_ROLE() IN ('SECURITYADMIN', 'DATA_AUDITOR') THEN val
+     ELSE 'XXX-XX-XXXX'
+   END;
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Applying the Masking Policy</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Apply the masking policy to the <code>ssn</code> column:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   ALTER TABLE customer_data_gdpr MODIFY COLUMN ssn SET MASKING POLICY ssn_mask_policy;
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating a Masking Policy for Email and Phone</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create similar masking policies for the <code>email</code> and <code>phone</code> columns:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   CREATE MASKING POLICY email_mask_policy AS
+   (val STRING) RETURNS STRING -&gt;
+   CASE
+     WHEN CURRENT_ROLE() IN ('SECURITYADMIN', 'DATA_AUDITOR') THEN val
+     ELSE 'hidden@example.com'
+   END;</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>CREATE MASKING POLICY phone_mask_policy AS
+(val STRING) RETURNS STRING -&gt;
+CASE
+  WHEN CURRENT_ROLE() IN ('SECURITYADMIN', 'DATA_AUDITOR') THEN val
+  ELSE 'XXX-XXXX'
+END;
+----</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Applying Masking Policies to Email and Phone</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Apply these policies to the <code>email</code> and <code>phone</code> columns:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   ALTER TABLE customer_data_gdpr MODIFY COLUMN email SET MASKING POLICY email_mask_policy;
+   ALTER TABLE customer_data_gdpr MODIFY COLUMN phone SET MASKING POLICY phone_mask_policy;
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating Roles for Compliance</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create roles for users who need access to unmasked data and those who do not:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   CREATE ROLE data_auditor;
+   CREATE ROLE regular_user;
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Granting Access to Roles</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Assign roles to different users:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   GRANT ROLE data_auditor TO USER auditor_user;
+   GRANT ROLE regular_user TO USER standard_user;
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Testing Masking Policies as Regular User</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Log in as a regular user and query the table to see the masked data:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   SELECT * FROM customer_data_gdpr;
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Testing Masking Policies as Data Auditor</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Log in as the <code>data_auditor</code> and query the table to see unmasked data:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   SELECT * FROM customer_data_gdpr;
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Verifying Audit Logs for Compliance</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Check the audit logs to verify that masked data access is logged properly:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   SELECT * FROM INFORMATION_SCHEMA.LOGIN_HISTORY WHERE USER_NAME = 'standard_user';
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Setting Masking Policy for Specific Time Period</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Modify the masking policy to apply only during specific time periods (e.g., office hours):</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   ALTER MASKING POLICY ssn_mask_policy SET
+   CASE
+     WHEN CURRENT_TIME() BETWEEN '09:00' AND '17:00' THEN val
+     ELSE 'XXX-XX-XXXX'
+   END;
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating a Masking Policy for Logs</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Ensure that logs are masked for regular users by applying masking to sensitive log tables:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   CREATE MASKING POLICY log_mask_policy AS
+   (val STRING) RETURNS STRING -&gt;
+   CASE
+     WHEN CURRENT_ROLE() = 'SECURITYADMIN' THEN val
+     ELSE 'REDACTED'
+   END;
+   ALTER TABLE INFORMATION_SCHEMA.LOGIN_HISTORY MODIFY COLUMN QUERY_TEXT SET MASKING POLICY log_mask_policy;
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Revoking and Reapplying Policies</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Revoke the policy and reapply it to see the changes in effect:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   ALTER TABLE customer_data_gdpr MODIFY COLUMN ssn UNSET MASKING POLICY;
+   ALTER TABLE customer_data_gdpr MODIFY COLUMN ssn SET MASKING POLICY ssn_mask_policy;
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Monitoring Masking Policy Enforcement</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use the <strong>MASKING_POLICY_REFERENCES</strong> view to check where policies are applied:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   SELECT * FROM MASKING_POLICY_REFERENCES;
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Automating Masking with Tasks</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Set up a task to automate masking policy changes based on changing compliance requirements:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   CREATE TASK auto_mask_update
+   SCHEDULE = '1 HOUR'
+   AS
+   ALTER MASKING POLICY ssn_mask_policy SET
+   CASE
+     WHEN CURRENT_TIME() BETWEEN '09:00' AND '17:00' THEN val
+     ELSE 'XXX-XX-XXXX'
+   END;
+   ----</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion_21">Conclusion</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>You have implemented advanced data masking policies in Snowflake, ensuring compliance with GDPR and other regulations while providing secure access to sensitive data.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<h1 id="_lab_24_automating_snowflake_with_tasks_and_streams_2" class="sect0">Lab 24: Automating Snowflake with Tasks and Streams</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>Author: Your Name
+:icons: font
+:source-highlighter: pygments
+:toc: preamble</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_objective_22">Objective</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this lab, you will automate data processing in Snowflake using tasks and streams to track changes and run scheduled jobs.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites_22">Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Snowflake account access.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps_22">Steps</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating a Table for Change Tracking</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a table to store product data:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">CREATE TABLE products (id INT, name STRING, price DECIMAL(10, 2)); INSERT INTO products VALUES (1, 'Product A', 100), (2, 'Product B', 150);</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating a Stream to Track Changes</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a stream to track changes (inserts, updates, deletes) on the <strong>products</strong> table:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">CREATE STREAM product_changes ON TABLE products;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating a Task to Process Changes</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a task that runs periodically to process changes from the stream:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">CREATE OR REPLACE TASK process_product_changes WAREHOUSE = 'COMPUTE_WH' SCHEDULE = '5 MINUTE' AS INSERT INTO product_audit SELECT * FROM product_changes WHERE METADATA$ACTION = 'INSERT';</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Running the Task</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Run the task manually or wait for it to execute according to the schedule:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">EXECUTE TASK process_product_changes;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Monitoring Task Execution</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use the <strong>TASK_HISTORY</strong> view to monitor task execution and status:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT * FROM TASK_HISTORY WHERE TASK_NAME = 'PROCESS_PRODUCT_CHANGES';</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion_22">Conclusion</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>You have successfully automated data processing in Snowflake using tasks and streams, enabling continuous tracking and processing of table changes.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<h1 id="_lab_31_optimizing_large_scale_data_partitioning_and_clustering_in_snowflake" class="sect0">Lab 31: Optimizing Large-Scale Data Partitioning and Clustering in Snowflake</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>Author: Your Name
+:icons: font
+:source-highlighter: pygments
+:toc: preamble
+:numbered:</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_objective_23">Objective</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this lab, you will learn how to optimize queries on large-scale datasets in Snowflake using partitioning and clustering, ensuring efficient query execution and minimal resource usage.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites_23">Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Snowflake account access.</p>
+</li>
+<li>
+<p>Large dataset loaded in Snowflake (at least several million rows).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps_23">Steps</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Loading a Large Dataset</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If not already loaded, load a large dataset into Snowflake (use sample datasets or Snowflake-provided public datasets).</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   CREATE OR REPLACE TABLE large_sales_data (
+     id INT,
+     amount DECIMAL(10, 2),
+     sale_date DATE,
+     region STRING
+   );
+   INSERT INTO large_sales_data
+   SELECT SEQ8(), RAND() * 1000, CURRENT_DATE() - SEQ8(), 'Region ' || RAND()::INT
+   FROM TABLE(GENERATOR(ROWCOUNT =&gt; 10000000));</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Querying the Dataset</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Run a simple query to retrieve a small subset of the data:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT * FROM large_sales_data WHERE sale_date &gt; '2023-01-01';</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Reviewing Query Performance</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use the <strong>QUERY_HISTORY</strong> view to examine query performance metrics:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT * FROM QUERY_HISTORY WHERE QUERY_TEXT ILIKE '%large_sales_data%';</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating Clustering Keys</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add a clustering key to the table to improve performance for queries based on <code>sale_date</code>:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">ALTER TABLE large_sales_data CLUSTER BY (sale_date);</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Checking Clustering Information</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use the <strong>CLUSTERING_INFORMATION</strong> view to check the effectiveness of clustering:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT * FROM CLUSTERING_INFORMATION WHERE TABLE_NAME = 'LARGE_SALES_DATA';</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Optimizing Clustering with Reclustering</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Trigger manual reclustering for the table:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">ALTER TABLE large_sales_data RECLUSTER;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Partitioning the Data</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a new partitioned table based on <code>region</code> and <code>sale_date</code>:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   CREATE OR REPLACE TABLE partitioned_sales_data (
+     id INT,
+     amount DECIMAL(10, 2),
+     sale_date DATE,
+     region STRING
+   ) PARTITION BY (region);</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Loading Data into Partitioned Table</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Load data into the new partitioned table:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   INSERT INTO partitioned_sales_data SELECT * FROM large_sales_data;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Querying the Partitioned Data</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Query the partitioned table using conditions on <code>region</code>:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   SELECT * FROM partitioned_sales_data WHERE region = 'Region 5';</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Checking Partition Pruning</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Check if partition pruning is being applied by reviewing query plans:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql"> ----
+   EXPLAIN SELECT * FROM partitioned_sales_data WHERE region = 'Region 5';
+ ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating Compound Clustering Keys</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create compound clustering keys on both <code>region</code> and <code>sale_date</code> for the partitioned table:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql"> ----
+   ALTER TABLE partitioned_sales_data CLUSTER BY (region, sale_date);
+----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Testing Queries on Clustered Data</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Query the clustered data using conditions on both <code>region</code> and <code>sale_date</code> to test the performance:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql"> ----
+   SELECT * FROM partitioned_sales_data WHERE region = 'Region 5' AND sale_date &gt; '2023-06-01';
+  ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Monitoring Query Improvement</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Compare query execution times before and after clustering using the <strong>QUERY_HISTORY</strong> view:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   SELECT * FROM QUERY_HISTORY WHERE QUERY_TEXT ILIKE '%partitioned_sales_data%';</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Analyzing Storage and Performance Trade-offs</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use the <strong>TABLE_STORAGE_METRICS</strong> view to analyze the storage costs and benefits of clustering and partitioning:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   SELECT * FROM TABLE_STORAGE_METRICS WHERE TABLE_NAME = 'PARTITIONED_SALES_DATA';</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Automating Clustering and Partitioning Maintenance</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Set up Snowflake tasks to automate reclustering on a scheduled basis:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   CREATE OR REPLACE TASK auto_recluster_task
+   WAREHOUSE = 'COMPUTE_WH'
+   SCHEDULE = '1 DAY'
+   AS
+   ALTER TABLE partitioned_sales_data RECLUSTER;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion_23">Conclusion</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>You have successfully optimized large-scale datasets in Snowflake using partitioning and clustering, ensuring efficient query performance and minimal resource usage.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<h1 id="_lab_32_managing_semi_structured_data_with_snowflakes_variant_type_and_json_functions" class="sect0">Lab 32: Managing Semi-Structured Data with Snowflake&#8217;s VARIANT Type and JSON Functions</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>Author: Your Name
+:icons: font
+:source-highlighter: pygments
+:toc: preamble
+:numbered:</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_objective_24">Objective</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this lab, you will work with semi-structured data in Snowflake using the <code>VARIANT</code> type and JSON functions to query, transform, and store JSON data.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites_24">Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Snowflake account access.</p>
+</li>
+<li>
+<p>Sample JSON data file.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps_24">Steps</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating a Table to Store JSON Data</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a table with a <code>VARIANT</code> column to hold semi-structured JSON data:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   CREATE OR REPLACE TABLE json_data_table (
+     id INT,
+     data VARIANT
+   );</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Inserting JSON Data</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Insert sample JSON data into the table:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   INSERT INTO json_data_table VALUES
+   (1, PARSE_JSON('{"name": "John", "age": 30, "city": "New York"}')),
+   (2, PARSE_JSON('{"name": "Jane", "age": 25, "city": "London"}'));</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Querying JSON Fields</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use the <code>:</code> operator to query specific fields in the JSON data:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   SELECT data:name::STRING AS name, data:age::INT AS age FROM json_data_table;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Flattening Nested JSON Data</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use the <code>FLATTEN</code> function to flatten nested JSON arrays:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   SELECT id, key, value
+   FROM json_data_table,
+   LATERAL FLATTEN(input =&gt; data);</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Inserting More Complex JSON</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Insert more complex JSON data, including nested arrays and objects:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   INSERT INTO json_data_table VALUES
+   (3, PARSE_JSON('{"name": "Alice", "age": 28, "projects": [{"title": "Project A", "year": 2020}, {"title": "Project B", "year": 2021}]}'));</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Querying Nested JSON Objects</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Query the nested <code>projects</code> array from the JSON data:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   SELECT data:name::STRING AS name, data:projects[0].title::STRING AS first_project
+   FROM json_data_table WHERE id = 3;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Aggregating JSON Data</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Aggregate JSON data by extracting fields and performing calculations:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   SELECT COUNT(*) AS total_records, AVG(data:age::INT) AS average_age FROM json_data_table;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Modifying JSON Data</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Update specific fields in the JSON data using the <code>OBJECT_INSERT</code> and <code>OBJECT_DELETE</code> functions:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   UPDATE json_data_table
+   SET data = OBJECT_INSERT(data, 'city', 'Paris') WHERE id = 1;
+   UPDATE json_data_table
+   SET data = OBJECT_DELETE(data, 'projects') WHERE id = 3;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Filtering Based on JSON Values</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Filter records based on values inside the JSON structure:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   SELECT * FROM json_data_table WHERE data:age::INT &gt; 25;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Using JSON to Create Derived Tables</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a derived table from the JSON fields by flattening the data:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   CREATE OR REPLACE TABLE derived_table AS
+   SELECT data:name::STRING AS name, data:age::INT AS age, data:city::STRING AS city
+   FROM json_data_table;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Converting JSON Data to Columns</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Convert JSON data into separate columns using the <code>SELECT</code> statement:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   SELECT data:name::STRING AS name, data:age::INT AS age, data:city::STRING AS city FROM json_data_table;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Analyzing JSON Structures</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Analyze and check the structure of the JSON data using <code>TYPEOF</code>:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT id, TYPEOF(data) AS data_type FROM json_data_table;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Combining JSON Data with Structured Data</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Combine JSON data with structured data in queries:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT json_data_table.data:age::INT AS json_age, employees.name FROM json_data_table
+JOIN employees ON employees.age = json_data_table.data:age::INT;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating JSON Indexes</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Improve performance by indexing specific JSON paths:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">ALTER TABLE json_data_table SET TAG 'json_path_index' = 'data:age';</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Exporting JSON Data</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Export the JSON data from Snowflake back to an external storage location:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">COPY INTO @my_stage FROM json_data_table FILE_FORMAT = (TYPE = 'JSON');</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion_24">Conclusion</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>You have successfully managed semi-structured data in Snowflake using the <code>VARIANT</code> type and JSON functions, performing querying, transforming, and flattening operations on JSON data.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<h1 id="_lab_33_building_a_real_time_analytics_dashboard_with_snowflake_and_tableau" class="sect0">Lab 33: Building a Real-Time Analytics Dashboard with Snowflake and Tableau</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>Author: Your Name
+:icons: font
+:source-highlighter: pygments
+:toc: preamble
+:numbered:</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_objective_25">Objective</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this lab, you will create a real-time analytics dashboard by integrating Snowflake with Tableau, enabling dynamic data visualization for real-time decision-making.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites_25">Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Snowflake account access.</p>
+</li>
+<li>
+<p>Tableau Desktop or Tableau Online.</p>
+</li>
+<li>
+<p>Sample dataset in Snowflake (e.g., sales or product data).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps_25">Steps</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating the Source Table</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a source table in Snowflake to hold real-time sales data:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   CREATE OR REPLACE TABLE real_time_sales (
+     id INT,
+     product STRING,
+     amount DECIMAL(10, 2),
+     sale_date TIMESTAMP
+   );
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Inserting Initial Data</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Insert some initial data into the table:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   INSERT INTO real_time_sales VALUES
+   (1, 'Product A', 500.00, CURRENT_TIMESTAMP),
+   (2, 'Product B', 300.00, CURRENT_TIMESTAMP);
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating a Snowpipe for Continuous Data Ingestion</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a stage and pipe to automate the continuous loading of new data:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   CREATE OR REPLACE STAGE sales_stage;
+   CREATE OR REPLACE PIPE sales_pipe AS
+   COPY INTO real_time_sales FROM @sales_stage FILE_FORMAT = (TYPE = 'CSV');
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Connecting Tableau to Snowflake</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In Tableau, connect to your Snowflake instance using the Snowflake connector.</p>
+</li>
+<li>
+<p>Enter your Snowflake credentials and select the <strong>real_time_sales</strong> table.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><strong>Building a Simple Dashboard</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In Tableau, build a simple dashboard to visualize sales by product:</p>
+</li>
+<li>
+<p>Drag <strong>Product</strong> to the <strong>Rows</strong> shelf and <strong>SUM(Amount)</strong> to the <strong>Columns</strong> shelf.</p>
+</li>
+<li>
+<p>Add <strong>Sale Date</strong> to the <strong>Pages</strong> shelf to create a time-series view.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><strong>Customizing the Dashboard</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add filters for <strong>Product</strong> and <strong>Sale Date</strong> to allow users to dynamically filter the data.</p>
+</li>
+<li>
+<p>Customize the chart to display bars for each product’s sales.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><strong>Publishing the Dashboard to Tableau Online</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Publish the dashboard to Tableau Online for real-time access:</p>
+</li>
+<li>
+<p>Select <strong>Server</strong> &gt; <strong>Publish Workbook</strong> and configure the connection.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><strong>Adding More Data for Real-Time Analysis</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Simulate new sales by inserting more data into the <strong>real_time_sales</strong> table:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   INSERT INTO real_time_sales VALUES (3, 'Product C', 450.00, CURRENT_TIMESTAMP);
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Refreshing the Tableau Dashboard</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Refresh the dashboard in Tableau to display the new sales data in real-time.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><strong>Configuring Real-Time Updates in Tableau</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Configure Tableau to auto-refresh every 1 minute to capture new incoming data.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><strong>Monitoring Snowpipe for Continuous Data Loads</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Monitor the <strong>PIPE_USAGE_HISTORY</strong> to track how data is loaded into Snowflake:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   SELECT * FROM PIPE_USAGE_HISTORY WHERE PIPE_NAME = 'SALES_PIPE';
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Visualizing Trends and Comparisons</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In Tableau, create trend lines to visualize sales growth over time.</p>
+</li>
+<li>
+<p>Add comparison metrics to compare product sales between periods.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><strong>Creating Alerts in Tableau</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Set up email or SMS alerts in Tableau to notify users when sales cross certain thresholds.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><strong>Integrating External Data Sources</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Join additional datasets in Tableau (e.g., marketing or regional data) to enhance the analysis.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><strong>Optimizing the Dashboard for Performance</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In Tableau, optimize the dashboard by using extracts for historical data and live connections for real-time data.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion_25">Conclusion</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>You have built a real-time analytics dashboard using Snowflake and Tableau, continuously loading and visualizing real-time sales data.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<h1 id="_lab_34_creating_a_data_pipeline_with_snowflake_apache_kafka_and_snowpipe" class="sect0">Lab 34: Creating a Data Pipeline with Snowflake, Apache Kafka, and Snowpipe</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>Author: Your Name
+:icons: font
+:source-highlighter: pygments
+:toc: preamble
+:numbered:</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_objective_26">Objective</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this lab, you will build an end-to-end data pipeline that streams data from Apache Kafka into Snowflake using Snowpipe for continuous ingestion.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites_26">Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Snowflake account access.</p>
+</li>
+<li>
+<p>Apache Kafka set up (local or cloud-based).</p>
+</li>
+<li>
+<p>Kafka topic created.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps_26">Steps</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Setting Up a Kafka Topic</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a Kafka topic to simulate incoming data streams:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   kafka-topics.sh --create --topic sales_topic --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Producing Data to Kafka</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use a Kafka producer to send sales data to the <strong>sales_topic</strong>:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   kafka-console-producer.sh --topic sales_topic --bootstrap-server localhost:9092</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Type the following sales data:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-data" data-lang="data">{"id": 1, "product": "Laptop", "amount": 1000, "timestamp": "2023-10-01 12:00:00"}
+{"id": 2, "product": "Phone", "amount": 500, "timestamp": "2023-10-01 12:01:00"}</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating a Stage in Snowflake</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In Snowflake, create a stage that will receive data from Kafka:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>CREATE OR REPLACE STAGE kafka_stage
+URL='s3://your-bucket/kafka_data/'
+CREDENTIALS=(AWS_KEY_ID='your_key' AWS_SECRET_KEY='your_secret');</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating a Snowflake Table</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a Snowflake table to store the streamed data:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>CREATE OR REPLACE TABLE sales_data (
+  id INT,
+  product STRING,
+  amount DECIMAL(10, 2),
+  sale_timestamp TIMESTAMP
+);</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Setting Up Snowpipe for Continuous Ingestion</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a Snowpipe to automatically ingest data into Snowflake from the Kafka stream:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>CREATE OR REPLACE PIPE kafka_sales_pipe AS
+COPY INTO sales_data FROM @kafka_stage
+FILE_FORMAT = (TYPE = 'JSON');</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Integrating Kafka with Snowpipe Using Connectors</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use a Kafka Connector (Confluent or Snowflake Connector for Kafka) to push data from Kafka to Snowflake. Set the connector to target the S3 bucket connected to the Snowflake stage.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><strong>Sending More Data to Kafka</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Produce additional data to the Kafka topic to simulate continuous streaming:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>kafka-console-producer.sh --topic sales_topic --bootstrap-server localhost:9092</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Enter additional records like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-data" data-lang="data">{"id": 3, "product": "Tablet", "amount": 300, "timestamp": "2023-10-01 12:05:00"}</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Verifying Data Ingestion into Snowflake</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Query the <strong>sales_data</strong> table in Snowflake to check if the data has been ingested:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>SELECT * FROM sales_data;</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Monitoring Snowpipe Execution</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use the <strong>PIPE_USAGE_HISTORY</strong> view to monitor Snowpipe activity:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>SELECT * FROM PIPE_USAGE_HISTORY WHERE PIPE_NAME = 'KAFKA_SALES_PIPE';</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Handling Errors in Snowpipe</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Check for any ingestion errors in the <strong>LOAD_HISTORY</strong> view and resolve them:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>SELECT * FROM LOAD_HISTORY WHERE STATUS = 'LOAD_FAILED';</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Automating Data Ingestion</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Set up Snowpipe to automatically trigger data ingestion whenever new data arrives in the S3 bucket (or other cloud storage connected to the Kafka stream).</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><strong>Scaling the Kafka-Snowflake Pipeline</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Increase Kafka partitions and Snowflake virtual warehouse size to handle higher volumes of streaming data.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><strong>Configuring Schema Evolution</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Enable schema evolution in Snowflake to automatically handle changes in the data structure from Kafka:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>ALTER PIPE kafka_sales_pipe SET SCHEMA_EVOLUTION = TRUE;</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Monitoring Real-Time Analytics</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Query real-time data from Snowflake and create basic reports to monitor sales trends as data flows in.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><strong>Visualizing the Data</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use Snowflake’s integration with BI tools like Tableau or Power BI to visualize the real-time data coming from Kafka.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion_26">Conclusion</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>You have successfully built a real-time data pipeline from Kafka to Snowflake using Snowpipe for continuous data ingestion and automation.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<h1 id="_lab_35_implementing_secure_data_sharing_across_snowflake_accounts" class="sect0">Lab 35: Implementing Secure Data Sharing Across Snowflake Accounts</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>Author: Your Name
+:icons: font
+:source-highlighter: pygments
+:toc: preamble
+:numbered:</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_objective_27">Objective</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this lab, you will configure secure data sharing between Snowflake accounts, enabling access to shared datasets without copying or moving the data.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites_27">Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Two Snowflake accounts (or a shared account to simulate two environments).</p>
+</li>
+<li>
+<p>Administrative privileges in both accounts.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps_27">Steps</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating a Share in the Primary Account</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Log in to the primary Snowflake account and create a data share:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>   CREATE SHARE sales_share;</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Granting Access to Databases and Tables</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Grant access to a specific database and table to the share:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   GRANT USAGE ON DATABASE sales_db TO SHARE sales_share;
+   GRANT SELECT ON sales_db.public.sales_data TO SHARE sales_share;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Adding a Consumer Account</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Grant access to the external consumer account (or secondary account):</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ALTER SHARE sales_share ADD ACCOUNT = 'CONSUMER_ACCOUNT_NAME';</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Verifying the Share Configuration</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use the <strong>SHARE_PRIVILEGES</strong> view to check which privileges have been granted:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   SELECT * FROM SHARE_PRIVILEGES WHERE SHARE_NAME = 'SALES_SHARE';</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Consuming the Share in the Consumer Account</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Log in to the consumer account and create a database from the shared data:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">CREATE DATABASE shared_sales_db FROM SHARE primary_account.sales_share;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Querying the Shared Data</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Query the shared data from the consumer account:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   SELECT * FROM shared_sales_db.public.sales_data;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Validating the Access Controls</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Ensure that the consumer account only has read-only access by testing SELECT queries.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><strong>Adding More Data to the Shared Table</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Insert more data into the <strong>sales_data</strong> table in the primary account:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   INSERT INTO sales_db.public.sales_data VALUES (5, 'Product E', 700, '2023-10-02');</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Verifying Data Updates in the Consumer Account</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Query the shared table in the consumer account to confirm new data is accessible:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   SELECT * FROM shared_sales_db.public.sales_data;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Sharing Multiple Tables</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Share multiple tables by adding them to the same share:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   GRANT SELECT ON sales_db.public.customers TO SHARE sales_share;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Revoking Access to the Share</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Revoke access to specific tables from the share if needed:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   REVOKE SELECT ON sales_db.public.customers FROM SHARE sales_share;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Monitoring Data Sharing Activity</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Monitor data sharing activity in the primary account:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   SELECT * FROM ACCOUNT_USAGE.SHARES WHERE SHARE_NAME = 'SALES_SHARE';</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating a Secure View for Shared Data</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a secure view to share only specific fields from the shared table:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   CREATE SECURE VIEW shared_sales_view AS
+   SELECT id, product, amount FROM sales_db.public.sales_data;
+   GRANT SELECT ON shared_sales_view TO SHARE sales_share;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Testing the Secure View in the Consumer Account</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Query the secure view from the consumer account:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   SELECT * FROM shared_sales_db.public.shared_sales_view;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Disabling the Share</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If needed, disable the data share:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   DROP SHARE sales_share;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion_27">Conclusion</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>You have successfully configured secure data sharing between Snowflake accounts, providing access to shared datasets without data movement.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Unresolved directive in &lt;stdin&gt; - include::Implementing Row_level Security in Snowflake.adoc[]</p>
+</div>
+</div>
+</div>
+<h1 id="_case_study_1_building_a_complete_data_warehouse_solution_in_snowflake" class="sect0">Case Study 1: Building a Complete Data Warehouse Solution in Snowflake</h1>
+<div class="sect1">
+<h2 id="_objective_28">Objective</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this comprehensive case study, you will build a full data warehouse solution in Snowflake, covering data ingestion, transformation, modeling, and reporting. You will implement ETL processes, optimize queries, and create reports using Snowflake’s native features.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites_28">Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Snowflake account access.</p>
+</li>
+<li>
+<p>Sample data files (CSV format for sales, products, and customers).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps_28">Steps</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating a Database and Schemas</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a database for your data warehouse:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   CREATE OR REPLACE DATABASE sales_dw;
+   ----
+   . Create separate schemas for raw data, staging, and final reporting:
+   [source,sql]
+   ----
+   CREATE SCHEMA raw_data;
+   CREATE SCHEMA staging;
+   CREATE SCHEMA reporting;
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Loading Raw Data</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create tables in the <strong>raw_data</strong> schema to store the initial CSV files:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   CREATE OR REPLACE TABLE raw_data.sales_raw (
+     sale_id INT,
+     product_id INT,
+     customer_id INT,
+     sale_date DATE,
+     amount DECIMAL(10,2)
+   );</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>CREATE OR REPLACE TABLE raw_data.products_raw (
+  product_id INT,
+  product_name STRING,
+  category STRING
+);</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>CREATE OR REPLACE TABLE raw_data.customers_raw (
+  customer_id INT,
+  customer_name STRING,
+  region STRING
+);
+----</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating Stages for Data Ingestion</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create external stages for each of the raw data files:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   CREATE OR REPLACE STAGE sales_stage URL='s3://your-bucket/sales/';
+   CREATE OR REPLACE STAGE products_stage URL='s3://your-bucket/products/';
+   CREATE OR REPLACE STAGE customers_stage URL='s3://your-bucket/customers/';
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Copying Data from Stages into Raw Tables</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use the COPY INTO command to load data into the <strong>raw_data</strong> tables:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   COPY INTO raw_data.sales_raw FROM @sales_stage FILE_FORMAT = (TYPE = 'CSV');
+   COPY INTO raw_data.products_raw FROM @products_stage FILE_FORMAT = (TYPE = 'CSV');
+   COPY INTO raw_data.customers_raw FROM @customers_stage FILE_FORMAT = (TYPE = 'CSV');
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Verifying Data Load</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Verify that the data has been loaded correctly by querying the <strong>raw_data</strong> tables:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   SELECT COUNT(*) FROM raw_data.sales_raw;
+   SELECT COUNT(*) FROM raw_data.products_raw;
+   SELECT COUNT(*) FROM raw_data.customers_raw;
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating Staging Tables</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create tables in the <strong>staging</strong> schema to clean and transform the raw data:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   CREATE OR REPLACE TABLE staging.sales_stg AS
+   SELECT sale_id, product_id, customer_id, sale_date, amount
+   FROM raw_data.sales_raw WHERE amount &gt; 0;</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>CREATE OR REPLACE TABLE staging.products_stg AS
+SELECT * FROM raw_data.products_raw;</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>CREATE OR REPLACE TABLE staging.customers_stg AS
+SELECT * FROM raw_data.customers_raw;
+----</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Joining Staged Data</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a view that joins the staged tables for reporting purposes:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   CREATE OR REPLACE VIEW staging.sales_full AS
+   SELECT s.sale_id, s.sale_date, s.amount, p.product_name, c.customer_name, c.region
+   FROM staging.sales_stg s
+   JOIN staging.products_stg p ON s.product_id = p.product_id
+   JOIN staging.customers_stg c ON s.customer_id = c.customer_id;
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Aggregating Data for Reporting</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create an aggregated table in the <strong>reporting</strong> schema to summarize sales by region:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   CREATE OR REPLACE TABLE reporting.sales_by_region AS
+   SELECT region, SUM(amount) AS total_sales
+   FROM staging.sales_full
+   GROUP BY region;
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating Additional Aggregations</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create tables that aggregate sales by product and by month:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   CREATE OR REPLACE TABLE reporting.sales_by_product AS
+   SELECT product_name, SUM(amount) AS total_sales
+   FROM staging.sales_full
+   GROUP BY product_name;</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>CREATE OR REPLACE TABLE reporting.sales_by_month AS
+SELECT TO_CHAR(sale_date, 'YYYY-MM') AS sale_month, SUM(amount) AS total_sales
+FROM staging.sales_full
+GROUP BY TO_CHAR(sale_date, 'YYYY-MM');
+----</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Optimizing Queries with Clustering</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add clustering to the <strong>sales_by_region</strong> table to optimize query performance:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   ALTER TABLE reporting.sales_by_region CLUSTER BY (region);
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating Materialized Views</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a materialized view for faster access to monthly sales data:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   CREATE MATERIALIZED VIEW reporting.sales_by_month_mv AS
+   SELECT TO_CHAR(sale_date, 'YYYY-MM') AS sale_month, SUM(amount) AS total_sales
+   FROM staging.sales_full
+   GROUP BY TO_CHAR(sale_date, 'YYYY-MM');
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating Secure Views for Sensitive Data</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create secure views that hide sensitive customer information:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   CREATE SECURE VIEW reporting.secure_sales_view AS
+   SELECT sale_id, product_name, amount, region
+   FROM staging.sales_full
+   WHERE amount &gt; 1000;
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Implementing Data Masking</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add a masking policy to the <strong>customer_name</strong> column for non-privileged users:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   CREATE MASKING POLICY mask_customer AS
+   (val STRING) RETURNS STRING -&gt;
+   CASE WHEN CURRENT_ROLE() IN ('ADMIN', 'SALES_MANAGER') THEN val ELSE 'REDACTED' END;</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>ALTER TABLE staging.sales_full MODIFY COLUMN customer_name SET MASKING POLICY mask_customer;
+----</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Verifying Data Masking</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Query the <strong>sales_full</strong> view as a non-privileged user to ensure that data is masked:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   SELECT * FROM staging.sales_full;
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating Resource Monitors</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Set up resource monitors to track warehouse usage and prevent runaway queries:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   CREATE OR REPLACE RESOURCE MONITOR warehouse_monitor WITH CREDIT_QUOTA=1000
+   TRIGGERS ON 80 PERCENT DO SUSPEND
+   ON 100 PERCENT DO SUSPEND;</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>ALTER WAREHOUSE sales_warehouse SET RESOURCE_MONITOR = warehouse_monitor;
+----</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Setting Up Auto-Suspend and Auto-Resume for Warehouses</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Configure the warehouse to automatically suspend after inactivity and resume when needed:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   ALTER WAREHOUSE sales_warehouse SET AUTO_SUSPEND = 300, AUTO_RESUME = TRUE;
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Querying Sales Data in Real Time</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Simulate real-time sales by continuously inserting data into the <strong>sales_raw</strong> table:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   INSERT INTO raw_data.sales_raw VALUES (4, 102, 2, '2023-10-03', 1200);
+   ----
+   . Query the **sales_full** view to see real-time updates:
+   [source,sql]
+   ----
+   SELECT * FROM staging.sales_full;
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Automating Data Refresh with Snowflake Tasks</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a task that refreshes the materialized views and aggregates daily:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   CREATE OR REPLACE TASK refresh_sales_data
+   WAREHOUSE = 'SALES_WAREHOUSE'
+   SCHEDULE = '1 DAY'
+   AS
+   REFRESH MATERIALIZED VIEW reporting.sales_by_month_mv;
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Monitoring Query Performance</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use the <strong>QUERY_HISTORY</strong> view to monitor query performance and execution times:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   SELECT * FROM QUERY_HISTORY WHERE QUERY_TEXT ILIKE '%sales_full%';
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Monitoring Resource Usage</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Monitor the warehouse&#8217;s resource consumption using the <strong>WAREHOUSE_METERING_HISTORY</strong> view:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   SELECT * FROM WAREHOUSE_METERING_HISTORY WHERE WAREHOUSE_NAME = 'SALES_WAREHOUSE';
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Securing the Data Warehouse</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a role for reporting users and grant access to the reporting schema:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   CREATE ROLE reporting_user;
+   GRANT USAGE ON SCHEMA reporting TO ROLE reporting_user;
+   GRANT SELECT ON ALL TABLES IN SCHEMA reporting TO ROLE reporting_user;
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Testing Role-Based Access Control</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Log in as a reporting user and verify that you only have access to the reporting schema:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   SELECT * FROM reporting.sales_by_region;
+   ----
+   . Verify that the user cannot access the raw or staging schemas:</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   SELECT * FROM raw_data.sales_raw;  -- Should return permission error
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Configuring Snowflake Data Sharing</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Set up secure data sharing to allow external partners to access summarized sales data:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   CREATE SHARE sales_summary_share;
+   GRANT USAGE ON DATABASE sales_dw TO SHARE sales_summary_share;
+   GRANT SELECT ON reporting.sales_by_region TO SHARE sales_summary_share;
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Consuming Shared Data in an External Account</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>From an external account, create a database from the shared data:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   CREATE DATABASE shared_sales_data FROM SHARE primary_account.sales_summary_share;
+   ----
+   . Query the shared data to ensure the share is working:</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   SELECT * FROM shared_sales_data.reporting.sales_by_region;
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Implementing Fail-safe and Time Travel</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Delete a table and use Snowflake&#8217;s <strong>Time Travel</strong> feature to recover the data:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   DROP TABLE staging.sales_stg;
+   UNDROP TABLE staging.sales_stg;
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Using Fail-safe to Restore Data</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Explain how Snowflake&#8217;s <strong>Fail-safe</strong> can be used to recover dropped tables within the 7-day retention period. This step is part of Snowflake’s data protection strategy.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><strong>Configuring Snowflake Streams for Change Tracking</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Set up a stream to track changes to the <strong>sales_raw</strong> table:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   CREATE OR REPLACE STREAM sales_stream ON TABLE raw_data.sales_raw;
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Automating Incremental Data Loads with Tasks</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a task to periodically process new data from the stream:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   CREATE OR REPLACE TASK process_sales_changes
+   WAREHOUSE = 'SALES_WAREHOUSE'
+   SCHEDULE = '1 HOUR'
+   AS
+   INSERT INTO staging.sales_stg
+   SELECT * FROM sales_stream WHERE METADATA$ACTION = 'INSERT';
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Monitoring Task Execution</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use the <strong>TASK_HISTORY</strong> view to monitor the execution of the task:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   SELECT * FROM TASK_HISTORY WHERE TASK_NAME = 'PROCESS_SALES_CHANGES';
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating a Final Dashboard</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use Snowflake’s integration with Tableau or Power BI to build a final dashboard summarizing key metrics such as sales by region, sales by product, and monthly sales trends.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion_28">Conclusion</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>You have successfully built a comprehensive data warehouse</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Unresolved directive in &lt;stdin&gt; - include::Case Study 2 Advanced Analytics ad Predictive Modeling.adoc[]</p>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2024-10-28 09:50:01 +0550
+</div>
+</div>
+</body>
+</html>

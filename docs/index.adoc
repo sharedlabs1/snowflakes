@@ -1,8 +1,8 @@
-= Snowflake Advanced Labs Book
+= Snowflake Labs
 :doctype: book  
 :icons: font  
 :toc: left  
-:toclevels: 2  
+:toclevels: 1 
 :source-highlighter: pygments
 
 include::Snowflake and Basic Configuration.adoc[]
