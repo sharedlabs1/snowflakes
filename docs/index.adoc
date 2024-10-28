@@ -1,9 +1,49 @@
 = Snowflake Labs
 :doctype: book  
 :icons: font  
-:toc: left  
+:toc: left 
 :toclevels: 1 
 :source-highlighter: pygments
+
+*[ ] Lab 1: Snowflake and Basic Configuration
+*[ ] Lab 2: Loading Data into Snowflake
+*[ ] Lab 3: Querying Data in Snowflake
+*[ ] Lab 4: Using Snowflakes's Web Interface
+*[ ] Lab 5: Secure Data Sharing in Snowflake
+*[ ] Lab 6: Organizing Data in Snowflake with Cloning
+*[ ] Lab 7: Managing Users and Roles in Snowflakes
+*[ ] Lab 8: SNowSQL CLI to Interact withSNowflake
+*[ ] Lab 9: Snowflake Data Sharing and Collaboration
+*[ ] Lab 10: Managing Resource Consumption in SNowflake
+*[ ] Lab 11: Bulk Data Loading into SNowflakes
+*[ ] Lab 12: Managing Semi-Structured Data in Snowflake
+*[ ] Lab 13: Time Travel and Fail-safe in Snowflake
+*[ ] Lab 14: Database Replication and Failover in Snowflake
+*[ ] Lab 15: Managing Snowflake Materialized Views
+*[ ] Lab 16: Data Masking for Security in Snowflake
+*[ ] Lab 17: Performance Tuning Best Practices in Snowflake
+*[ ] Lab 18: Handling Time-Series Data in Snowflake
+*[ ] Lab 19: Using Snowflake Streams for Change Data Capture CDC
+*[ ] Lab 20: Using Snowflake Data Marketplace
+*[ ] Lab 21: Implementing Data Encryption in SNowflakes
+*[ ] Lab 22: Optimizing Snowflake with Materialized Views and Clustering
+*[ ] Lab 23: Snowflake Continuos Data Integraton with Snowpipe
+*[ ] Lab 24: Automating Snowflake with Tasks and Streams
+*[ ] Lab 25: Implementing Data Retention Policies
+*[ ] Lab 26: Using Snowflake's External Tables for Data Lakes
+*[ ] Lab 27: Implementing Zero-Copy Cloning for DevOps Workflows
+*[ ] Lab 28: Managing Snowflake Network Policies for Secure Access
+*[ ] Lab 29: Advanced Data Masking Techniques
+*[ ] Lab 30: Automating Snowflake with Tasks and Streams
+*[ ] Lab 31: Optimizing Large-Scale Data Partitioning
+*[ ] Lab 32: Managing Semi-Structured Data with SNowflake
+*[ ] Lab 33: Building a Real-Time Analytics Dashboard
+*[ ] Lab 34: Creating a Data Pipeline with Snowflake
+*[ ] Lab 35: Implementing Secure Data Sharing Across Snowflake Accounts
+*[ ] Lab 36: Implementing Row_level Security in Snowflake
+*[ ] Lab 37: Case Study 1 Building a Complete Data Warehouse Solution
+*[ ] Lab 38: Case Study 2 Advanced Analytics ad Predictive Modeling
+
 
 include::Snowflake and Basic Configuration.adoc[]
 
