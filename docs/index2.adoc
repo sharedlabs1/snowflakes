@@ -1,0 +1,345 @@
+= Snowflakes Labs Review Documentation
+
+++++
+<style>
+  /* General page styling */
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    color: #333;
+    padding: 20px;
+  }
+
+  /* Lab list styling */
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  ul li {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  li .lab-title {
+    font-weight: bold;
+    font-size: 1.1em;
+  }
+
+  /* Button styling */
+  button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  /* Styling for the preview dialog */
+  #preview-dialog {
+    display: none;
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 60%;
+    max-height: 80%;
+    background-color: #fff;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    z-index: 1000;
+    overflow-y: auto;
+  }
+
+  #close-button {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+
+  #close-button:hover {
+    background-color: #218838;
+  }
+
+  .dialog-header {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .dialog-body {
+    margin: 15px 0;
+  }
+
+  .dialog-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* Styles for the Quill rich text editor */
+  #issue-editor {
+    height: 150px;
+  }
+
+  /* Input and label styling */
+  input[type="radio"] {
+    margin-right: 10px;
+  }
+
+  label {
+    margin-right: 20px;
+  }
+</style>
+++++
+
+* [ ] Lab 1: Snowflake and Basic Configuration
+++++
+<button id="preview-lab1" onclick="showPreview('Snowflake_and_Basic_Configuration.adoc', 'lab1')">Preview Lab 1</button>
+++++
+
+
+* [ ] Lab 2: Loading Data into Snowflake
+++++
+<button id="preview-lab2" onclick="showPreview('Loading_Data_into_Snowflake.adoc', 'lab2')">Preview Lab 2</button>
+
+++++
+
+* [ ] Lab 3: Querying Data in Snowflake
+
+++++
+<button id="preview-lab3" onclick="showPreview('Querying_Data_in_Snowflake.adoc', 'lab3')">Preview Lab 3</button>
+++++
+
+* [ ] Lab 4: Using Snowflake's Web Interface
+
+++++
+<button id="preview-lab4" onclick="showPreview('Using_Snowflake_Web_Interface.adoc', 'lab4')">Preview Lab 4</button>
+++++
+
+* [ ] Lab 5: Secure Data Sharing in Snowflake
+
+++++
+<button id="preview-lab5" onclick="showPreview('Secure_Data_Sharing_in_Snowflake.adoc', 'lab5')">Preview Lab 5</button>
+++++
+
+* [ ] Lab 6: Organizing Data in Snowflake with Cloning
+
+++++
+<button id="preview-lab6" onclick="showPreview('Organizing_Data_in_Snowflake_with_Cloning.adoc', 'lab6')">Preview Lab 6</button>
+++++
+
+* [ ] Lab 7: Managing Users and Roles in Snowflake
+++++
+<button id="preview-lab7" onclick="showPreview('Managing_Users_and_Roles.adoc', 'lab7')">Preview Lab 7</button>
+++++
+
+* [ ] Lab 8: SnowSQL CLI to Interact with Snowflake
+++++
+
+<button id="preview-lab8" onclick="showPreview('SnowSQL_CLI_to_Interact_with_Snowflake.adoc', 'lab8')">Preview Lab 8</button>
+++++
+
+* [ ] Lab 9: Snowflake Data Sharing and Collaboration
+++++
+<button id="preview-lab9" onclick="showPreview('Snowflake_Data_Sharing_and_Collaboration.adoc', 'lab9')">Preview Lab 9</button>
+++++
+
+* [ ] Lab 10: Managing Resource Consumption in Snowflake
+++++
+<button id="preview-lab10" onclick="showPreview('Managing_Resource_Consumption.adoc', 'lab10')">Preview Lab 10</button>
+++++
+
+* [ ] Lab 11: Bulk Data Loading into Snowflake
+++++
+<button id="preview-lab11" onclick="showPreview('Bulk_Data_Loading_into_Snowflake.adoc', 'lab11')">Preview Lab 11</button>
+++++
+
+* [ ] Lab 12: Managing Semi-Structured Data in Snowflake
+++++
+<button id="preview-lab12" onclick="showPreview('Managing_Semi_Structured_Data_in_Snowflake.adoc', 'lab12')">Preview Lab 12</button>
+++++
+
+* [ ] Lab 13: Time Travel and Fail-safe in Snowflake
+++++
+<button id="preview-lab13" onclick="showPreview('Time_Travel_and_Fail_safe_in_Snowflake.adoc', 'lab13')">Preview Lab 13</button>
+++++
+
+* [ ] Lab 14: Database Replication and Failover in Snowflake
+
+++++
+<button id="preview-lab14" onclick="showPreview('Database_Replication_and_Failover_in_Snowflake.adoc', 'lab14')">Preview Lab 14</button>
+++++
+
+* [ ] Lab 15: Managing Snowflake Materialized Views
+++++
+<button id="preview-lab15" onclick="showPreview('Managing_Snowflake_Materialized_Views.adoc', 'lab15')">Preview Lab 15</button>
+++++
+<!-- Continue listing other labs in the same format -->
+++++
+<!-- Dialog for lab preview -->
+<div id="preview-dialog">
+  <div class="dialog-header" id="lab-title"></div>
+  <div id="lab-content" class="dialog-body"></div>
+
+  <div>
+    <label><input type="radio" name="status" value="approved" onclick="handleSelection('approved')"> Approved</label>
+    <label><input type="radio" name="status" value="issue" onclick="handleSelection('issue')"> Issue</label>
+  </div>
+
+  <div id="issue-box" style="display:none;">
+    <div id="issue-editor"></div>
+  </div>
+
+  <div class="dialog-buttons">
+    <button id="close-button" onclick="closePreview()">Close and Mark as Reviewed</button>
+  </div>
+</div>
+
+<script>
+  let selectedStatus = '';
+  let labId = '';
+  let quill;
+
+  // Initialize Quill editor on page load
+  document.addEventListener('DOMContentLoaded', function () {
+    quill = new Quill('#issue-editor', {
+      theme: 'snow'
+    });
+  });
+
+  function showPreview(labFile, labIdentifier) {
+    labId = labIdentifier;
+    const htmlFile = labFile.replace('.adoc', '.html');
+    console.log("Loading HTML file: " + htmlFile);
+
+    fetch(htmlFile)
+      .then(response => {
+        if (!response.ok) {
+          console.error("Failed to load file: " + response.statusText);
+          return;
+        }
+        return response.text();
+      })
+      .then(data => {
+        document.getElementById('lab-title').innerText = labFile;
+        document.getElementById('lab-content').innerHTML = data;
+        document.getElementById('preview-dialog').style.display = 'block';
+        console.log("HTML file successfully loaded.");
+      })
+      .catch(error => {
+        console.error("Error loading HTML file: ", error);
+      });
+  }
+
+  function handleSelection(status) {
+    selectedStatus = status;
+    const issueBox = document.getElementById('issue-box');
+    
+    if (status === 'issue') {
+      issueBox.style.display = 'block';  // Show the issue box when 'Issue' is selected
+      quill.enable(true);  // Make sure the Quill editor is enabled
+    } else {
+      issueBox.style.display = 'none';  // Hide the issue box when 'Approved' is selected
+    }
+  }
+
+  function closePreview() {
+    const issueDetails = quill.root.innerHTML;
+
+    // Check if there is an issue and the issue details are provided
+    if (selectedStatus === 'issue' && quill.getText().trim() === '') {
+      alert('Please provide issue details or recommended changes.');
+      return;
+    }
+
+    // Prepare the review content
+    let reviewContent = `### Lab: ${labId}\nStatus: `;
+
+    if (selectedStatus === 'approved') {
+      reviewContent += "Approved\n";
+    } else if (selectedStatus === 'issue') {
+      reviewContent += `Issue\nComments: ${issueDetails.replace(/<[^>]+>/g, '')}\n`;
+    }
+
+    appendReviewToFile(reviewContent);
+
+    // Close the preview dialog by setting its display to none
+    document.getElementById('preview-dialog').style.display = 'none';
+
+    // Mark the lab as reviewed and change its background color
+    const labButton = document.getElementById(`preview-${labId}`);
+    if (selectedStatus === 'approved') {
+      labButton.style.backgroundColor = 'green';
+    } else if (selectedStatus === 'issue') {
+      labButton.style.backgroundColor = 'red';
+      console.log("Issue details: ", issueDetails);
+    }
+
+    console.log("Lab " + labId + " reviewed. Status: " + selectedStatus);
+  }
+
+  async function appendReviewToFile(reviewContent) {
+    const owner = 'your-github-username';
+    const repo = 'your-repo-name';
+    const filePath = 'reviewcomments.md';
+    const branch = 'main';
+    const token = 'your-github-token';
+
+    const getFileUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`;
+    const response = await fetch(getFileUrl, {
+      headers: {
+        'Authorization': `token ${token}`,
+        'Accept': 'application/vnd.github.v3+json'
+      }
+    });
+    const fileData = await response.json();
+    const sha = fileData.sha;
+    const currentContent = atob(fileData.content);
+
+    const updatedContent = currentContent + "\n" + reviewContent;
+    const updatedBase64Content = btoa(updatedContent);
+
+    const updateFileUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`;
+    const body = {
+      message: `Append review for lab ${labId}`,
+      content: updatedBase64Content,
+      sha: sha,
+      branch: branch
+    };
+
+    const updateResponse = await fetch(updateFileUrl, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `token ${token}`,
+        'Accept': 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    });
+
+    if (updateResponse.ok) {
+      console.log('Review appended to file successfully');
+    } else {
+      console.error('Failed to append review to file');
+    }
+  }
+</script>
+
+++++

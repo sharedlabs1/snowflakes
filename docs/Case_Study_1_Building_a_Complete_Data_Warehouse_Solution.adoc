@@ -1,0 +1,343 @@
+= Case Study 1: Building a Complete Data Warehouse Solution in Snowflake  
+  
+
+
+== Objective
+In this comprehensive case study, you will build a full data warehouse solution in Snowflake, covering data ingestion, transformation, modeling, and reporting. You will implement ETL processes, optimize queries, and create reports using Snowflake’s native features.
+
+== Prerequisites
+- Snowflake account access.
+- Sample data files (CSV format for sales, products, and customers).
+
+== Steps
+1. **Creating a Database and Schemas**
+   . Create a database for your data warehouse:
+  
+[source,sql]
+   ----
+   CREATE OR REPLACE DATABASE sales_dw;
+   ----
+   . Create separate schemas for raw data, staging, and final reporting:
+   [source,sql]
+   ----
+   CREATE SCHEMA raw_data;
+   CREATE SCHEMA staging;
+   CREATE SCHEMA reporting;
+   ----
+
+2. **Loading Raw Data**
+   . Create tables in the **raw_data** schema to store the initial CSV files:
+  
+[source,sql]
+   ----
+   CREATE OR REPLACE TABLE raw_data.sales_raw (
+     sale_id INT, 
+     product_id INT, 
+     customer_id INT, 
+     sale_date DATE, 
+     amount DECIMAL(10,2)
+   );
+   
+   CREATE OR REPLACE TABLE raw_data.products_raw (
+     product_id INT, 
+     product_name STRING, 
+     category STRING
+   );
+   
+   CREATE OR REPLACE TABLE raw_data.customers_raw (
+     customer_id INT, 
+     customer_name STRING, 
+     region STRING
+   );
+   ----
+
+3. **Creating Stages for Data Ingestion**
+   . Create external stages for each of the raw data files:
+  
+[source,sql]
+   ----
+   CREATE OR REPLACE STAGE sales_stage URL='s3://your-bucket/sales/';
+   CREATE OR REPLACE STAGE products_stage URL='s3://your-bucket/products/';
+   CREATE OR REPLACE STAGE customers_stage URL='s3://your-bucket/customers/';
+   ----
+
+4. **Copying Data from Stages into Raw Tables**
+   . Use the COPY INTO command to load data into the **raw_data** tables:
+  
+[source,sql]
+   ----
+   COPY INTO raw_data.sales_raw FROM @sales_stage FILE_FORMAT = (TYPE = 'CSV');
+   COPY INTO raw_data.products_raw FROM @products_stage FILE_FORMAT = (TYPE = 'CSV');
+   COPY INTO raw_data.customers_raw FROM @customers_stage FILE_FORMAT = (TYPE = 'CSV');
+   ----
+
+5. **Verifying Data Load**
+   . Verify that the data has been loaded correctly by querying the **raw_data** tables:
+   
+[source,sql]
+   ----
+   SELECT COUNT(*) FROM raw_data.sales_raw;
+   SELECT COUNT(*) FROM raw_data.products_raw;
+   SELECT COUNT(*) FROM raw_data.customers_raw;
+   ----
+
+6. **Creating Staging Tables**
+   . Create tables in the **staging** schema to clean and transform the raw data:
+  
+[source,sql]
+   ----
+   CREATE OR REPLACE TABLE staging.sales_stg AS
+   SELECT sale_id, product_id, customer_id, sale_date, amount
+   FROM raw_data.sales_raw WHERE amount > 0;
+   
+   CREATE OR REPLACE TABLE staging.products_stg AS
+   SELECT * FROM raw_data.products_raw;
+   
+   CREATE OR REPLACE TABLE staging.customers_stg AS
+   SELECT * FROM raw_data.customers_raw;
+   ----
+
+7. **Joining Staged Data**
+   . Create a view that joins the staged tables for reporting purposes:
+  
+[source,sql]
+   ----
+   CREATE OR REPLACE VIEW staging.sales_full AS
+   SELECT s.sale_id, s.sale_date, s.amount, p.product_name, c.customer_name, c.region
+   FROM staging.sales_stg s
+   JOIN staging.products_stg p ON s.product_id = p.product_id
+   JOIN staging.customers_stg c ON s.customer_id = c.customer_id;
+   ----
+
+8. **Aggregating Data for Reporting**
+   . Create an aggregated table in the **reporting** schema to summarize sales by region:
+  
+[source,sql]
+   ----
+   CREATE OR REPLACE TABLE reporting.sales_by_region AS
+   SELECT region, SUM(amount) AS total_sales
+   FROM staging.sales_full
+   GROUP BY region;
+   ----
+
+9. **Creating Additional Aggregations**
+   . Create tables that aggregate sales by product and by month:
+  
+[source,sql]
+   ----
+   CREATE OR REPLACE TABLE reporting.sales_by_product AS
+   SELECT product_name, SUM(amount) AS total_sales
+   FROM staging.sales_full
+   GROUP BY product_name;
+   
+   CREATE OR REPLACE TABLE reporting.sales_by_month AS
+   SELECT TO_CHAR(sale_date, 'YYYY-MM') AS sale_month, SUM(amount) AS total_sales
+   FROM staging.sales_full
+   GROUP BY TO_CHAR(sale_date, 'YYYY-MM');
+   ----
+
+10. **Optimizing Queries with Clustering**
+   . Add clustering to the **sales_by_region** table to optimize query performance:
+  
+[source,sql]
+   ----
+   ALTER TABLE reporting.sales_by_region CLUSTER BY (region);
+   ----
+
+11. **Creating Materialized Views**
+   . Create a materialized view for faster access to monthly sales data:
+  
+[source,sql]
+   ----
+   CREATE MATERIALIZED VIEW reporting.sales_by_month_mv AS
+   SELECT TO_CHAR(sale_date, 'YYYY-MM') AS sale_month, SUM(amount) AS total_sales
+   FROM staging.sales_full
+   GROUP BY TO_CHAR(sale_date, 'YYYY-MM');
+   ----
+
+12. **Creating Secure Views for Sensitive Data**
+   . Create secure views that hide sensitive customer information:
+  
+[source,sql]
+   ----
+   CREATE SECURE VIEW reporting.secure_sales_view AS
+   SELECT sale_id, product_name, amount, region
+   FROM staging.sales_full
+   WHERE amount > 1000;
+   ----
+
+13. **Implementing Data Masking**
+   . Add a masking policy to the **customer_name** column for non-privileged users:
+  
+[source,sql]
+   ----
+   CREATE MASKING POLICY mask_customer AS
+   (val STRING) RETURNS STRING ->
+   CASE WHEN CURRENT_ROLE() IN ('ADMIN', 'SALES_MANAGER') THEN val ELSE 'REDACTED' END;
+   
+   ALTER TABLE staging.sales_full MODIFY COLUMN customer_name SET MASKING POLICY mask_customer;
+   ----
+
+14. **Verifying Data Masking**
+   . Query the **sales_full** view as a non-privileged user to ensure that data is masked:
+  
+[source,sql]
+   ----
+   SELECT * FROM staging.sales_full;
+   ----
+
+15. **Creating Resource Monitors**
+   . Set up resource monitors to track warehouse usage and prevent runaway queries:
+  
+[source,sql]
+   ----
+   CREATE OR REPLACE RESOURCE MONITOR warehouse_monitor WITH CREDIT_QUOTA=1000
+   TRIGGERS ON 80 PERCENT DO SUSPEND
+   ON 100 PERCENT DO SUSPEND;
+   
+   ALTER WAREHOUSE sales_warehouse SET RESOURCE_MONITOR = warehouse_monitor;
+   ----
+
+16. **Setting Up Auto-Suspend and Auto-Resume for Warehouses**
+   . Configure the warehouse to automatically suspend after inactivity and resume when needed:
+   
+[source,sql]
+   ----
+   ALTER WAREHOUSE sales_warehouse SET AUTO_SUSPEND = 300, AUTO_RESUME = TRUE;
+   ----
+
+17. **Querying Sales Data in Real Time**
+   . Simulate real-time sales by continuously inserting data into the **sales_raw** table:
+   
+[source,sql]
+   ----
+   INSERT INTO raw_data.sales_raw VALUES (4, 102, 2, '2023-10-03', 1200);
+   ----
+   . Query the **sales_full** view to see real-time updates:
+   [source,sql]
+   ----
+   SELECT * FROM staging.sales_full;
+   ----
+
+18. **Automating Data Refresh with Snowflake Tasks**
+   . Create a task that refreshes the materialized views and aggregates daily:
+  
+[source,sql]
+   ----
+   CREATE OR REPLACE TASK refresh_sales_data
+   WAREHOUSE = 'SALES_WAREHOUSE'
+   SCHEDULE = '1 DAY'
+   AS
+   REFRESH MATERIALIZED VIEW reporting.sales_by_month_mv;
+   ----
+
+19. **Monitoring Query Performance**
+   . Use the **QUERY_HISTORY** view to monitor query performance and execution times:
+  
+[source,sql]
+   ----
+   SELECT * FROM QUERY_HISTORY WHERE QUERY_TEXT ILIKE '%sales_full%';
+   ----
+
+20. **Monitoring Resource Usage**
+   . Monitor the warehouse's resource consumption using the **WAREHOUSE_METERING_HISTORY** view:
+  
+[source,sql]
+   ----
+   SELECT * FROM WAREHOUSE_METERING_HISTORY WHERE WAREHOUSE_NAME = 'SALES_WAREHOUSE';
+   ----
+
+21. **Securing the Data Warehouse**
+   . Create a role for reporting users and grant access to the reporting schema:
+  
+[source,sql]
+   ----
+   CREATE ROLE reporting_user;
+   GRANT USAGE ON SCHEMA reporting TO ROLE reporting_user;
+   GRANT SELECT ON ALL TABLES IN SCHEMA reporting TO ROLE reporting_user;
+   ----
+
+22. **Testing Role-Based Access Control**
+   . Log in as a reporting user and verify that you only have access to the reporting schema:
+  
+[source,sql]
+   ----
+   SELECT * FROM reporting.sales_by_region;
+   ----
+   . Verify that the user cannot access the raw or staging schemas:
+  
+[source,sql]
+   ----
+   SELECT * FROM raw_data.sales_raw;  -- Should return permission error
+   ----
+
+23. **Configuring Snowflake Data Sharing**
+   . Set up secure data sharing to allow external partners to access summarized sales data:
+  
+[source,sql]
+   ----
+   CREATE SHARE sales_summary_share;
+   GRANT USAGE ON DATABASE sales_dw TO SHARE sales_summary_share;
+   GRANT SELECT ON reporting.sales_by_region TO SHARE sales_summary_share;
+   ----
+
+24. **Consuming Shared Data in an External Account**
+   . From an external account, create a database from the shared data:
+  
+[source,sql]
+   ----
+   CREATE DATABASE shared_sales_data FROM SHARE primary_account.sales_summary_share;
+   ----
+   . Query the shared data to ensure the share is working:
+  
+[source,sql]
+   ----
+   SELECT * FROM shared_sales_data.reporting.sales_by_region;
+   ----
+
+25. **Implementing Fail-safe and Time Travel**
+   . Delete a table and use Snowflake's **Time Travel** feature to recover the data:
+  
+[source,sql]
+   ----
+   DROP TABLE staging.sales_stg;
+   UNDROP TABLE staging.sales_stg;
+   ----
+
+26. **Using Fail-safe to Restore Data**
+   . Explain how Snowflake's **Fail-safe** can be used to recover dropped tables within the 7-day retention period. This step is part of Snowflake’s data protection strategy.
+
+27. **Configuring Snowflake Streams for Change Tracking**
+   . Set up a stream to track changes to the **sales_raw** table:
+  
+[source,sql]
+   ----
+   CREATE OR REPLACE STREAM sales_stream ON TABLE raw_data.sales_raw;
+   ----
+
+28. **Automating Incremental Data Loads with Tasks**
+   . Create a task to periodically process new data from the stream:
+  
+[source,sql]
+   ----
+   CREATE OR REPLACE TASK process_sales_changes
+   WAREHOUSE = 'SALES_WAREHOUSE'
+   SCHEDULE = '1 HOUR'
+   AS
+   INSERT INTO staging.sales_stg 
+   SELECT * FROM sales_stream WHERE METADATA$ACTION = 'INSERT';
+   ----
+
+29. **Monitoring Task Execution**
+   . Use the **TASK_HISTORY** view to monitor the execution of the task:
+  
+[source,sql]
+   ----
+   SELECT * FROM TASK_HISTORY WHERE TASK_NAME = 'PROCESS_SALES_CHANGES';
+   ----
+
+30. **Creating a Final Dashboard**
+   . Use Snowflake’s integration with Tableau or Power BI to build a final dashboard summarizing key metrics such as sales by region, sales by product, and monthly sales trends.
+
+== Conclusion
+- You have successfully built a comprehensive data warehouse

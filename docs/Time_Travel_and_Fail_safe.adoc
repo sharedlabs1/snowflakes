@@ -1,0 +1,58 @@
+= Lab 18: Handling Time-Series Data in Snowflake  
+
+
+== Objective
+In this lab, you will learn how to handle time-series data in Snowflake, including date and time functions, window functions, and analyzing trends over time.
+
+== Prerequisites
+- Snowflake account access.
+- Sample dataset with date fields.
+
+== Steps
+1. **Creating a Table with Time-Series Data**
+   . Create a table to store sales data over time:
+
+[source,sql]
+----
+CREATE TABLE sales_time_series (sale_date DATE, amount DECIMAL(10,2)); INSERT INTO sales_time_series VALUES ('2023-01-01', 100), ('2023-01-02', 150), ('2023-01-03', 200);
+----
+
+
+2. **Querying Data by Date Range**
+. Use the **BETWEEN** operator to filter data by date:
+
+[source,sql]
+----
+SELECT * FROM sales_time_series WHERE sale_date BETWEEN '2023-01-01' AND '2023-01-02';
+----
+
+
+3. **Calculating Running Totals**
+. Use a window function to calculate a running total of sales over time:
+
+[source,sql]
+----
+SELECT sale_date, amount, SUM(amount) OVER (ORDER BY sale_date) AS running_total FROM sales_time_series;
+----
+
+
+4. **Extracting Date Parts**
+. Use date functions to extract parts of a date (e.g., year, month, day):
+
+[source,sql]
+----
+SELECT sale_date, EXTRACT(YEAR FROM sale_date) AS year, EXTRACT(MONTH FROM sale_date) AS month FROM sales_time_series;
+----
+
+
+5. **Handling Date and Time Intervals**
+. Perform date arithmetic to calculate intervals between dates:
+
+[source,sql]
+----
+SELECT sale_date, amount, DATEDIFF('day', '2023-01-01', sale_date) AS days_since_start FROM sales_time_series;
+----
+
+
+== Conclusion
+- You have successfully handled time-series data in Snowflake, using date functions, window functions, and date arithmetic to analyze trends over time.

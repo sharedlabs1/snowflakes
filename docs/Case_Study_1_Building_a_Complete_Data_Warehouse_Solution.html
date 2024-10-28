@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.22">
-<title>Snowflakes Labs Review Documentation</title>
+<title>Case Study 1: Building a Complete Data Warehouse Solution in Snowflake</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -436,582 +436,789 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article">
 <div id="header">
-<h1>Snowflakes Labs Review Documentation</h1>
+<h1>Case Study 1: Building a Complete Data Warehouse Solution in Snowflake</h1>
 </div>
 <div id="content">
-<!-- Load Quill.js and its CSS -->
-<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-
-
-<style>
-  /* General page styling */
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f6f8;
-    color: #333;
-    padding: 20px;
-  }
-
-  /* Lab list styling */
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-
-  ul li {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  li .lab-title {
-    font-weight: bold;
-    font-size: 1.1em;
-  }
-
-  /* Button styling */
-  button {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-
-  button:hover {
-    background-color: #0056b3;
-  }
-
-  /* Styling for the preview dialog */
-  #preview-dialog {
-    display: none;
-    position: fixed;
-    top: 10%;
-    left: 50%;
-    transform: translate(-50%, 0);
-    width: 60%;
-    max-height: 80%;
-    background-color: #fff;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    z-index: 1000;
-    overflow-y: auto;
-  }
-
-  #close-button {
-    background-color: #28a745;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-  }
-
-  #close-button:hover {
-    background-color: #218838;
-  }
-
-  .dialog-header {
-    font-size: 1.5em;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-
-  .dialog-body {
-    margin: 15px 0;
-  }
-
-  .dialog-buttons {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  /* Styles for the Quill rich text editor */
-  #issue-editor {
-    height: 150px;
-  }
-
-  /* Input and label styling */
-  input[type="radio"] {
-    margin-right: 10px;
-  }
-
-  label {
-    margin-right: 20px;
-  }
-</style>
-<div class="ulist checklist">
-<ul class="checklist">
+<div class="sect1">
+<h2 id="_objective">Objective</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this comprehensive case study, you will build a full data warehouse solution in Snowflake, covering data ingestion, transformation, modeling, and reporting. You will implement ETL processes, optimize queries, and create reports using Snowflake’s native features.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites">Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
 <li>
-<p>&#10063; Lab 1: Snowflake and Basic Configuration</p>
+<p>Snowflake account access.</p>
+</li>
+<li>
+<p>Sample data files (CSV format for sales, products, and customers).</p>
 </li>
 </ul>
 </div>
-<button id="preview-lab1" onclick="showPreview('Snowflake_and_Basic_Configuration.adoc', 'lab1')">Preview Lab 1</button>
-<div class="ulist checklist">
-<ul class="checklist">
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps">Steps</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p>&#10063; Lab 2: Loading Data into Snowflake</p>
+<p><strong>Creating a Database and Schemas</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a database for your data warehouse:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   CREATE OR REPLACE DATABASE sales_dw;
+   ----
+   . Create separate schemas for raw data, staging, and final reporting:
+   [source,sql]
+   ----
+   CREATE SCHEMA raw_data;
+   CREATE SCHEMA staging;
+   CREATE SCHEMA reporting;
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Loading Raw Data</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create tables in the <strong>raw_data</strong> schema to store the initial CSV files:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   CREATE OR REPLACE TABLE raw_data.sales_raw (
+     sale_id INT,
+     product_id INT,
+     customer_id INT,
+     sale_date DATE,
+     amount DECIMAL(10,2)
+   );</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>CREATE OR REPLACE TABLE raw_data.products_raw (
+  product_id INT,
+  product_name STRING,
+  category STRING
+);</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>CREATE OR REPLACE TABLE raw_data.customers_raw (
+  customer_id INT,
+  customer_name STRING,
+  region STRING
+);
+----</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating Stages for Data Ingestion</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create external stages for each of the raw data files:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   CREATE OR REPLACE STAGE sales_stage URL='s3://your-bucket/sales/';
+   CREATE OR REPLACE STAGE products_stage URL='s3://your-bucket/products/';
+   CREATE OR REPLACE STAGE customers_stage URL='s3://your-bucket/customers/';
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Copying Data from Stages into Raw Tables</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use the COPY INTO command to load data into the <strong>raw_data</strong> tables:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   COPY INTO raw_data.sales_raw FROM @sales_stage FILE_FORMAT = (TYPE = 'CSV');
+   COPY INTO raw_data.products_raw FROM @products_stage FILE_FORMAT = (TYPE = 'CSV');
+   COPY INTO raw_data.customers_raw FROM @customers_stage FILE_FORMAT = (TYPE = 'CSV');
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Verifying Data Load</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Verify that the data has been loaded correctly by querying the <strong>raw_data</strong> tables:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   SELECT COUNT(*) FROM raw_data.sales_raw;
+   SELECT COUNT(*) FROM raw_data.products_raw;
+   SELECT COUNT(*) FROM raw_data.customers_raw;
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating Staging Tables</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create tables in the <strong>staging</strong> schema to clean and transform the raw data:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   CREATE OR REPLACE TABLE staging.sales_stg AS
+   SELECT sale_id, product_id, customer_id, sale_date, amount
+   FROM raw_data.sales_raw WHERE amount &gt; 0;</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>CREATE OR REPLACE TABLE staging.products_stg AS
+SELECT * FROM raw_data.products_raw;</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>CREATE OR REPLACE TABLE staging.customers_stg AS
+SELECT * FROM raw_data.customers_raw;
+----</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Joining Staged Data</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a view that joins the staged tables for reporting purposes:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   CREATE OR REPLACE VIEW staging.sales_full AS
+   SELECT s.sale_id, s.sale_date, s.amount, p.product_name, c.customer_name, c.region
+   FROM staging.sales_stg s
+   JOIN staging.products_stg p ON s.product_id = p.product_id
+   JOIN staging.customers_stg c ON s.customer_id = c.customer_id;
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Aggregating Data for Reporting</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create an aggregated table in the <strong>reporting</strong> schema to summarize sales by region:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   CREATE OR REPLACE TABLE reporting.sales_by_region AS
+   SELECT region, SUM(amount) AS total_sales
+   FROM staging.sales_full
+   GROUP BY region;
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating Additional Aggregations</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create tables that aggregate sales by product and by month:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   CREATE OR REPLACE TABLE reporting.sales_by_product AS
+   SELECT product_name, SUM(amount) AS total_sales
+   FROM staging.sales_full
+   GROUP BY product_name;</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>CREATE OR REPLACE TABLE reporting.sales_by_month AS
+SELECT TO_CHAR(sale_date, 'YYYY-MM') AS sale_month, SUM(amount) AS total_sales
+FROM staging.sales_full
+GROUP BY TO_CHAR(sale_date, 'YYYY-MM');
+----</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Optimizing Queries with Clustering</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add clustering to the <strong>sales_by_region</strong> table to optimize query performance:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   ALTER TABLE reporting.sales_by_region CLUSTER BY (region);
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating Materialized Views</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a materialized view for faster access to monthly sales data:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   CREATE MATERIALIZED VIEW reporting.sales_by_month_mv AS
+   SELECT TO_CHAR(sale_date, 'YYYY-MM') AS sale_month, SUM(amount) AS total_sales
+   FROM staging.sales_full
+   GROUP BY TO_CHAR(sale_date, 'YYYY-MM');
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating Secure Views for Sensitive Data</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create secure views that hide sensitive customer information:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   CREATE SECURE VIEW reporting.secure_sales_view AS
+   SELECT sale_id, product_name, amount, region
+   FROM staging.sales_full
+   WHERE amount &gt; 1000;
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Implementing Data Masking</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add a masking policy to the <strong>customer_name</strong> column for non-privileged users:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   CREATE MASKING POLICY mask_customer AS
+   (val STRING) RETURNS STRING -&gt;
+   CASE WHEN CURRENT_ROLE() IN ('ADMIN', 'SALES_MANAGER') THEN val ELSE 'REDACTED' END;</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>ALTER TABLE staging.sales_full MODIFY COLUMN customer_name SET MASKING POLICY mask_customer;
+----</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Verifying Data Masking</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Query the <strong>sales_full</strong> view as a non-privileged user to ensure that data is masked:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   SELECT * FROM staging.sales_full;
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating Resource Monitors</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Set up resource monitors to track warehouse usage and prevent runaway queries:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   CREATE OR REPLACE RESOURCE MONITOR warehouse_monitor WITH CREDIT_QUOTA=1000
+   TRIGGERS ON 80 PERCENT DO SUSPEND
+   ON 100 PERCENT DO SUSPEND;</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>ALTER WAREHOUSE sales_warehouse SET RESOURCE_MONITOR = warehouse_monitor;
+----</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Setting Up Auto-Suspend and Auto-Resume for Warehouses</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Configure the warehouse to automatically suspend after inactivity and resume when needed:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   ALTER WAREHOUSE sales_warehouse SET AUTO_SUSPEND = 300, AUTO_RESUME = TRUE;
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Querying Sales Data in Real Time</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Simulate real-time sales by continuously inserting data into the <strong>sales_raw</strong> table:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   INSERT INTO raw_data.sales_raw VALUES (4, 102, 2, '2023-10-03', 1200);
+   ----
+   . Query the **sales_full** view to see real-time updates:
+   [source,sql]
+   ----
+   SELECT * FROM staging.sales_full;
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Automating Data Refresh with Snowflake Tasks</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a task that refreshes the materialized views and aggregates daily:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   CREATE OR REPLACE TASK refresh_sales_data
+   WAREHOUSE = 'SALES_WAREHOUSE'
+   SCHEDULE = '1 DAY'
+   AS
+   REFRESH MATERIALIZED VIEW reporting.sales_by_month_mv;
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Monitoring Query Performance</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use the <strong>QUERY_HISTORY</strong> view to monitor query performance and execution times:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   SELECT * FROM QUERY_HISTORY WHERE QUERY_TEXT ILIKE '%sales_full%';
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Monitoring Resource Usage</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Monitor the warehouse&#8217;s resource consumption using the <strong>WAREHOUSE_METERING_HISTORY</strong> view:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   SELECT * FROM WAREHOUSE_METERING_HISTORY WHERE WAREHOUSE_NAME = 'SALES_WAREHOUSE';
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Securing the Data Warehouse</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a role for reporting users and grant access to the reporting schema:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   CREATE ROLE reporting_user;
+   GRANT USAGE ON SCHEMA reporting TO ROLE reporting_user;
+   GRANT SELECT ON ALL TABLES IN SCHEMA reporting TO ROLE reporting_user;
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Testing Role-Based Access Control</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Log in as a reporting user and verify that you only have access to the reporting schema:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   SELECT * FROM reporting.sales_by_region;
+   ----
+   . Verify that the user cannot access the raw or staging schemas:</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   SELECT * FROM raw_data.sales_raw;  -- Should return permission error
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Configuring Snowflake Data Sharing</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Set up secure data sharing to allow external partners to access summarized sales data:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   CREATE SHARE sales_summary_share;
+   GRANT USAGE ON DATABASE sales_dw TO SHARE sales_summary_share;
+   GRANT SELECT ON reporting.sales_by_region TO SHARE sales_summary_share;
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Consuming Shared Data in an External Account</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>From an external account, create a database from the shared data:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   CREATE DATABASE shared_sales_data FROM SHARE primary_account.sales_summary_share;
+   ----
+   . Query the shared data to ensure the share is working:</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   SELECT * FROM shared_sales_data.reporting.sales_by_region;
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Implementing Fail-safe and Time Travel</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Delete a table and use Snowflake&#8217;s <strong>Time Travel</strong> feature to recover the data:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   DROP TABLE staging.sales_stg;
+   UNDROP TABLE staging.sales_stg;
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Using Fail-safe to Restore Data</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Explain how Snowflake&#8217;s <strong>Fail-safe</strong> can be used to recover dropped tables within the 7-day retention period. This step is part of Snowflake’s data protection strategy.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><strong>Configuring Snowflake Streams for Change Tracking</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Set up a stream to track changes to the <strong>sales_raw</strong> table:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   CREATE OR REPLACE STREAM sales_stream ON TABLE raw_data.sales_raw;
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Automating Incremental Data Loads with Tasks</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a task to periodically process new data from the stream:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   CREATE OR REPLACE TASK process_sales_changes
+   WAREHOUSE = 'SALES_WAREHOUSE'
+   SCHEDULE = '1 HOUR'
+   AS
+   INSERT INTO staging.sales_stg
+   SELECT * FROM sales_stream WHERE METADATA$ACTION = 'INSERT';
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Monitoring Task Execution</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use the <strong>TASK_HISTORY</strong> view to monitor the execution of the task:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">   ----
+   SELECT * FROM TASK_HISTORY WHERE TASK_NAME = 'PROCESS_SALES_CHANGES';
+   ----</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Creating a Final Dashboard</strong></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use Snowflake’s integration with Tableau or Power BI to build a final dashboard summarizing key metrics such as sales by region, sales by product, and monthly sales trends.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion">Conclusion</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>You have successfully built a comprehensive data warehouse</p>
 </li>
 </ul>
 </div>
-<button id="preview-lab2" onclick="showPreview('Loading_Data_into_Snowflake.adoc', 'lab2')">Preview Lab 2</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 3: Querying Data in Snowflake</p>
-</li>
-</ul>
 </div>
-<button id="preview-lab3" onclick="showPreview('Querying_Data_in_Snowflake.adoc', 'lab3')">Preview Lab 3</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 4: Using Snowflakes Web Interface</p>
-</li>
-</ul>
 </div>
-<button id="preview-lab4" onclick="showPreview('Snowflakes_Web_Interface.adoc', 'lab4')">Preview Lab 4</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 5: Secure Data Sharing in Snowflake</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab5" onclick="showPreview('Secure_Data_Sharing_in_Snowflake.adoc', 'lab5')">Preview Lab 5</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 6: Organizing Data in Snowflake with Cloning</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab6" onclick="showPreview('Organizing_Data_in_Snowflake_with_Cloning.adoc', 'lab6')">Preview Lab 6</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 7: Managing Users and Roles in Snowflakes</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab7" onclick="showPreview('Managing_Users_and_Roles.adoc', 'lab7')">Preview Lab 7</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 8: SNowSQL CLI to Interact withSNowflake</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab8" onclick="showPreview('SNowSQL_CLI_to_Interact_Snowflake.adoc', 'lab8')">Preview Lab 8</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 9: Snowflake Data Sharing and Collaboration</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab9" onclick="showPreview('Snowflake_Data_Sharing_Collaboration.adoc', 'lab9')">Preview Lab 9</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 10: Managing Resource Consumption in SNowflake</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab10" onclick="showPreview('Managing_Resource_Consumption.adoc', 'lab10')">Preview Lab 10</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 11: Bulk Data Loading into SNowflakes</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab11" onclick="showPreview('Bulk_Data_Loading.adoc', 'lab11')">Preview Lab 11</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 12: Managing Semi-Structured Data in Snowflake</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab12" onclick="showPreview('Managing_Semi_Structured_Data.adoc', 'lab12')">Preview Lab 12</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 13: Time Travel and Fail-safe in Snowflake</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab13" onclick="showPreview('Time_Travel_and_Fail_safe.adoc', 'lab13')">Preview Lab 13</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 14: Database Replication and Failover in Snowflake</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab14" onclick="showPreview('Database_Replication_and_Failover.adoc', 'lab14')">Preview Lab 14</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 15: Managing Snowflake Materialized Views</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab15" onclick="showPreview('Managing_Materialized_Views.adoc', 'lab15')">Preview Lab 15</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 16: Data Masking for Security in Snowflake</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab16" onclick="showPreview('Data_Masking_for_Security.adoc', 'lab16')">Preview Lab 16</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 17: Performance Tuning Best Practices in Snowflake</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab17" onclick="showPreview('Performance_Tuning_Best_Practices.adoc', 'lab17')">Preview Lab 17</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 18: Handling Time-Series Data in Snowflake</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab18" onclick="showPreview('Handling_Time_Series_Data.adoc', 'lab18')">Preview Lab 18</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 19: Using Snowflake Streams for Change Data Capture CDC</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab19" onclick="showPreview('Snowflake_Streams_for_CDC.adoc', 'lab19')">Preview Lab 19</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 20: Using Snowflake Data Marketplace</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab20" onclick="showPreview('Using_Snowflake_Data_Marketplace.adoc', 'lab20')">Preview Lab 20</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 21: Implementing Data Encryption in SNowflakes</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab21" onclick="showPreview('Implementing_Data_Encryption.adoc', 'lab21')">Preview Lab 21</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 22: Optimizing Snowflake with Materialized Views and Clustering</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab22" onclick="showPreview('Optimizing_Snowflake_with_Materialized_views.adoc', 'lab22')">Preview Lab 22</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 23: Snowflake Continuos Data Integraton with Snowpipe</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab23" onclick="showPreview('Snowflake_with_Snowpipe.adoc', 'lab23')">Preview Lab 23</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 24: Automating Snowflake with Tasks and Streams</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab24" onclick="showPreview('Automating_Snowflake_with_Tasks_and_Streams.adoc', 'lab24')">Preview Lab 24</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 25: Implementing Data Retention Policies</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab25" onclick="showPreview('Implementing_Data_Retention_Policies.adoc', 'lab25')">Preview Lab 25</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 26: Using Snowflake&#8217;s External Tables for Data Lakes</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab26" onclick="showPreview('Using_Snowflake_External_Tables_for_Data_Lakes.adoc', 'lab26')">Preview Lab 26</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 27: Implementing Zero-Copy Cloning for DevOps Workflows</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab27" onclick="showPreview('Implementing_Zero_Copy_Cloning_for_DevOps_Workflows.adoc', 'lab27')">Preview Lab 27</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 28: Managing Snowflake Network Policies for Secure Access</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab28" onclick="showPreview('Managing_Snowflake_Network_Policies_for_Secure_Access.adoc', 'lab28')">Preview Lab 28</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 29: Advanced Data Masking Techniques</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab29" onclick="showPreview('Advanced_Data_Masking_Techniques.adoc', 'lab29')">Preview Lab 29</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 30: Automating Snowflake with Tasks and Streams</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab30" onclick="showPreview('Automating_Snowflake_with_Tasks_and_Streams.adoc', 'lab30')">Preview Lab 30</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 31: Optimizing Large-Scale Data Partitioning</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab31" onclick="showPreview('Optimizing_Large_Scale_Data_Partitioning.adoc', 'lab31')">Preview Lab 31</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 32: Managing Semi-Structured Data with SNowflake</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab32" onclick="showPreview('Managing_Semi_Structured_Data_with_SNowflake.adoc', 'lab32')">Preview Lab 32</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 33: Building a Real-Time Analytics Dashboard</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab33" onclick="showPreview('Building_a_Real_Time_Analytics_Dashboard.adoc', 'lab33')">Preview Lab 33</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 34: Creating a Data Pipeline with Snowflake</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab34" onclick="showPreview('Creating_a_Data_Pipeline_with_Snowflake.adoc', 'lab34')">Preview Lab 34</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 35: Implementing Secure Data Sharing Across Snowflake Accounts</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab35" onclick="showPreview('Implementing_Secure_Data_Sharing_Across_Snowflake_Accounts.adoc', 'lab35')">Preview Lab 35</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 36: Implementing Row_level Security in Snowflake</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab36" onclick="showPreview('Implementing_Row_level_Security_in_Snowflake.adoc', 'lab36')">Preview Lab 36</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 37: Case Study 1 Building a Complete Data Warehouse Solution</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab37" onclick="showPreview('Case_Study_1_Building_a_Complete_Data_Warehouse_Solution.adoc', 'lab37')">Preview Lab 37</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 38: Case Study 2 Advanced Analytics ad Predictive Modeling</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab38" onclick="showPreview('Case_Study_2_Advanced_Analytics_and_Predictive_Modeling.adoc', 'lab38')">Preview Lab 38</button>
-<!-- Include the content of each lab here -->
-
-<!-- Dialog for lab preview -->
-
-
-<!-- Continue with other labs similarly -->
-
-<!-- Dialog for lab preview -->
-<div id="preview-dialog">
-  <div class="dialog-header" id="lab-title"></div>
-  <div id="lab-content" class="dialog-body"></div>
-
-  <div>
-    <label><input type="radio" name="status" value="approved" onclick="handleSelection('approved')"> Approved</label>
-    <label><input type="radio" name="status" value="issue" onclick="handleSelection('issue')"> Issue</label>
-  </div>
-
-  <div id="issue-box" style="display:none;">
-    <div id="issue-editor"></div>
-  </div>
-
-  <div class="dialog-buttons">
-    <button id="close-button" onclick="closePreview()">Close and Mark as Reviewed</button>
-  </div>
-</div>
-
-<script>
-  let selectedStatus = '';
-  let labId = '';
-  let quill;
-
-  // Initialize Quill editor on page load
-  document.addEventListener('DOMContentLoaded', function () {
-    quill = new Quill('#issue-editor', {
-      theme: 'snow'
-    });
-
-    quill.disable(); // Initially disable Quill editor
-  });
-
-  function showPreview(labFile, labIdentifier) {
-    labId = labIdentifier;
-    const htmlFile = labFile.replace('.adoc', '.html');
-    console.log("Loading HTML file: " + htmlFile);
-
-    fetch(htmlFile)
-      .then(response => {
-        if (!response.ok) {
-          console.error("Failed to load file: " + response.statusText);
-          return;
-        }
-        return response.text();
-      })
-      .then(data => {
-        document.getElementById('lab-title').innerText = labFile;
-        document.getElementById('lab-content').innerHTML = data;
-        document.getElementById('preview-dialog').style.display = 'block'; // Show dialog
-      })
-      .catch(error => {
-        console.error("Error loading HTML file: ", error);
-      });
-  }
-
-  function handleSelection(status) {
-    selectedStatus = status;
-    const issueBox = document.getElementById('issue-box');
-
-    if (status === 'issue') {
-      issueBox.style.display = 'block';  // Show the issue editor box
-      quill.enable();  // Enable the Quill editor
-    } else {
-      issueBox.style.display = 'none';  // Hide the issue editor box
-      quill.disable();  // Disable the Quill editor when not needed
-    }
-  }
-
-  function closePreview() {
-    const issueDetails = quill.root.innerHTML;
-
-    // Check if the "Issue" option is selected but no issue details provided
-    if (selectedStatus === 'issue' && quill.getText().trim() === '') {
-      alert('Please provide issue details or recommended changes.');
-      return;
-    }
-
-    // Prepare the review content
-    let reviewContent = `### Lab: ${labId}\nStatus: `;
-
-    if (selectedStatus === 'approved') {
-      reviewContent += "Approved\n";
-    } else if (selectedStatus === 'issue') {
-      reviewContent += `Issue\nComments: ${issueDetails.replace(/<[^>]+>/g, '')}\n`;  // Strip HTML tags
-    }
-
-    appendReviewToFile(reviewContent);
-
-    // Close the preview dialog
-    document.getElementById('preview-dialog').style.display = 'none';  // Hide the dialog
-
-    // Change the button color based on the review status
-    const labButton = document.getElementById(`preview-${labId}`);
-    if (selectedStatus === 'approved') {
-      labButton.style.backgroundColor = 'green';
-    } else if (selectedStatus === 'issue') {
-      labButton.style.backgroundColor = 'red';
-    }
-  }
-
-  async function appendReviewToFile(reviewContent) {
-    const owner = 'your-github-username';
-    const repo = 'your-repo-name';
-    const filePath = 'reviewcomments.md';
-    const branch = 'main';
-    const token = 'your-github-token';
-
-    const getFileUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`;
-    const response = await fetch(getFileUrl, {
-      headers: {
-        'Authorization': `token ${token}`,
-        'Accept': 'application/vnd.github.v3+json'
-      }
-    });
-    const fileData = await response.json();
-    const sha = fileData.sha;
-    const currentContent = atob(fileData.content);
-
-    const updatedContent = currentContent + "\n" + reviewContent;
-    const updatedBase64Content = btoa(updatedContent);
-
-    const updateFileUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`;
-    const body = {
-      message: `Append review for lab ${labId}`,
-      content: updatedBase64Content,
-      sha: sha,
-      branch: branch
-    };
-
-    const updateResponse = await fetch(updateFileUrl, {
-      method: 'PUT',
-      headers: {
-        'Authorization': `token ${token}`,
-        'Accept': 'application/vnd.github.v3+json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(body)
-    });
-
-    if (updateResponse.ok) {
-      console.log('Review appended to file successfully');
-    } else {
-      console.error('Failed to append review to file');
-    }
-  }
-</script>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-10-28 15:53:21 +0550
+Last updated 2024-10-28 12:45:10 +0550
 </div>
 </div>
 </body>

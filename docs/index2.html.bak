@@ -439,11 +439,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h1>Snowflakes Labs Review Documentation</h1>
 </div>
 <div id="content">
-<!-- Load Quill.js and its CSS -->
-<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-
-
 <style>
   /* General page styling */
   body {
@@ -577,11 +572,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist checklist">
 <ul class="checklist">
 <li>
-<p>&#10063; Lab 4: Using Snowflakes Web Interface</p>
+<p>&#10063; Lab 4: Using Snowflake&#8217;s Web Interface</p>
 </li>
 </ul>
 </div>
-<button id="preview-lab4" onclick="showPreview('Snowflakes_Web_Interface.adoc', 'lab4')">Preview Lab 4</button>
+<button id="preview-lab4" onclick="showPreview('Using_Snowflake_Web_Interface.adoc', 'lab4')">Preview Lab 4</button>
 <div class="ulist checklist">
 <ul class="checklist">
 <li>
@@ -601,7 +596,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist checklist">
 <ul class="checklist">
 <li>
-<p>&#10063; Lab 7: Managing Users and Roles in Snowflakes</p>
+<p>&#10063; Lab 7: Managing Users and Roles in Snowflake</p>
 </li>
 </ul>
 </div>
@@ -609,11 +604,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist checklist">
 <ul class="checklist">
 <li>
-<p>&#10063; Lab 8: SNowSQL CLI to Interact withSNowflake</p>
+<p>&#10063; Lab 8: SnowSQL CLI to Interact with Snowflake</p>
 </li>
 </ul>
 </div>
-<button id="preview-lab8" onclick="showPreview('SNowSQL_CLI_to_Interact_Snowflake.adoc', 'lab8')">Preview Lab 8</button>
+<button id="preview-lab8" onclick="showPreview('SnowSQL_CLI_to_Interact_with_Snowflake.adoc', 'lab8')">Preview Lab 8</button>
 <div class="ulist checklist">
 <ul class="checklist">
 <li>
@@ -621,11 +616,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </div>
-<button id="preview-lab9" onclick="showPreview('Snowflake_Data_Sharing_Collaboration.adoc', 'lab9')">Preview Lab 9</button>
+<button id="preview-lab9" onclick="showPreview('Snowflake_Data_Sharing_and_Collaboration.adoc', 'lab9')">Preview Lab 9</button>
 <div class="ulist checklist">
 <ul class="checklist">
 <li>
-<p>&#10063; Lab 10: Managing Resource Consumption in SNowflake</p>
+<p>&#10063; Lab 10: Managing Resource Consumption in Snowflake</p>
 </li>
 </ul>
 </div>
@@ -633,11 +628,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist checklist">
 <ul class="checklist">
 <li>
-<p>&#10063; Lab 11: Bulk Data Loading into SNowflakes</p>
+<p>&#10063; Lab 11: Bulk Data Loading into Snowflake</p>
 </li>
 </ul>
 </div>
-<button id="preview-lab11" onclick="showPreview('Bulk_Data_Loading.adoc', 'lab11')">Preview Lab 11</button>
+<button id="preview-lab11" onclick="showPreview('Bulk_Data_Loading_into_Snowflake.adoc', 'lab11')">Preview Lab 11</button>
 <div class="ulist checklist">
 <ul class="checklist">
 <li>
@@ -645,7 +640,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </div>
-<button id="preview-lab12" onclick="showPreview('Managing_Semi_Structured_Data.adoc', 'lab12')">Preview Lab 12</button>
+<button id="preview-lab12" onclick="showPreview('Managing_Semi_Structured_Data_in_Snowflake.adoc', 'lab12')">Preview Lab 12</button>
 <div class="ulist checklist">
 <ul class="checklist">
 <li>
@@ -653,7 +648,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </div>
-<button id="preview-lab13" onclick="showPreview('Time_Travel_and_Fail_safe.adoc', 'lab13')">Preview Lab 13</button>
+<button id="preview-lab13" onclick="showPreview('Time_Travel_and_Fail_safe_in_Snowflake.adoc', 'lab13')">Preview Lab 13</button>
 <div class="ulist checklist">
 <ul class="checklist">
 <li>
@@ -661,7 +656,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </div>
-<button id="preview-lab14" onclick="showPreview('Database_Replication_and_Failover.adoc', 'lab14')">Preview Lab 14</button>
+<button id="preview-lab14" onclick="showPreview('Database_Replication_and_Failover_in_Snowflake.adoc', 'lab14')">Preview Lab 14</button>
 <div class="ulist checklist">
 <ul class="checklist">
 <li>
@@ -669,198 +664,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </div>
-<button id="preview-lab15" onclick="showPreview('Managing_Materialized_Views.adoc', 'lab15')">Preview Lab 15</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 16: Data Masking for Security in Snowflake</p>
-</li>
-</ul>
+<button id="preview-lab15" onclick="showPreview('Managing_Snowflake_Materialized_Views.adoc', 'lab15')">Preview Lab 15</button>
+<div class="paragraph">
+<p>&lt;!-- Continue listing other labs in the same format -&#8594;</p>
 </div>
-<button id="preview-lab16" onclick="showPreview('Data_Masking_for_Security.adoc', 'lab16')">Preview Lab 16</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 17: Performance Tuning Best Practices in Snowflake</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab17" onclick="showPreview('Performance_Tuning_Best_Practices.adoc', 'lab17')">Preview Lab 17</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 18: Handling Time-Series Data in Snowflake</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab18" onclick="showPreview('Handling_Time_Series_Data.adoc', 'lab18')">Preview Lab 18</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 19: Using Snowflake Streams for Change Data Capture CDC</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab19" onclick="showPreview('Snowflake_Streams_for_CDC.adoc', 'lab19')">Preview Lab 19</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 20: Using Snowflake Data Marketplace</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab20" onclick="showPreview('Using_Snowflake_Data_Marketplace.adoc', 'lab20')">Preview Lab 20</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 21: Implementing Data Encryption in SNowflakes</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab21" onclick="showPreview('Implementing_Data_Encryption.adoc', 'lab21')">Preview Lab 21</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 22: Optimizing Snowflake with Materialized Views and Clustering</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab22" onclick="showPreview('Optimizing_Snowflake_with_Materialized_views.adoc', 'lab22')">Preview Lab 22</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 23: Snowflake Continuos Data Integraton with Snowpipe</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab23" onclick="showPreview('Snowflake_with_Snowpipe.adoc', 'lab23')">Preview Lab 23</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 24: Automating Snowflake with Tasks and Streams</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab24" onclick="showPreview('Automating_Snowflake_with_Tasks_and_Streams.adoc', 'lab24')">Preview Lab 24</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 25: Implementing Data Retention Policies</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab25" onclick="showPreview('Implementing_Data_Retention_Policies.adoc', 'lab25')">Preview Lab 25</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 26: Using Snowflake&#8217;s External Tables for Data Lakes</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab26" onclick="showPreview('Using_Snowflake_External_Tables_for_Data_Lakes.adoc', 'lab26')">Preview Lab 26</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 27: Implementing Zero-Copy Cloning for DevOps Workflows</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab27" onclick="showPreview('Implementing_Zero_Copy_Cloning_for_DevOps_Workflows.adoc', 'lab27')">Preview Lab 27</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 28: Managing Snowflake Network Policies for Secure Access</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab28" onclick="showPreview('Managing_Snowflake_Network_Policies_for_Secure_Access.adoc', 'lab28')">Preview Lab 28</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 29: Advanced Data Masking Techniques</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab29" onclick="showPreview('Advanced_Data_Masking_Techniques.adoc', 'lab29')">Preview Lab 29</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 30: Automating Snowflake with Tasks and Streams</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab30" onclick="showPreview('Automating_Snowflake_with_Tasks_and_Streams.adoc', 'lab30')">Preview Lab 30</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 31: Optimizing Large-Scale Data Partitioning</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab31" onclick="showPreview('Optimizing_Large_Scale_Data_Partitioning.adoc', 'lab31')">Preview Lab 31</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 32: Managing Semi-Structured Data with SNowflake</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab32" onclick="showPreview('Managing_Semi_Structured_Data_with_SNowflake.adoc', 'lab32')">Preview Lab 32</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 33: Building a Real-Time Analytics Dashboard</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab33" onclick="showPreview('Building_a_Real_Time_Analytics_Dashboard.adoc', 'lab33')">Preview Lab 33</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 34: Creating a Data Pipeline with Snowflake</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab34" onclick="showPreview('Creating_a_Data_Pipeline_with_Snowflake.adoc', 'lab34')">Preview Lab 34</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 35: Implementing Secure Data Sharing Across Snowflake Accounts</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab35" onclick="showPreview('Implementing_Secure_Data_Sharing_Across_Snowflake_Accounts.adoc', 'lab35')">Preview Lab 35</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 36: Implementing Row_level Security in Snowflake</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab36" onclick="showPreview('Implementing_Row_level_Security_in_Snowflake.adoc', 'lab36')">Preview Lab 36</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 37: Case Study 1 Building a Complete Data Warehouse Solution</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab37" onclick="showPreview('Case_Study_1_Building_a_Complete_Data_Warehouse_Solution.adoc', 'lab37')">Preview Lab 37</button>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Lab 38: Case Study 2 Advanced Analytics ad Predictive Modeling</p>
-</li>
-</ul>
-</div>
-<button id="preview-lab38" onclick="showPreview('Case_Study_2_Advanced_Analytics_and_Predictive_Modeling.adoc', 'lab38')">Preview Lab 38</button>
-<!-- Include the content of each lab here -->
-
-<!-- Dialog for lab preview -->
-
-
-<!-- Continue with other labs similarly -->
-
 <!-- Dialog for lab preview -->
 <div id="preview-dialog">
   <div class="dialog-header" id="lab-title"></div>
@@ -890,8 +697,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
     quill = new Quill('#issue-editor', {
       theme: 'snow'
     });
-
-    quill.disable(); // Initially disable Quill editor
   });
 
   function showPreview(labFile, labIdentifier) {
@@ -910,7 +715,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
       .then(data => {
         document.getElementById('lab-title').innerText = labFile;
         document.getElementById('lab-content').innerHTML = data;
-        document.getElementById('preview-dialog').style.display = 'block'; // Show dialog
+        document.getElementById('preview-dialog').style.display = 'block';
+        console.log("HTML file successfully loaded.");
       })
       .catch(error => {
         console.error("Error loading HTML file: ", error);
@@ -922,18 +728,17 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
     const issueBox = document.getElementById('issue-box');
 
     if (status === 'issue') {
-      issueBox.style.display = 'block';  // Show the issue editor box
-      quill.enable();  // Enable the Quill editor
+      issueBox.style.display = 'block';  // Show the issue box when 'Issue' is selected
+      quill.enable(true);  // Make sure the Quill editor is enabled
     } else {
-      issueBox.style.display = 'none';  // Hide the issue editor box
-      quill.disable();  // Disable the Quill editor when not needed
+      issueBox.style.display = 'none';  // Hide the issue box when 'Approved' is selected
     }
   }
 
   function closePreview() {
     const issueDetails = quill.root.innerHTML;
 
-    // Check if the "Issue" option is selected but no issue details provided
+    // Check if there is an issue and the issue details are provided
     if (selectedStatus === 'issue' && quill.getText().trim() === '') {
       alert('Please provide issue details or recommended changes.');
       return;
@@ -945,21 +750,24 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
     if (selectedStatus === 'approved') {
       reviewContent += "Approved\n";
     } else if (selectedStatus === 'issue') {
-      reviewContent += `Issue\nComments: ${issueDetails.replace(/<[^>]+>/g, '')}\n`;  // Strip HTML tags
+      reviewContent += `Issue\nComments: ${issueDetails.replace(/<[^>]+>/g, '')}\n`;
     }
 
     appendReviewToFile(reviewContent);
 
-    // Close the preview dialog
-    document.getElementById('preview-dialog').style.display = 'none';  // Hide the dialog
+    // Close the preview dialog by setting its display to none
+    document.getElementById('preview-dialog').style.display = 'none';
 
-    // Change the button color based on the review status
+    // Mark the lab as reviewed and change its background color
     const labButton = document.getElementById(`preview-${labId}`);
     if (selectedStatus === 'approved') {
       labButton.style.backgroundColor = 'green';
     } else if (selectedStatus === 'issue') {
       labButton.style.backgroundColor = 'red';
+      console.log("Issue details: ", issueDetails);
     }
+
+    console.log("Lab " + labId + " reviewed. Status: " + selectedStatus);
   }
 
   async function appendReviewToFile(reviewContent) {
@@ -1011,7 +819,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-10-28 15:53:21 +0550
+Last updated 2024-10-28 14:41:44 +0550
 </div>
 </div>
 </body>

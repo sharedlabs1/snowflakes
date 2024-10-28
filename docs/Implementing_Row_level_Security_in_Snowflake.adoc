@@ -1,0 +1,166 @@
+= Lab 36: Implementing Row-Level Security in Snowflake with Secure Views  
+
+
+== Objective
+In this lab, you will implement row-level security (RLS) in Snowflake using secure views to control access to specific rows of data based on user roles.
+
+== Prerequisites
+- Snowflake account access with administrative privileges.
+
+== Steps
+1. **Creating the Base Table**
+   . Create a base table to store sales data, including a region column for restricting access:
+  
+[source,sql]
+----
+   CREATE OR REPLACE TABLE sales_data_rls (
+     id INT, 
+     product STRING, 
+     amount DECIMAL(10, 2), 
+     region STRING
+   );
+   INSERT INTO sales_data_rls VALUES 
+   (1, 'Laptop', 1000, 'North America'), 
+   (2, 'Phone', 500, 'Europe'), 
+   (3, 'Tablet', 300, 'Asia');
+----
+
+2. **Creating Roles for Regional Access**
+   . Create roles to represent regional sales managers:
+  
+[source,sql]
+----
+   CREATE ROLE north_america_manager;
+   CREATE ROLE europe_manager;
+   CREATE ROLE asia_manager;
+----
+
+3. **Granting Access to the Base Table**
+   . Grant the necessary access to the **sales_data_rls** table:
+   
+[source,sql]
+----
+   GRANT SELECT ON sales_data_rls TO ROLE north_america_manager;
+   GRANT SELECT ON sales_data_rls TO ROLE europe_manager;
+   GRANT SELECT ON sales_data_rls TO ROLE asia_manager;
+----
+
+4. **Creating a Secure View for North America**
+   . Create a secure view that restricts access to rows where the region is "North America":
+   
+[source,sql]
+----
+   CREATE SECURE VIEW north_america_sales_view AS
+   SELECT * FROM sales_data_rls WHERE region = 'North America';
+   GRANT SELECT ON north_america_sales_view TO ROLE north_america_manager;
+----
+
+5. **Creating Secure Views for Other Regions**
+   . Create similar secure views for Europe and Asia:
+   
+[source,sql]
+----
+   CREATE SECURE VIEW europe_sales_view AS
+   SELECT * FROM sales_data_rls WHERE region = 'Europe';
+   GRANT SELECT ON europe_sales_view TO ROLE europe_manager;
+
+   CREATE SECURE VIEW asia_sales_view AS
+   SELECT * FROM sales_data_rls WHERE region = 'Asia';
+   GRANT SELECT ON asia_sales_view TO ROLE asia_manager;
+----
+
+6. **Testing the Views with Regional Managers**
+   . Log in as the **north_america_manager** and query the secure view:
+   
+[source,sql]
+----
+   SELECT * FROM north_america_sales_view;
+----
+   . Verify that only North American sales data is returned.
+
+7. **Applying Row-Level Security Based on Session Context**
+   . Modify the secure view to apply dynamic row-level security based on the session role:
+   
+[source,sql]
+----
+   CREATE OR REPLACE SECURE VIEW dynamic_sales_view AS
+   SELECT * 
+   FROM sales_data_rls
+   WHERE region = CASE 
+     WHEN CURRENT_ROLE() = 'NORTH_AMERICA_MANAGER' THEN 'North America'
+     WHEN CURRENT_ROLE() = 'EUROPE_MANAGER' THEN 'Europe'
+     WHEN CURRENT_ROLE() = 'ASIA_MANAGER' THEN 'Asia'
+     ELSE NULL
+   END;
+   GRANT SELECT ON dynamic_sales_view TO ROLE north_america_manager;
+   GRANT SELECT ON dynamic_sales_view TO ROLE europe_manager;
+   GRANT SELECT ON dynamic_sales_view TO ROLE asia_manager;
+----
+
+8. **Testing the Dynamic Secure View**
+   . Log in as different regional managers and query the **dynamic_sales_view**:
+   
+[source,sql]
+----
+   SELECT * FROM dynamic_sales_view;
+----
+   . Verify that each user only sees data for their respective region.
+
+9. **Granting Access to Multiple Roles**
+   . If a user needs access to multiple regions, grant them access to multiple roles and adjust the view logic:
+   
+[source,sql]
+----
+   CREATE ROLE global_manager;
+   GRANT ROLE north_america_manager TO ROLE global_manager;
+   GRANT ROLE europe_manager TO ROLE global_manager;
+----
+
+10. **Creating a View for Global Managers**
+   . Create a view for global managers that provides access to all data:
+   
+[source,sql]
+----
+   CREATE SECURE VIEW global_sales_view AS
+   SELECT * FROM sales_data_rls;
+   GRANT SELECT ON global_sales_view TO ROLE global_manager;
+----
+
+11. **Testing Access for Global Managers**
+   . Log in as the **global_manager** and verify access to all regions:
+   
+[source,sql]
+----
+   SELECT * FROM global_sales_view;
+----
+
+12. **Enforcing Security Audits**
+   . Use the **QUERY_HISTORY** view to track who accessed which region’s data:
+  
+[source,sql]
+ ----
+   SELECT * FROM QUERY_HISTORY WHERE QUERY_TEXT ILIKE '%sales_view%';
+----
+
+13. **Creating Row-Level Policies for Compliance**
+   . If needed, create additional row-level policies to ensure compliance with data protection regulations:
+  
+[source,sql]
+----
+   CREATE SECURE VIEW compliance_sales_view AS
+   SELECT * FROM sales_data_rls WHERE region = 'Europe' AND CURRENT_ROLE() = 'EUROPE_MANAGER';
+----
+
+14. **Automating Role-Based Data Access**
+   . Set up Snowflake tasks to automatically update roles or grant additional privileges as users move between regions or teams.
+
+15. **Revoking Access**
+   . Revoke access from users or roles that no longer require it:
+   
+[source,sql]
+----
+   REVOKE SELECT ON north_america_sales_view FROM ROLE north_america_manager;
+----
+
+== Conclusion
+- You have successfully implemented row-level security in Snowflake using secure views, ensuring that users can only access data based on their roles and regions.

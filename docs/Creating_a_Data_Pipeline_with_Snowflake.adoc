@@ -1,0 +1,127 @@
+= Lab 34: Creating a Data Pipeline with Snowflake, Apache Kafka, and Snowpipe  
+
+
+== Objective
+In this lab, you will build an end-to-end data pipeline that streams data from Apache Kafka into Snowflake using Snowpipe for continuous ingestion.
+
+== Prerequisites
+- Snowflake account access.
+- Apache Kafka set up (local or cloud-based).
+- Kafka topic created.
+
+== Steps
+1. **Setting Up a Kafka Topic**
+   . Create a Kafka topic to simulate incoming data streams:
+   
+[source,sql]
+----
+   kafka-topics.sh --create --topic sales_topic --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
+----
+
+2. **Producing Data to Kafka**
+   . Use a Kafka producer to send sales data to the **sales_topic**:
+   
+[source,sql]
+----
+   kafka-console-producer.sh --topic sales_topic --bootstrap-server localhost:9092
+----
+
+Type the following sales data:
+
+[source,data]
+----
+{"id": 1, "product": "Laptop", "amount": 1000, "timestamp": "2023-10-01 12:00:00"}
+{"id": 2, "product": "Phone", "amount": 500, "timestamp": "2023-10-01 12:01:00"}
+----
+
+
+3. **Creating a Stage in Snowflake**
+. In Snowflake, create a stage that will receive data from Kafka:
+[source,sql]
+----
+CREATE OR REPLACE STAGE kafka_stage
+URL='s3://your-bucket/kafka_data/'
+CREDENTIALS=(AWS_KEY_ID='your_key' AWS_SECRET_KEY='your_secret');
+----
+
+4. **Creating a Snowflake Table**
+. Create a Snowflake table to store the streamed data:
+[source,sql]
+----
+CREATE OR REPLACE TABLE sales_data (
+  id INT,
+  product STRING,
+  amount DECIMAL(10, 2),
+  sale_timestamp TIMESTAMP
+);
+----
+
+5. **Setting Up Snowpipe for Continuous Ingestion**
+. Create a Snowpipe to automatically ingest data into Snowflake from the Kafka stream:
+[source,sql]
+----
+CREATE OR REPLACE PIPE kafka_sales_pipe AS
+COPY INTO sales_data FROM @kafka_stage
+FILE_FORMAT = (TYPE = 'JSON');
+----
+
+6. **Integrating Kafka with Snowpipe Using Connectors**
+. Use a Kafka Connector (Confluent or Snowflake Connector for Kafka) to push data from Kafka to Snowflake. Set the connector to target the S3 bucket connected to the Snowflake stage.
+
+7. **Sending More Data to Kafka**
+. Produce additional data to the Kafka topic to simulate continuous streaming:
+[source,sql]
+----
+kafka-console-producer.sh --topic sales_topic --bootstrap-server localhost:9092
+----
+Enter additional records like:
+
+[source,data]
+----
+{"id": 3, "product": "Tablet", "amount": 300, "timestamp": "2023-10-01 12:05:00"}
+----
+
+
+8. **Verifying Data Ingestion into Snowflake**
+. Query the **sales_data** table in Snowflake to check if the data has been ingested:
+[source,sql]
+----
+SELECT * FROM sales_data;
+----
+
+9. **Monitoring Snowpipe Execution**
+. Use the **PIPE_USAGE_HISTORY** view to monitor Snowpipe activity:
+[source,sql]
+----
+SELECT * FROM PIPE_USAGE_HISTORY WHERE PIPE_NAME = 'KAFKA_SALES_PIPE';
+----
+
+10. **Handling Errors in Snowpipe**
+. Check for any ingestion errors in the **LOAD_HISTORY** view and resolve them:
+[source,sql]
+----
+SELECT * FROM LOAD_HISTORY WHERE STATUS = 'LOAD_FAILED';
+----
+
+11. **Automating Data Ingestion**
+. Set up Snowpipe to automatically trigger data ingestion whenever new data arrives in the S3 bucket (or other cloud storage connected to the Kafka stream).
+
+12. **Scaling the Kafka-Snowflake Pipeline**
+. Increase Kafka partitions and Snowflake virtual warehouse size to handle higher volumes of streaming data.
+
+13. **Configuring Schema Evolution**
+. Enable schema evolution in Snowflake to automatically handle changes in the data structure from Kafka:
+[source,sql]
+----
+ALTER PIPE kafka_sales_pipe SET SCHEMA_EVOLUTION = TRUE;
+----
+
+14. **Monitoring Real-Time Analytics**
+. Query real-time data from Snowflake and create basic reports to monitor sales trends as data flows in.
+
+15. **Visualizing the Data**
+. Use Snowflake’s integration with BI tools like Tableau or Power BI to visualize the real-time data coming from Kafka.
+
+== Conclusion
+- You have successfully built a real-time data pipeline from Kafka to Snowflake using Snowpipe for continuous data ingestion and automation.
+

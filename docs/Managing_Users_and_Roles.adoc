@@ -1,0 +1,51 @@
+= Lab 7: Managing Users and Roles in Snowflake  
+
+
+== Objective
+In this lab, you will manage users and roles in Snowflake to control access to databases and tables.
+
+== Prerequisites
+- Snowflake account access with administrator permissions.
+
+== Steps
+1. **Creating a New User**
+   . Create a new user in Snowflake:
+[source,sql]
+----
+CREATE USER john_doe PASSWORD='StrongPass123' DEFAULT_ROLE = 'PUBLIC';
+----
+
+
+2. **Creating a Role**
+. Create a custom role:
+
+[source,sql]
+----
+CREATE ROLE data_analyst;
+----
+
+3. **Granting Privileges to the Role**
+. Grant SELECT privileges on the employees table to the **data_analyst** role:
+
+[source,sql]
+----
+GRANT SELECT ON employees TO ROLE data_analyst;
+----
+
+
+4. **Assigning the Role to a User**
+. Assign the **data_analyst** role to the new user:
+
+[source,sql]
+----
+GRANT ROLE data_analyst TO USER john_doe;
+----
+
+
+5. **Testing User Access**
+. Log in as the newly created user and verify access to the **employees** table by running a SELECT query:
+
+
+== Conclusion
+- You have successfully managed users and roles in Snowflake, granting specific access to tables based on assigned roles.
+
