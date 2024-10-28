@@ -1,0 +1,52 @@
+= Lab 20: Using Snowflake Data Marketplace  
+Author: Your Name  
+:icons: font  
+:source-highlighter: pygments  
+:toc: preamble  
+:numbered:
+
+== Objective
+In this lab, you will explore the Snowflake Data Marketplace and learn how to access and query third-party datasets for analytics and reporting.
+
+== Prerequisites
+- Snowflake account access.
+
+== Steps
+1. **Accessing the Data Marketplace**
+   . Log in to Snowflake and navigate to the **Data Marketplace** tab.
+   . Explore the available datasets provided by third-party data providers.
+
+2. **Searching for a Dataset**
+   . Search for a dataset related to financial markets, weather data, or retail sales, depending on your analysis needs.
+   . Review the description and details of the dataset.
+
+3. **Requesting Access to a Dataset**
+   . Select a dataset and request access from the data provider. Once access is granted, create a new database from the shared data:
+
+[source,sql]
+----
+CREATE DATABASE financial_data FROM SHARE provider_account.financial_market_data;
+----
+
+
+4. **Querying the Shared Dataset**
+. Query the data from the newly created database:
+
+[source,sql]
+----
+SELECT * FROM financial_data.public.market_stats;
+
+----
+
+
+5. **Integrating Marketplace Data with Internal Data**
+. Join the marketplace dataset with your internal sales data to enhance your analytics:
+
+[source,sql]
+----
+
+SELECT a.market, b.sales FROM financial_data.public.market_stats a JOIN internal_sales_data b ON a.market = b.market;
+----
+
+== Conclusion
+- You have successfully accessed and queried third-party datasets from the Snowflake Data Marketplace, integrating it with your internal data for enhanced analytics.

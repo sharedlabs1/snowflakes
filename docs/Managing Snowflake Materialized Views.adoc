@@ -1,0 +1,61 @@
+= Lab 15: Managing Snowflake Materialized Views  
+Author: Your Name  
+:icons: font  
+:source-highlighter: pygments  
+:toc: preamble  
+:numbered:
+
+== Objective
+In this lab, you will create and manage materialized views in Snowflake to optimize query performance on frequently accessed data.
+
+== Prerequisites
+- Snowflake account access.
+
+== Steps
+1. **Creating a Materialized View**
+   . Create a table and insert data:
+
+[source,sql]
+----
+CREATE TABLE sales_data (id INT, amount DECIMAL(10, 2), category STRING); 
+INSERT INTO sales_data VALUES (1, 100.50, 'Electronics'), (2, 300.75, 'Furniture');
+----
+
+
+. Create a materialized view on the table:
+
+[source,sql]
+----
+CREATE MATERIALIZED VIEW sales_summary AS SELECT category, SUM(amount) AS total_sales FROM sales_data GROUP BY category;
+----
+
+
+2. **Querying the Materialized View**
+. Query the materialized view to observe the aggregated results:
+
+[source,sql]
+----
+SELECT * FROM sales_summary;
+----
+
+
+3. **Monitoring Materialized View Performance**
+. Use the **VIEW_USAGE_HISTORY** view to monitor the performance and freshness of the materialized view:
+
+[source,sql]
+----
+SELECT * FROM VIEW_USAGE_HISTORY WHERE VIEW_NAME = 'sales_summary';
+----
+
+
+4. **Refreshing the Materialized View**
+. Manually refresh the materialized view if needed:
+
+[source,sql]
+----
+ALTER MATERIALIZED VIEW sales_summary RECLUSTER;
+----
+
+
+== Conclusion
+- You have successfully created and managed materialized views in Snowflake to improve query performance.

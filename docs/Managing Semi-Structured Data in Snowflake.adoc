@@ -1,0 +1,64 @@
+= Lab 12: Managing Semi-Structured Data in Snowflake  
+Author: Your Name  
+:icons: font  
+:source-highlighter: pygments  
+:toc: preamble  
+:numbered:
+
+== Objective
+In this lab, you will learn how to load and query semi-structured data formats such as JSON and Parquet in Snowflake.
+
+== Prerequisites
+- Snowflake account access.
+- Sample JSON or Parquet file.
+
+== Steps
+1. **Creating a Table for Semi-Structured Data**
+   . Create a table to store semi-structured JSON data:
+
+[source,sql]
+----
+CREATE TABLE json_data_table (data VARIANT);
+----
+
+
+2. **Loading JSON Data**
+. Use the **COPY INTO** command to load JSON data into the table:
+
+[source,sql]
+----
+COPY INTO json_data_table FROM @my_stage FILE_FORMAT = (TYPE = 'JSON');
+----
+
+
+3. **Querying JSON Data**
+. Query specific fields within the JSON data using Snowflake's **FLATTEN** function:
+
+[source,sql]
+----
+SELECT data:id::INT, data:name::STRING FROM json_data_table;
+----
+
+
+4. **Handling Parquet Data**
+. Create a table for Parquet data and load it similarly:
+
+[source,sql]
+----
+CREATE TABLE parquet_data_table (data VARIANT); 
+COPY INTO parquet_data_table FROM @my_stage FILE_FORMAT = (TYPE = 'PARQUET');
+----
+
+
+5. **Querying Parquet Data**
+. Query the semi-structured Parquet data:
+
+[source,sql]
+----
+SELECT data
+FROM parquet_data_table;
+----
+
+
+== Conclusion
+- You have successfully managed semi-structured data formats like JSON and Parquet in Snowflake, performing both data loading and querying.

@@ -1,0 +1,61 @@
+= Lab 10: Managing Resource Consumption in Snowflake  
+Author: Your Name  
+:icons: font  
+:source-highlighter: pygments  
+:toc: preamble  
+:numbered:
+
+== Objective
+In this lab, you will monitor and manage resource consumption in Snowflake, including virtual warehouse usage and query performance.
+
+== Prerequisites
+- Snowflake account access.
+
+== Steps
+1. **Monitoring Warehouse Usage**
+   . Use the **WAREHOUSE_METERING_HISTORY** view to monitor virtual warehouse usage:
+
+[source,sql]
+----
+SELECT * FROM WAREHOUSE_METERING_HISTORY WHERE START_TIME > CURRENT_DATE() - INTERVAL '1 DAY';
+----
+
+
+2. **Analyzing Query Performance**
+. Use the **QUERY_HISTORY** view to monitor query performance:
+
+[source,sql]
+----
+SELECT * FROM QUERY_HISTORY WHERE EXECUTION_STATUS = 'SUCCESS';
+----
+
+
+3. **Suspending and Resuming Warehouses**
+. Suspend a running warehouse to reduce resource consumption:
+
+[source,sql]
+----
+ALTER WAREHOUSE my_warehouse SUSPEND;
+----
+
+
+. Resume the warehouse when needed:
+
+[source,sql]
+----
+ALTER WAREHOUSE my_warehouse RESUME;
+----
+
+
+4. **Setting Auto-Suspend and Auto-Resume**
+. Set up auto-suspend and auto-resume for a warehouse:
+
+[source,sql]
+----
+ALTER WAREHOUSE my_warehouse SET AUTO_SUSPEND = 300; ALTER WAREHOUSE my_warehouse SET AUTO_RESUME = TRUE;
+----
+
+
+== Conclusion
+- You have successfully managed resource consumption in Snowflake by monitoring warehouse usage, analyzing query performance, and optimizing resource allocation.
+

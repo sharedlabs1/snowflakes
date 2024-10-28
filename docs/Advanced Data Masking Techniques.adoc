@@ -1,0 +1,184 @@
+= Lab 29: Advanced Data Masking Techniques for GDPR and Compliance in Snowflake  
+Author: Your Name  
+:icons: font  
+:source-highlighter: pygments  
+:toc: preamble  
+:numbered:
+
+== Objective
+In this lab, you will implement advanced data masking policies in Snowflake to comply with GDPR and other data protection regulations, ensuring the security of sensitive personal data based on user roles.
+
+== Prerequisites
+- Snowflake account access with `SECURITYADMIN` privileges.
+
+== Steps
+1. **Creating a Table with Sensitive Data**
+   . Create a table to store customer information:
+
+   [source,sql]
+   ----
+   CREATE TABLE customer_data_gdpr (
+     id INT, 
+     name STRING, 
+     ssn STRING, 
+     email STRING, 
+     phone STRING
+   );
+   INSERT INTO customer_data_gdpr VALUES 
+   (1, 'John Doe', '123-45-6789', 'john@example.com', '555-1234'),
+   (2, 'Jane Smith', '987-65-4321', 'jane@example.com', '555-5678');
+   ----
+
+2. **Creating a Masking Policy for Personal Data**
+   . Create a masking policy to mask the `ssn` column based on the user's role:
+   
+[source,sql]
+   ----
+   CREATE MASKING POLICY ssn_mask_policy AS 
+   (val STRING) RETURNS STRING ->
+   CASE 
+     WHEN CURRENT_ROLE() IN ('SECURITYADMIN', 'DATA_AUDITOR') THEN val
+     ELSE 'XXX-XX-XXXX'
+   END;
+   ----
+
+3. **Applying the Masking Policy**
+   . Apply the masking policy to the `ssn` column:
+   
+[source,sql]
+   ----
+   ALTER TABLE customer_data_gdpr MODIFY COLUMN ssn SET MASKING POLICY ssn_mask_policy;
+   ----
+
+4. **Creating a Masking Policy for Email and Phone**
+   . Create similar masking policies for the `email` and `phone` columns:
+   
+[source,sql]
+   ----
+   CREATE MASKING POLICY email_mask_policy AS 
+   (val STRING) RETURNS STRING ->
+   CASE 
+     WHEN CURRENT_ROLE() IN ('SECURITYADMIN', 'DATA_AUDITOR') THEN val
+     ELSE 'hidden@example.com'
+   END;
+   
+   CREATE MASKING POLICY phone_mask_policy AS 
+   (val STRING) RETURNS STRING ->
+   CASE 
+     WHEN CURRENT_ROLE() IN ('SECURITYADMIN', 'DATA_AUDITOR') THEN val
+     ELSE 'XXX-XXXX'
+   END;
+   ----
+
+5. **Applying Masking Policies to Email and Phone**
+   . Apply these policies to the `email` and `phone` columns:
+   
+[source,sql]
+   ----
+   ALTER TABLE customer_data_gdpr MODIFY COLUMN email SET MASKING POLICY email_mask_policy;
+   ALTER TABLE customer_data_gdpr MODIFY COLUMN phone SET MASKING POLICY phone_mask_policy;
+   ----
+
+6. **Creating Roles for Compliance**
+   . Create roles for users who need access to unmasked data and those who do not:
+   
+[source,sql]
+   ----
+   CREATE ROLE data_auditor;
+   CREATE ROLE regular_user;
+   ----
+
+7. **Granting Access to Roles**
+   . Assign roles to different users:
+  
+[source,sql]
+   ----
+   GRANT ROLE data_auditor TO USER auditor_user;
+   GRANT ROLE regular_user TO USER standard_user;
+   ----
+
+8. **Testing Masking Policies as Regular User**
+   . Log in as a regular user and query the table to see the masked data:
+  
+[source,sql]
+   ----
+   SELECT * FROM customer_data_gdpr;
+   ----
+
+9. **Testing Masking Policies as Data Auditor**
+   . Log in as the `data_auditor` and query the table to see unmasked data:
+  
+[source,sql]
+   ----
+   SELECT * FROM customer_data_gdpr;
+   ----
+
+10. **Verifying Audit Logs for Compliance**
+   . Check the audit logs to verify that masked data access is logged properly:
+  
+[source,sql]
+   ----
+   SELECT * FROM INFORMATION_SCHEMA.LOGIN_HISTORY WHERE USER_NAME = 'standard_user';
+   ----
+
+11. **Setting Masking Policy for Specific Time Period**
+   . Modify the masking policy to apply only during specific time periods (e.g., office hours):
+  
+[source,sql]
+   ----
+   ALTER MASKING POLICY ssn_mask_policy SET 
+   CASE 
+     WHEN CURRENT_TIME() BETWEEN '09:00' AND '17:00' THEN val
+     ELSE 'XXX-XX-XXXX'
+   END;
+   ----
+
+12. **Creating a Masking Policy for Logs**
+   . Ensure that logs are masked for regular users by applying masking to sensitive log tables:
+  
+[source,sql]
+   ----
+   CREATE MASKING POLICY log_mask_policy AS 
+   (val STRING) RETURNS STRING ->
+   CASE 
+     WHEN CURRENT_ROLE() = 'SECURITYADMIN' THEN val
+     ELSE 'REDACTED'
+   END;
+   ALTER TABLE INFORMATION_SCHEMA.LOGIN_HISTORY MODIFY COLUMN QUERY_TEXT SET MASKING POLICY log_mask_policy;
+   ----
+
+13. **Revoking and Reapplying Policies**
+   . Revoke the policy and reapply it to see the changes in effect:
+   
+[source,sql]
+   ----
+   ALTER TABLE customer_data_gdpr MODIFY COLUMN ssn UNSET MASKING POLICY;
+   ALTER TABLE customer_data_gdpr MODIFY COLUMN ssn SET MASKING POLICY ssn_mask_policy;
+   ----
+
+14. **Monitoring Masking Policy Enforcement**
+   . Use the **MASKING_POLICY_REFERENCES** view to check where policies are applied:
+  
+[source,sql]
+   ----
+   SELECT * FROM MASKING_POLICY_REFERENCES;
+   ----
+
+15. **Automating Masking with Tasks**
+   . Set up a task to automate masking policy changes based on changing compliance requirements:
+  
+[source,sql]
+   ----
+   CREATE TASK auto_mask_update
+   SCHEDULE = '1 HOUR'
+   AS
+   ALTER MASKING POLICY ssn_mask_policy SET 
+   CASE 
+     WHEN CURRENT_TIME() BETWEEN '09:00' AND '17:00' THEN val
+     ELSE 'XXX-XX-XXXX'
+   END;
+   ----
+
+== Conclusion
+
+- You have implemented advanced data masking policies in Snowflake, ensuring compliance with GDPR and other regulations while providing secure access to sensitive data.

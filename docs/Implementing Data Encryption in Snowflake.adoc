@@ -1,0 +1,61 @@
+= Lab 21: Implementing Data Encryption in Snowflake  
+Author: Your Name  
+:icons: font  
+:source-highlighter: pygments  
+:toc: preamble  
+:numbered:
+
+== Objective
+In this lab, you will explore how to implement data encryption in Snowflake, including how Snowflake uses encryption for data at rest and in transit, and how to configure encryption keys for added security.
+
+== Prerequisites
+- Snowflake account access.
+
+== Steps
+1. **Understanding Snowflake's Encryption**
+   . Review Snowflake's default encryption mechanisms for both data at rest and in transit. Snowflake automatically encrypts data using AES-256 for data at rest and TLS for data in transit.
+
+2. **Creating a Table to Store Sensitive Data**
+   . Create a table to store sensitive customer information:
+
+[source,sql]
+----
+CREATE TABLE customer_encryption (id INT, name STRING, ssn STRING);
+INSERT INTO customer_encryption VALUES (1, 'John Doe', '123-45-6789');
+----
+
+
+3. **Enabling Encryption Key Rotation**
+. Rotate the encryption key for the specific table or database:
+
+[source,sql]
+----
+ALTER DATABASE demo_db SET ENCRYPTION = (KEY_ROTATION_INTERVAL = 30 DAYS);
+----
+
+4. **Querying Encrypted Data**
+. Query the encrypted table as usual:
+
+[source,sql]
+----
+SELECT * FROM customer_encryption;
+----
+
+
+5. **Using Customer-Managed Encryption Keys (CMEK)**
+. Set up Customer-Managed Encryption Keys (CMEK) for enhanced security by integrating with an external key management system (AWS KMS, Azure Key Vault, or GCP KMS).
+
+6. **Verifying Encryption Settings**
+. Use Snowflake's information schema to verify encryption settings:
+
+[source,sql]
+----
+SELECT * FROM INFORMATION_SCHEMA.ENCRYPTION_KEYS WHERE OBJECT_NAME = 'customer_encryption';
+
+----
+
+
+== Conclusion
+- You have successfully implemented data encryption in Snowflake, including key rotation and the option for customer-managed encryption keys (CMEK).
+
+

@@ -1,0 +1,72 @@
+= Lab 9: Snowflake Data Sharing and Collaboration  
+Author: Your Name  
+:icons: font  
+:source-highlighter: pygments  
+:toc: preamble  
+:numbered:
+
+== Objective
+
+In this lab, you will configure secure data sharing with external Snowflake accounts and collaborate by sharing datasets.
+
+== Prerequisites
+
+- Snowflake account access.
+- External Snowflake account for sharing data.
+
+== Steps
+
+1. **Creating a Data Share**
+   . Log into your Snowflake account and create a share for the **employees** table:
+
+[source,sql]
+----
+
+CREATE SHARE employees_share; GRANT USAGE ON DATABASE demo_db TO SHARE employees_share;
+GRANT SELECT ON employees TO SHARE employees_share;
+----
+
+
+2. **Granting Access to the Share**
+. Grant access to the external account:
+
+ALTER SHARE employees_share ADD ACCOUNT = 'EXTERNAL_ACCOUNT_NAME';
+
+[source,sql]
+----
+ALTER SHARE employees_share ADD ACCOUNT = 'EXTERNAL_ACCOUNT_NAME';
+----
+
+
+3. **Consuming the Shared Data**
+. Log into the external Snowflake account and create a database from the share:
+
+[source,sql]
+----
+ALTER SHARE employees_share ADD ACCOUNT = 'EXTERNAL_ACCOUNT_NAME';
+----
+
+
+3. **Consuming the Shared Data**
+. Log into the external Snowflake account and create a database from the share:
+
+[source,sql]
+----
+CREATE DATABASE shared_db FROM SHARE primary_account.employees_share;
+----
+
+
+4. **Querying the Shared Data**
+. Query the shared **employees** data in the external account:
+
+[source,sql]
+----
+SELECT * FROM shared_db.public.employees;
+----
+
+
+== Conclusion
+- You have successfully shared data securely between Snowflake accounts and collaborated by sharing datasets with external users.
+
+
+

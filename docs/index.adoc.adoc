@@ -1,0 +1,94 @@
+= Snowflake Advanced Labs Book
+:doctype: book  
+:icons: font  
+:toc: left  
+:toclevels: 2  
+:source-highlighter: pygments
+
+include::Snowflake and Basic Configuration.adoc[]
+
+include::Loading Data into Snowflake.adoc[]
+
+include::Querying Data in Snowflake.adoc[]
+
+include::Using Snowflakes's Web Interface.adoc[]
+
+include::Secure Data Sharing in Snowflake.adoc[]
+
+include::Organizing Data in Snowflake with Cloning.adoc[]
+
+include::Managing Users and Roles in Snowflakes.adoc[]
+
+include::SNowSQL CLI to Interact withSNowflake.adoc[]
+
+include::Snowflake Data Sharing and Collaboration.adoc[]
+
+include::Managing Resource Consumption in SNowflake.adoc[]
+
+include::Bulk Data Loading into SNowflakes.adoc[]
+
+include::Managing Semi-Structured Data in Snowflake.adoc[]
+
+include::Time Travel and Fail-safe in Snowflake.adoc[]
+
+include::Database Replication and Failover in Snowflake.adoc[]
+
+include::Managing Snowflake Materialized Views.adoc[]
+
+include::Data Masking for Security in Snowflake.adoc[]
+
+include::Performance Tuning Best Practices in Snowflake.adoc[]
+
+include::Handling Time-Series Data in Snowflake.adoc[]
+
+include::Using Snowflake Streams for Change Data Capture CDC.adoc[]
+
+include::Using Snowflake Data Marketplace.adoc[]
+
+include::Implementing Data Encryption in SNowflakes.adoc[]
+
+include::Optimizing Snowflake with Materialized Views and Clustering.adoc[]
+
+include::Snowflake Continuos Data Integraton with Snowpipe.adoc[]
+
+include::Automating Snowflake with Tasks and Streams.adoc[]
+
+include::Implementing Data Retention Policies.adoc[]
+
+include::Using Snowflake's External Tables for Data Lakes[]
+
+include::Implementing Zero-Copy Cloning for DevOps Workflows.adoc[]
+
+include::Managing Snowflake Network Policies for Secure Access.adoc[]
+
+include::Advanced Data Masking Techniques.adoc[]
+
+include::Automating Snowflake with Tasks and Streams.adoc[]
+
+include::Optimizing Large-Scale Data Partitioning.adoc[]
+
+include::Managing Semi-Structured Data with SNowflake.adoc[]
+
+include::Building a Real-Time Analytics Dashboard.adoc[]
+
+include::Creating a Data Pipeline with Snowflake.adoc[]
+
+include::Implementing Secure Data Sharing Across Snowflake Accounts.adoc[]
+
+include::Implementing Row_level Security in Snowflake.adoc[]
+
+include::Case Study 1 Building a Complete Data Warehouse Solution.adoc[]
+
+include::Case Study 2 Advanced Analytics ad Predictive Modeling.adoc[]
+
+
+
+
+
+
+
+
+
+
+
+

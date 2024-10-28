@@ -1,0 +1,64 @@
+= Lab 22: Optimizing Snowflake with Materialized Views and Clustering  
+Author: Your Name  
+:icons: font  
+:source-highlighter: pygments  
+:toc: preamble  
+:numbered:
+
+== Objective
+In this lab, you will optimize data access in Snowflake using materialized views and clustering to improve query performance on large datasets.
+
+== Prerequisites
+- Snowflake account access.
+
+== Steps
+
+1. **Creating a Large Table for Optimization**
+   . Create a large table with sales data:
+
+[source,sql]
+----
+CREATE OR REPLACE TABLE sales_data_large (id INT, amount DECIMAL(10, 2), category STRING); 
+INSERT INTO sales_data_large SELECT SEQ8(), RAND() * 1000, RANDOM() FROM TABLE(GENERATOR(ROWCOUNT => 1000000));
+----
+
+2. **Creating a Materialized View**
+. Create a materialized view to optimize querying:
+
+[source,sql]
+----
+
+CREATE MATERIALIZED VIEW sales_summary_large AS SELECT category, SUM(amount) AS total_sales FROM sales_data_large GROUP BY category;
+----
+
+
+3. **Querying the Materialized View**
+. Query the materialized view to observe the performance improvement:
+
+[source,sql]
+----
+SELECT * FROM sales_summary_large;
+----
+
+
+4. **Applying Clustering**
+. Add clustering to the large table to optimize queries based on the **category** column:
+
+[source,sql]
+----
+ALTER TABLE sales_data_large CLUSTER BY (category);
+----
+
+
+5. **Monitoring the Impact of Clustering**
+. Use the **CLUSTERING_INFORMATION** view to monitor clustering efficiency:
+
+[source,sql]
+----
+SELECT * FROM CLUSTERING_INFORMATION WHERE TABLE_NAME = 'sales_data_large';
+----
+
+
+== Conclusion
+- You have successfully used materialized views and clustering to optimize data access in Snowflake for large datasets, improving query performance.
+

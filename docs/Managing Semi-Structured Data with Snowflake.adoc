@@ -1,0 +1,152 @@
+= Lab 32: Managing Semi-Structured Data with Snowflake's VARIANT Type and JSON Functions  
+Author: Your Name  
+:icons: font  
+:source-highlighter: pygments  
+:toc: preamble  
+:numbered:
+
+== Objective
+In this lab, you will work with semi-structured data in Snowflake using the `VARIANT` type and JSON functions to query, transform, and store JSON data.
+
+== Prerequisites
+- Snowflake account access.
+- Sample JSON data file.
+
+== Steps
+1. **Creating a Table to Store JSON Data**
+   . Create a table with a `VARIANT` column to hold semi-structured JSON data:
+  
+[source,sql]
+----
+   CREATE OR REPLACE TABLE json_data_table (
+     id INT, 
+     data VARIANT
+   );
+----
+
+2. **Inserting JSON Data**
+   . Insert sample JSON data into the table:
+   
+[source,sql]
+----
+   INSERT INTO json_data_table VALUES 
+   (1, PARSE_JSON('{"name": "John", "age": 30, "city": "New York"}')),
+   (2, PARSE_JSON('{"name": "Jane", "age": 25, "city": "London"}'));
+----
+
+3. **Querying JSON Fields**
+   . Use the `:` operator to query specific fields in the JSON data:
+   
+[source,sql]
+----
+   SELECT data:name::STRING AS name, data:age::INT AS age FROM json_data_table;
+----
+
+4. **Flattening Nested JSON Data**
+   . Use the `FLATTEN` function to flatten nested JSON arrays:
+   
+[source,sql]
+----
+   SELECT id, key, value
+   FROM json_data_table, 
+   LATERAL FLATTEN(input => data);
+----
+
+5. **Inserting More Complex JSON**
+   . Insert more complex JSON data, including nested arrays and objects:
+   
+[source,sql]
+----
+   INSERT INTO json_data_table VALUES 
+   (3, PARSE_JSON('{"name": "Alice", "age": 28, "projects": [{"title": "Project A", "year": 2020}, {"title": "Project B", "year": 2021}]}'));
+----
+
+6. **Querying Nested JSON Objects**
+   . Query the nested `projects` array from the JSON data:
+   
+[source,sql]
+----
+   SELECT data:name::STRING AS name, data:projects[0].title::STRING AS first_project
+   FROM json_data_table WHERE id = 3;
+----
+
+7. **Aggregating JSON Data**
+   . Aggregate JSON data by extracting fields and performing calculations:
+   
+[source,sql]
+----
+   SELECT COUNT(*) AS total_records, AVG(data:age::INT) AS average_age FROM json_data_table;
+----
+
+8. **Modifying JSON Data**
+   . Update specific fields in the JSON data using the `OBJECT_INSERT` and `OBJECT_DELETE` functions:
+   
+[source,sql]
+----
+   UPDATE json_data_table
+   SET data = OBJECT_INSERT(data, 'city', 'Paris') WHERE id = 1;
+   UPDATE json_data_table
+   SET data = OBJECT_DELETE(data, 'projects') WHERE id = 3;
+----
+
+9. **Filtering Based on JSON Values**
+   . Filter records based on values inside the JSON structure:
+   
+[source,sql]
+----
+   SELECT * FROM json_data_table WHERE data:age::INT > 25;
+----
+
+10. **Using JSON to Create Derived Tables**
+   . Create a derived table from the JSON fields by flattening the data:
+   
+[source,sql]
+----
+   CREATE OR REPLACE TABLE derived_table AS
+   SELECT data:name::STRING AS name, data:age::INT AS age, data:city::STRING AS city
+   FROM json_data_table;
+----
+
+11. **Converting JSON Data to Columns**
+   . Convert JSON data into separate columns using the `SELECT` statement:
+   
+[source,sql]
+----
+   SELECT data:name::STRING AS name, data:age::INT AS age, data:city::STRING AS city FROM json_data_table;
+----
+
+12. **Analyzing JSON Structures**
+   . Analyze and check the structure of the JSON data using `TYPEOF`:
+   
+[source,sql]
+----
+SELECT id, TYPEOF(data) AS data_type FROM json_data_table;
+----
+
+13. **Combining JSON Data with Structured Data**
+   . Combine JSON data with structured data in queries:
+  
+[source,sql]
+----
+SELECT json_data_table.data:age::INT AS json_age, employees.name FROM json_data_table
+JOIN employees ON employees.age = json_data_table.data:age::INT;
+----
+
+14. **Creating JSON Indexes**
+   . Improve performance by indexing specific JSON paths:
+  
+[source,sql]
+----
+ALTER TABLE json_data_table SET TAG 'json_path_index' = 'data:age';
+----
+
+15. **Exporting JSON Data**
+   . Export the JSON data from Snowflake back to an external storage location:
+   
+[source,sql]
+----
+COPY INTO @my_stage FROM json_data_table FILE_FORMAT = (TYPE = 'JSON');
+----
+
+== Conclusion
+- You have successfully managed semi-structured data in Snowflake using the `VARIANT` type and JSON functions, performing querying, transforming, and flattening operations on JSON data.

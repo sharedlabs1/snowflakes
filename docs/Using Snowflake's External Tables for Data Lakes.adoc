@@ -1,0 +1,67 @@
+= Lab 26: Using Snowflake's External Tables for Data Lakes  
+Author: Your Name  
+:icons: font  
+:source-highlighter: pygments  
+:toc: preamble  
+:numbered:
+
+== Objective
+In this lab, you will configure external tables in Snowflake to query data stored in an external data lake (e.g., Amazon S3 or Azure Data Lake) without loading the data into Snowflake.
+
+== Prerequisites
+- Snowflake account access.
+- Access to external storage (e.g., S3 bucket or Azure Data Lake).
+
+== Steps
+1. **Creating an External Stage**
+   . Create an external stage that points to your data lake storage:
+
+[source,sql]
+----
+CREATE OR REPLACE STAGE external_data_stage URL='s3://your-bucket-name/path/' CREDENTIALS=(AWS_KEY_ID='your_key_id' AWS_SECRET_KEY='your_secret_key');
+
+----
+
+
+2. **Defining an External Table**
+. Create an external table that references files stored in the external stage:
+
+[source,sql]
+----
+CREATE OR REPLACE EXTERNAL TABLE external_sales_data WITH LOCATION=@external_data_stage FILE_FORMAT=(TYPE=CSV) AUTO_REFRESH=TRUE;
+
+----
+
+
+3. **Querying the External Table**
+. Query the data directly from the external table without loading it into Snowflake:
+
+[source,sql]
+----
+SELECT * FROM external_sales_data;
+----
+
+4. **Using Partition Pruning**
+. Apply partition pruning to optimize querying of large datasets in the external table by filtering on relevant partitions:
+
+[source,sql]
+----
+SELECT * FROM external_sales_data WHERE sale_date = '2023-01-01';
+
+----
+
+
+5. **Monitoring External Table Performance**
+. Use the **EXTERNAL_TABLE_USAGE_HISTORY** view to monitor the performance and usage of external tables:
+
+[source,sql]
+----
+SELECT * FROM EXTERNAL_TABLE_USAGE_HISTORY WHERE TABLE_NAME = 'EXTERNAL_SALES_DATA';
+
+----
+
+
+== Conclusion
+- You have successfully configured and queried external tables in Snowflake to access data stored in an external data lake without having to load it into Snowflake.
+
+

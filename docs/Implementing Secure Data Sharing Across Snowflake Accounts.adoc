@@ -1,0 +1,137 @@
+= Lab 35: Implementing Secure Data Sharing Across Snowflake Accounts  
+Author: Your Name  
+:icons: font  
+:source-highlighter: pygments  
+:toc: preamble  
+:numbered:
+
+== Objective
+In this lab, you will configure secure data sharing between Snowflake accounts, enabling access to shared datasets without copying or moving the data.
+
+== Prerequisites
+- Two Snowflake accounts (or a shared account to simulate two environments).
+- Administrative privileges in both accounts.
+
+== Steps
+1. **Creating a Share in the Primary Account**
+   . Log in to the primary Snowflake account and create a data share:
+[source,sql]
+----
+   CREATE SHARE sales_share;
+----
+
+2. **Granting Access to Databases and Tables**
+   . Grant access to a specific database and table to the share:
+   
+[source,sql]
+----
+   GRANT USAGE ON DATABASE sales_db TO SHARE sales_share;
+   GRANT SELECT ON sales_db.public.sales_data TO SHARE sales_share;
+----
+
+3. **Adding a Consumer Account**
+   . Grant access to the external consumer account (or secondary account):
+   
+[source,sql]
+----
+   ALTER SHARE sales_share ADD ACCOUNT = 'CONSUMER_ACCOUNT_NAME';
+----
+
+4. **Verifying the Share Configuration**
+   . Use the **SHARE_PRIVILEGES** view to check which privileges have been granted:
+
+[source,sql]
+----
+   SELECT * FROM SHARE_PRIVILEGES WHERE SHARE_NAME = 'SALES_SHARE';
+----
+
+5. **Consuming the Share in the Consumer Account**
+   . Log in to the consumer account and create a database from the shared data:
+  
+[source,sql]
+----
+CREATE DATABASE shared_sales_db FROM SHARE primary_account.sales_share;
+----
+
+6. **Querying the Shared Data**
+   . Query the shared data from the consumer account:
+
+[source,sql]
+----
+   SELECT * FROM shared_sales_db.public.sales_data;
+----
+
+7. **Validating the Access Controls**
+   . Ensure that the consumer account only has read-only access by testing SELECT queries.
+
+8. **Adding More Data to the Shared Table**
+   . Insert more data into the **sales_data** table in the primary account:
+   
+[source,sql]
+----
+   INSERT INTO sales_db.public.sales_data VALUES (5, 'Product E', 700, '2023-10-02');
+
+----
+
+9. **Verifying Data Updates in the Consumer Account**
+   . Query the shared table in the consumer account to confirm new data is accessible:
+   
+[source,sql]
+----
+   SELECT * FROM shared_sales_db.public.sales_data;
+----
+
+10. **Sharing Multiple Tables**
+   . Share multiple tables by adding them to the same share:
+   
+[source,sql]
+----
+   GRANT SELECT ON sales_db.public.customers TO SHARE sales_share;
+
+----
+
+11. **Revoking Access to the Share**
+   . Revoke access to specific tables from the share if needed:
+  
+[source,sql]
+----
+   REVOKE SELECT ON sales_db.public.customers FROM SHARE sales_share;
+----
+
+12. **Monitoring Data Sharing Activity**
+   . Monitor data sharing activity in the primary account:
+   
+[source,sql]
+----
+   SELECT * FROM ACCOUNT_USAGE.SHARES WHERE SHARE_NAME = 'SALES_SHARE';
+----
+
+13. **Creating a Secure View for Shared Data**
+   . Create a secure view to share only specific fields from the shared table:
+   
+[source,sql]
+----
+   CREATE SECURE VIEW shared_sales_view AS
+   SELECT id, product, amount FROM sales_db.public.sales_data;
+   GRANT SELECT ON shared_sales_view TO SHARE sales_share;
+
+----
+
+14. **Testing the Secure View in the Consumer Account**
+   . Query the secure view from the consumer account:
+   
+[source,sql]
+----
+   SELECT * FROM shared_sales_db.public.shared_sales_view;
+----
+
+15. **Disabling the Share**
+   . If needed, disable the data share:
+   
+[source,sql]
+----
+   DROP SHARE sales_share;
+----
+
+== Conclusion
+- You have successfully configured secure data sharing between Snowflake accounts, providing access to shared datasets without data movement.

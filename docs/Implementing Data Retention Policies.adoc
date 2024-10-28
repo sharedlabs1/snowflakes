@@ -1,0 +1,75 @@
+= Lab 25: Implementing Data Retention Policies and Purging in Snowflake  
+Author: Your Name  
+:icons: font  
+:source-highlighter: pygments  
+:toc: preamble  
+:numbered:
+
+== Objective
+In this lab, you will configure data retention policies in Snowflake to manage how long data is retained before it is purged from the system.
+
+== Prerequisites
+- Snowflake account access.
+
+== Steps
+1. **Creating a Table with Retention Policies**
+   . Create a table to store sales data and configure a retention policy for it:
+
+[source,sql]
+----
+CREATE TABLE sales_with_retention (id INT, amount DECIMAL(10, 2), sale_date DATE) DATA_RETENTION_TIME_IN_DAYS = 7;
+----
+
+
+2. **Inserting Data**
+. Insert some sample data into the table:
+
+[source,sql]
+----
+INSERT INTO sales_with_retention VALUES (1, 100, '2023-01-01');
+----
+
+
+3. **Verifying Data Retention Settings**
+. Query the retention settings for the table:
+
+[source,sql]
+----
+SHOW PARAMETERS LIKE 'DATA_RETENTION_TIME_IN_DAYS' IN TABLE sales_with_retention;
+----
+
+
+4. **Purging Expired Data**
+. After the retention period has passed, verify that the expired data is purged automatically:
+
+[source,sql]
+----
+SELECT * FROM sales_with_retention WHERE sale_date < CURRENT_DATE() - INTERVAL '7 DAYS';
+----
+
+
+5. **Customizing Retention Policies**
+. Adjust the retention time by modifying the table's retention policy:
+
+[source,sql]
+----
+ALTER TABLE sales_with_retention SET DATA_RETENTION_TIME_IN_DAYS = 14;
+----
+
+
+6. **Manually Purging Data**
+. If necessary, manually purge specific data from the table:
+
+[source,sql]
+----
+DELETE FROM sales_with_retention WHERE sale_date < CURRENT_DATE() - INTERVAL '14 DAYS';
+----
+
+
+7. **Monitoring Retention and Purging Activity**
+. Use the **ACCOUNT_USAGE** views to monitor retention and purging activities, including when data is scheduled for deletion.
+
+== Conclusion
+- You have successfully configured and managed data retention policies in Snowflake, ensuring data is automatically purged after a set retention period or manually deleted when necessary.
+
+

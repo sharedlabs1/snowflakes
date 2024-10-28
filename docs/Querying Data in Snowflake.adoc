@@ -1,0 +1,59 @@
+= Lab 3: Querying Data in Snowflake  
+Author: Your Name  
+:icons: font  
+:source-highlighter: pygments  
+:toc: preamble  
+:numbered:
+
+== Objective
+In this lab, you will run basic and advanced SQL queries in Snowflake, including filtering, aggregation, and joins.
+
+== Prerequisites
+- A Snowflake database with data loaded (e.g., employees table).
+
+== Steps
+1. **Basic Queries**
+   . Run basic SELECT queries to retrieve data:
+
+[source,sql]
+----
+SELECT * FROM employees;
+----
+
+
+2. **Filtering Data**
+. Apply WHERE conditions to filter records:
+
+[source,sql]
+----
+SELECT * FROM employees WHERE department = 'HR';
+----
+
+
+3. **Aggregating Data**
+. Use aggregate functions to summarize data:
+
+[source,sql]
+----
+SELECT department, AVG(age) FROM employees GROUP BY department;
+----
+
+
+4. **Joining Tables**
+. Create a second table for departments:
+
+[source,sql]
+----
+SELECT department, AVG(age) FROM employees GROUP BY department;
+----
+
+. Perform a JOIN query:
+
+[source,sql]
+----
+SELECT e.name, d.department_name FROM employees e JOIN departments d ON e.department = d.id;
+----
+
+
+== Conclusion
+- You have successfully run basic and advanced SQL queries in Snowflake, including filtering, aggregation, and joins.

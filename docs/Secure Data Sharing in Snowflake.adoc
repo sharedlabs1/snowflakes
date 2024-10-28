@@ -1,0 +1,53 @@
+= Lab 5: Secure Data Sharing in Snowflake  
+Author: Your Name  
+:icons: font  
+:source-highlighter: pygments  
+:toc: preamble  
+:numbered:
+
+== Objective
+In this lab, you will configure secure data sharing between two Snowflake accounts.
+
+== Prerequisites
+- Two Snowflake accounts or access to a shared Snowflake instance.
+
+== Steps
+1. **Creating a Share**
+   . Log into your primary Snowflake account and create a share:
+
+[source,sql]
+----
+CREATE SHARE employee_data_share; GRANT USAGE ON DATABASE demo_db TO SHARE employee_data_share;
+
+----
+
+
+2. **Granting Access**
+. Grant access to the specific table you want to share:
+
+[source,sql]
+----
+GRANT SELECT ON employees TO SHARE employee_data_share;
+----
+
+
+3. **Consuming the Share**
+. Log into the secondary Snowflake account and consume the share:
+
+[source,sql]
+----
+CREATE DATABASE employee_db FROM SHARE primary_account.employee_data_share;
+----
+
+
+4. **Querying Shared Data**
+. Query the shared data from the secondary account:
+
+[source,sql]
+----
+SELECT * FROM employee_db.public.employees;
+----
+
+== Conclusion
+- You have successfully shared data securely between two Snowflake accounts.
+

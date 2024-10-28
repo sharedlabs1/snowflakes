@@ -1,0 +1,59 @@
+= Lab 8: SnowSQL: Using the CLI to Interact with Snowflake  
+Author: Your Name  
+:icons: font  
+:source-highlighter: pygments  
+:toc: preamble  
+:numbered:
+
+== Objective
+In this lab, you will learn how to use SnowSQL, the Snowflake command-line interface (CLI), to interact with Snowflake for querying and managing resources.
+
+== Prerequisites
+- SnowSQL installed on your machine.
+- Snowflake account access.
+
+== Steps
+1. **Setting Up SnowSQL**
+   . Install SnowSQL on your machine and configure it to connect to your Snowflake account.
+   . Use the command:
+
+[source,cmd]
+----
+snowsql -a <account_name> -u <username>
+----
+
+
+2. **Running SQL Commands Using SnowSQL**
+. Use SnowSQL to create a new table:
+
+[source,sql]
+----
+CREATE TABLE departments (id INT, name STRING);
+----
+. Insert data into the table:
+
+[source,sql]
+----
+INSERT INTO departments VALUES (1, 'HR'), (2, 'Finance');
+----
+
+
+3. **Querying Data**
+. Query data from the **departments** table:
+
+[source,sql]
+----
+SELECT * FROM departments;
+----
+
+
+4. **Exporting Query Results**
+. Export query results to a CSV file using SnowSQL:
+
+[source,sql]
+----
+!output_file = 'departments.csv'; SELECT * FROM departments;
+----
+
+== Conclusion
+- You have successfully used SnowSQL to interact with Snowflake, performing operations like creating tables, querying data, and exporting results.

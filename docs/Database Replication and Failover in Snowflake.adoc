@@ -1,0 +1,70 @@
+= Lab 14: Database Replication and Failover in Snowflake  
+Author: Your Name  
+:icons: font  
+:source-highlighter: pygments  
+:toc: preamble  
+:numbered:
+
+== Objective
+In this lab, you will configure database replication and failover to ensure high availability and disaster recovery in Snowflake.
+
+== Prerequisites
+- Snowflake account access with multi-region setup.
+
+== Steps
+1. **Setting Up Replication**
+   . Create a primary database:
+
+[source,sql]
+----
+CREATE OR REPLACE DATABASE primary_db;
+----
+
+
+. Enable replication for the primary database:
+
+[source,sql]
+----
+ALTER DATABASE primary_db ENABLE REPLICATION TO REGION 'US-WEST';
+----
+
+
+2. **Creating a Secondary Database**
+. Set up a secondary database in a different region:
+
+[source,sql]
+----
+CREATE DATABASE secondary_db FROM REPLICATION OF primary_db;
+----
+
+
+3. **Simulating a Failover**
+. Simulate a failover scenario by suspending the primary region:
+
+[source,sql]
+----
+
+ALTER DATABASE primary_db FAILOVER TO secondary_db;
+----
+
+
+4. **Testing Data Access**
+. Access the **secondary_db** and query the replicated data:
+
+[source,sql]
+----
+SELECT * FROM secondary_db.public.some_table;
+----
+
+
+5. **Monitoring Replication**
+. Use the **REPLICATION_DATABASES** view to monitor replication:
+
+[source,sql]
+----
+SELECT * FROM REPLICATION_DATABASES;
+----
+
+
+== Conclusion
+- You have successfully set up database replication and failover in Snowflake, ensuring high availability and disaster recovery.

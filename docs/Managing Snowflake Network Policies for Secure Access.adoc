@@ -1,0 +1,56 @@
+= Lab 28: Managing Snowflake Network Policies for Secure Access  
+Author: Your Name  
+:icons: font  
+:source-highlighter: pygments  
+:toc: preamble  
+:numbered:
+
+== Objective
+In this lab, you will configure Snowflake network policies to manage and restrict access to your Snowflake instance based on specific IP address ranges for enhanced security.
+
+== Prerequisites
+- Snowflake account access with admin privileges.
+
+== Steps
+1. **Creating a Network Policy**
+   . Create a network policy to restrict access to a specific IP range:
+
+[source,sql]
+----
+CREATE NETWORK POLICY restrict_access ALLOWED_IP_LIST = ('192.168.1.1', '192.168.1.2/24');
+----
+
+
+2. **Applying the Network Policy**
+. Apply the network policy to a specific user:
+
+[source,sql]
+----
+ALTER USER john_doe SET NETWORK_POLICY = restrict_access;
+----
+
+
+3. **Testing Network Restrictions**
+. Log in as the user from an IP address outside the allowed range to verify access is restricted.
+
+4. **Monitoring Network Policy Enforcement**
+. Use the **LOGIN_HISTORY** view to monitor logins and check for network policy enforcement:
+
+[source,sql]
+----
+SELECT * FROM LOGIN_HISTORY WHERE USER_NAME = 'JOHN_DOE';
+
+----
+
+
+5. **Modifying Network Policies**
+. Modify the network policy to update the allowed IP addresses:
+
+[source,sql]
+----
+ALTER NETWORK POLICY restrict_access SET ALLOWED_IP_LIST = ('192.168.2.1', '192.168.2.2/24');
+----
+
+
+== Conclusion
+- You have successfully implemented and managed network policies in Snowflake to secure access to your instance based on IP address restrictions.

@@ -1,0 +1,65 @@
+= Lab 2: Loading Data into Snowflake (Manual and Automated Methods)  
+Author: Your Name  
+:icons: font  
+:source-highlighter: pygments  
+:toc: preamble  
+:numbered:
+
+== Objective
+In this lab, you will manually load data into Snowflake and automate data loading using the COPY command.
+
+== Prerequisites
+- Access to a Snowflake account.
+- Sample CSV file (e.g., `employees.csv`).
+
+== Steps
+1. **Manual Data Load Using the Web Interface**
+   . Create a new table in the **Worksheet**:
+
+[source,sql]
+----
+CREATE TABLE employees (id INT, name STRING, age INT, department STRING);
+----
+
+. Use the **Data Load Wizard** in the **Databases** tab to manually upload the `employees.csv` file to the **employees** table.
+
+2. **Verifying Data Load**
+. Run the following query to verify the data:
+
+[source,sql]
+----
+SELECT * FROM employees;
+----
+
+
+3. **Automated Data Load Using COPY Command**
+. Stage the CSV file using an internal Snowflake stage:
+
+[source,sql]
+----
+CREATE OR REPLACE STAGE my_stage; PUT file://employees.csv @my_stage;
+----
+
+
+. Use the COPY INTO command to load the data into the table:
+
+[source,sql]
+----
+COPY INTO employees FROM @my_stage FILE_FORMAT = (TYPE = 'CSV');
+----
+
+
+4. **Verify Automated Load**
+. Check the data in the **employees** table:
+
+[source,sql]
+----
+
+SELECT * FROM employees;
+
+----
+
+
+== Conclusion
+
+- You have successfully loaded data into Snowflake using both manual and automated methods, including the COPY command.
